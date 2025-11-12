@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
-import AppIcon from "@/components/app-icon";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import ReactConfetti from 'react-confetti';
+import { useStarterPacks } from "@/hooks/useStarterPacks";
+import { StarterPackCard, StarterPackCardSkeleton } from "@/components/starter-pack-card";
 
 export default function DonePage() {
     const router = useRouter();
@@ -17,44 +18,35 @@ export default function DonePage() {
     const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
     const [showConfetti, setShowConfetti] = useState(true);
 
-    // Array of Nostr apps
-    const nostrApps = [
-        {
-            name: "Coracle",
-            icon: "/apps/coracle.svg",
-            type: "Social & Microblogging",
-            platform: "Web app",
-            link: "https://coracle.social"
-        },
-        {
-            name: "Chachi",
-            icon: "/apps/chachi.svg",
-            type: "Gruppengespräche",
-            platform: "Web app",
-            link: "https://chachi.nostr.com"
-        },
-        {
-            name: "Olas",
-            icon: "/apps/olas.svg",
-            type: "Foto- & Video-Social",
-            platform: "Android / iOS",
-            link: "https://olas.social"
-        },
-        {
-            name: "Nostur",
-            icon: "/apps/nostur.svg",
-            type: "Social & Microblogging",
-            platform: "iOS / macOS",
-            link: "https://nostur.com"
-        },
-        {
-            name: "Jumble.social",
-            icon: "/apps/jumble.svg",
-            type: "Social & Microblogging",
-            platform: "Web app",
-            link: "https://jumble.social"
-        }
-    ];
+    // Starter packs configuration
+    const [showPredefinedPacks, setShowPredefinedPacks] = useState(false);
+    
+    // Memoize the predefined pack IDs to prevent unnecessary re-renders
+    const predefinedPackIds = useMemo(() => [
+        "p9ny0auxlpoa"
+    ], []); // Empty dependency array since these IDs are static
+
+    // Load starter packs
+    const starterPacksOptions = useMemo(() => ({
+        predefinedPacks: showPredefinedPacks ? predefinedPackIds : undefined,
+        limit: 6
+    }), [showPredefinedPacks, predefinedPackIds]);
+    
+    const { starterPacks, loading: packsLoading, error: packsError, refresh } = useStarterPacks(starterPacksOptions);
+
+    // Handle following a starter pack
+    const handleFollowPack = (starterPack: any) => {
+        // Here you would implement the logic to follow all profiles in the starter pack
+        console.log('Following starter pack:', starterPack);
+        // For now, just show an alert - you could implement actual following logic
+        alert(`Folge ${starterPack.profiles.length} Profilen aus "${starterPack.title}"`);
+    };
+
+    // Handle viewing starter pack details
+    const handleViewPackDetails = (starterPack: any) => {
+        // Open in a new window or show modal with details
+        window.open(`https://njump.me/${starterPack.id}`, '_blank');
+    };
 
     // Handle localStorage access in useEffect (client-side only)
     useEffect(() => {
@@ -150,46 +142,93 @@ export default function DonePage() {
                 </div>
 
                 {/* Welcome text */}
-                <div className="w-full max-w-3xl mb-12">
+                <div className="w-full max-w-3xl mb-8">
                     <p className="text-lg">
                         Wir sind fertig, <span className="font-bold">{username}</span>! Jetzt kannst du beginnen,
-                        Nostr zu erkunden, indem du eine Web-Anwendung verwendest oder eine App
-                        herunterlädst. Hier sind einige Vorschläge, um sofort loszulegen:
+                        Nostr zu erkunden, indem du interessanten Leuten folgst. Hier sind einige
+                        kuratierte Starter-Packs, um sofort loszulegen:
                     </p>
                 </div>
 
-                {/* App grid */}
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 w-full max-w-4xl mb-12">
-                    {nostrApps.map((app, index) => (
-                        <a
-                            key={index}
-                            href={app.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex flex-col items-center text-center group transition-transform hover:scale-105"
+                {/* Pack type toggle */}
+                <div className="w-full max-w-3xl mb-6">
+                    <div className="flex gap-2 p-1 bg-secondary/50 rounded-lg">
+                        <button
+                            onClick={() => setShowPredefinedPacks(false)}
+                            className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                                !showPredefinedPacks 
+                                    ? 'bg-primary text-primary-foreground shadow-sm' 
+                                    : 'text-muted-foreground hover:text-foreground'
+                            }`}
                         >
-                            <div className="mb-4 w-20 h-20 md:w-24 md:h-24 relative flex items-center justify-center">
-                                <AppIcon
-                                    src={app.icon}
-                                    alt={`${app.name} icon`}
-                                    width={96}
-                                    height={96}
-                                    className="object-contain"
+                            Neueste Packs
+                        </button>
+                        <button
+                            onClick={() => setShowPredefinedPacks(true)}
+                            className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                                showPredefinedPacks 
+                                    ? 'bg-primary text-primary-foreground shadow-sm' 
+                                    : 'text-muted-foreground hover:text-foreground'
+                            }`}
+                        >
+                            Empfohlene Packs
+                        </button>
+                    </div>
+                </div>
+
+                {/* Starter packs grid */}
+                <div className="w-full max-w-5xl mb-8">
+                    {packsError && (
+                        <div className="text-center p-6 text-muted-foreground">
+                            <p className="mb-4">Fehler beim Laden der Starter-Packs: {packsError}</p>
+                            <Button variant="outline" onClick={refresh}>
+                                Erneut versuchen
+                            </Button>
+                        </div>
+                    )}
+                    
+                    {packsLoading && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                            {Array.from({ length: 6 }).map((_, index) => (
+                                <StarterPackCardSkeleton key={index} />
+                            ))}
+                        </div>
+                    )}
+
+                    {!packsLoading && !packsError && starterPacks.length === 0 && (
+                        <div className="text-center p-6 text-muted-foreground">
+                            <p className="mb-4">
+                                {showPredefinedPacks 
+                                    ? 'Keine empfohlenen Starter-Packs gefunden.'
+                                    : 'Keine neuen Starter-Packs gefunden.'
+                                }
+                            </p>
+                            <Button variant="outline" onClick={() => setShowPredefinedPacks(!showPredefinedPacks)}>
+                                {showPredefinedPacks ? 'Neueste anzeigen' : 'Empfohlene anzeigen'}
+                            </Button>
+                        </div>
+                    )}
+
+                    {!packsLoading && !packsError && starterPacks.length > 0 && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                            {starterPacks.map((pack) => (
+                                <StarterPackCard
+                                    key={pack.id}
+                                    starterPack={pack}
+                                    onFollow={handleFollowPack}
+                                    onViewDetails={handleViewPackDetails}
                                 />
-                            </div>
-                            <h3 className="font-medium text-lg mb-1">{app.name}</h3>
-                            <p className="text-xs text-muted-foreground mb-1">{app.type}</p>
-                            <p className="text-xs text-primary">{app.platform}</p>
-                        </a>
-                    ))}
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {/* "This is just a small selection" text */}
                 <div className="w-full max-w-3xl mb-8">
                     <p className="text-base">
-                        Dies ist nur eine kleine Auswahl der über 80 Anwendungen, die bereits auf Nostr entwickelt wurden,
+                        Dies sind kuratierte Listen von interessanten Personen auf Nostr.
                         <a href="https://nostr.com/apps" className="text-primary hover:underline ml-1">
-                            entdecke sie alle!
+                            Entdecke auch die über 80 verfügbaren Apps!
                         </a>
                     </p>
                 </div>
