@@ -45,7 +45,7 @@ export default function DonePage() {
     // Handle viewing starter pack details
     const handleViewPackDetails = (starterPack: any) => {
         // Open in a new window or show modal with details
-        window.open(`https://njump.me/${starterPack.id}`, '_blank');
+        window.open(`https://following.space/d/${starterPack.identifier}`, '_blank');
     };
 
     // Handle localStorage access in useEffect (client-side only)
