@@ -7,12 +7,14 @@ import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import ReactConfetti from 'react-confetti';
 import { useStarterPacks, StarterPack } from "@/hooks/useStarterPacks";
+import { useNip02Contacts } from "@/hooks/useNip02Contacts";
 import { StarterPackCard, StarterPackCardSkeleton } from "@/components/starter-pack-card";
 
 export default function DonePage() {
     const router = useRouter();
     const [nostrProfileUrl, setNostrProfileUrl] = useState("njump.me/your-npub-here");
     const [username, setUsername] = useState("Anonym");
+    const [userKeys, setUserKeys] = useState<{ npub: string; nsec: string } | null>(null);
     
     // Confetti state
     const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
@@ -34,12 +36,29 @@ export default function DonePage() {
     
     const { starterPacks, loading: packsLoading, error: packsError, refresh } = useStarterPacks(starterPacksOptions);
 
+    // Initialize NIP-02 contacts hook with user keys
+    const { followStarterPack } = useNip02Contacts({
+        userPubkey: userKeys?.npub,
+        userPrivateKey: userKeys?.nsec,
+        enableAutoSync: false // Don't need auto-sync on the done page
+    });
+
     // Handle following a starter pack
-    const handleFollowPack = (starterPack: StarterPack) => {
-        // Here you would implement the logic to follow all profiles in the starter pack
-        console.log('Following starter pack:', starterPack);
-        // For now, just show an alert - you could implement actual following logic
-        alert(`Folge ${starterPack.profiles.length} Profilen aus "${starterPack.title}"`);
+    const handleFollowPack = async (starterPack: StarterPack) => {
+        if (userKeys?.nsec && followStarterPack) {
+            try {
+                await followStarterPack(starterPack.profiles);
+                console.log('Successfully followed starter pack:', starterPack.title);
+            } catch (error) {
+                console.error('Error following starter pack:', error);
+                // Fallback to the old behavior if following fails
+                alert(`Folge ${starterPack.profiles.length} Profilen aus "${starterPack.title}"`);
+            }
+        } else {
+            // Fallback for when keys are not available
+            console.log('Following starter pack:', starterPack);
+            alert(`Folge ${starterPack.profiles.length} Profilen aus "${starterPack.title}"`);
+        }
     };
 
     // Handle viewing starter pack details
@@ -71,6 +90,8 @@ export default function DonePage() {
                 if (keys.npub) {
                     setNostrProfileUrl(`njump.me/${keys.npub}`);
                 }
+                // Store the keys for the contacts hook
+                setUserKeys(keys);
             } catch (error) {
                 console.error("Failed to parse stored keys:", error);
             }
@@ -217,6 +238,8 @@ export default function DonePage() {
                                     starterPack={pack}
                                     onFollow={handleFollowPack}
                                     onViewDetails={handleViewPackDetails}
+                                    userPubkey={userKeys?.npub}
+                                    userPrivateKey={userKeys?.nsec}
                                 />
                             ))}
                         </div>

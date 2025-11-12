@@ -4,7 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { StarterPack } from '@/hooks/useStarterPacks';
-import { Users, Plus, ExternalLink } from 'lucide-react';
+import { useNip02Contacts } from '@/hooks/useNip02Contacts';
+import { Users, Plus, ExternalLink, Check, Loader2 } from 'lucide-react';
 
 export interface StarterPackCardProps {
   starterPack: StarterPack;
@@ -12,6 +13,9 @@ export interface StarterPackCardProps {
   onViewDetails?: (starterPack: StarterPack) => void;
   className?: string;
   showActions?: boolean;
+  userPubkey?: string; // User's public key for checking follow status
+  userPrivateKey?: string | Uint8Array; // User's private key for following
+  relays?: string[]; // Relays to use for following
 }
 
 export function StarterPackCard({ 
@@ -19,11 +23,48 @@ export function StarterPackCard({
   onFollow, 
   onViewDetails, 
   className = "",
-  showActions = true
+  showActions = true,
+  userPubkey,
+  userPrivateKey,
+  relays
 }: StarterPackCardProps) {
-  const handleFollow = () => {
-    onFollow?.(starterPack);
+  const [isFollowingPack, setIsFollowingPack] = React.useState(false);
+  
+  // Use the NIP-02 contacts hook if user credentials are provided
+  const { 
+    followStarterPack, 
+    isFollowing, 
+    loading: contactsLoading 
+  } = useNip02Contacts({
+    userPubkey,
+    userPrivateKey,
+    relays
+  });
+
+  const handleFollow = async () => {
+    if (userPubkey && userPrivateKey && followStarterPack) {
+      try {
+        setIsFollowingPack(true);
+        await followStarterPack(starterPack.profiles);
+        // Call the original onFollow callback if provided
+        onFollow?.(starterPack);
+      } catch (err) {
+        console.error('Error following starter pack:', err);
+        // You might want to show an error message to the user
+      } finally {
+        setIsFollowingPack(false);
+      }
+    } else {
+      // Fallback to the original onFollow callback
+      onFollow?.(starterPack);
+    }
   };
+
+  // Check if we're already following all contacts in this starter pack
+  const allContactsFollowed = React.useMemo(() => {
+    if (!userPubkey || !isFollowing) return false;
+    return starterPack.profiles.every(pubkey => isFollowing(pubkey));
+  }, [starterPack.profiles, isFollowing, userPubkey]);
 
   const handleViewDetails = () => {
     onViewDetails?.(starterPack);
@@ -135,9 +176,24 @@ export function StarterPackCard({
             onClick={handleFollow}
             className="flex-1 text-sm"
             size="sm"
+            disabled={isFollowingPack || contactsLoading || allContactsFollowed}
           >
-            <Plus className="w-4 h-4 mr-2" />
-            Follow Pack
+            {isFollowingPack ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Following...
+              </>
+            ) : allContactsFollowed ? (
+              <>
+                <Check className="w-4 h-4 mr-2" />
+                Following All
+              </>
+            ) : (
+              <>
+                <Plus className="w-4 h-4 mr-2" />
+                Follow Pack
+              </>
+            )}
           </Button>
           
           <Button
