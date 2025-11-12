@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
 import * as crypto from 'crypto';
 
 // Environment variables
@@ -10,11 +9,6 @@ const KEYCLOAK_REALM = process.env.KEYCLOAK_REALM || '';
 const KEYCLOAK_CLIENT_ID = process.env.KEYCLOAK_CLIENT_ID || '';
 const KEYCLOAK_CLIENT_SECRET = process.env.KEYCLOAK_CLIENT_SECRET || '';
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY || '';
-
-interface NostrKeys {
-  nsec: string;
-  npub: string;
-}
 
 // Function to encrypt the NSEC key before storing it
 function encryptNsec(nsec: string): string {

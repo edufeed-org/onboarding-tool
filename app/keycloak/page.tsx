@@ -5,7 +5,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { authenticateWithKeycloak, syncNostrKeysWithKeycloak, initKeycloak } from "@/lib/keycloak/keycloak-auth";
+import { initKeycloak } from "@/lib/keycloak/keycloak-auth";
 
 interface NostrKeys {
   nsec: string;
