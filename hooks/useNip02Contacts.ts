@@ -124,10 +124,24 @@ export function useNip02Contacts(options: UseNip02ContactsOptions = {}): UseNip0
     const pool = new SimplePool();
 
     try {
+      // Convert pubkey to hex format if it's in npub format
+      let pubkeyHex: string;
+      if (userPubkey.startsWith('npub')) {
+        const decoded = nip19.decode(userPubkey);
+        if (decoded.type === 'npub') {
+          pubkeyHex = decoded.data;
+        } else {
+          throw new Error('Invalid npub public key');
+        }
+      } else {
+        // Assume it's already in hex format
+        pubkeyHex = userPubkey;
+      }
+
       // Fetch the most recent contact list (kind 3) for the user
       const filter: Filter = {
         kinds: [3], // Contact list
-        authors: [userPubkey],
+        authors: [pubkeyHex],
         limit: 1
       };
 
@@ -176,18 +190,38 @@ export function useNip02Contacts(options: UseNip02ContactsOptions = {}): UseNip0
         return tag;
       });
 
+      // Convert pubkey to hex format if it's in npub format
+      let pubkeyHex: string;
+      if (userPubkey.startsWith('npub')) {
+        const decoded = nip19.decode(userPubkey);
+        if (decoded.type === 'npub') {
+          pubkeyHex = decoded.data;
+        } else {
+          throw new Error('Invalid npub public key');
+        }
+      } else {
+        // Assume it's already in hex format, but validate length
+        if (userPubkey.length !== 64) {
+          throw new Error(`Invalid public key format - must be 64 character hex string or npub. Got length: ${userPubkey.length}`);
+        }
+        pubkeyHex = userPubkey;
+      }
+
+      console.log('Publishing contact list with pubkey:', pubkeyHex);
+
       // Create the event
       const event = {
         kind: 3,
         created_at: Math.floor(Date.now() / 1000),
         tags,
         content: '', // NIP-02 specifies content should be empty
-        pubkey: userPubkey
+        pubkey: pubkeyHex
       };
 
       // Convert private key from hex to Uint8Array if needed
       let privateKeyBytes: Uint8Array;
       if (typeof userPrivateKey === 'string') {
+        console.log('Converting private key, starts with nsec:', userPrivateKey.startsWith('nsec'));
         // Remove 'nsec' prefix if present and decode, otherwise treat as hex
         if (userPrivateKey.startsWith('nsec')) {
           const decoded = nip19.decode(userPrivateKey);
@@ -197,6 +231,11 @@ export function useNip02Contacts(options: UseNip02ContactsOptions = {}): UseNip0
             throw new Error('Invalid nsec private key');
           }
         } else {
+          // Validate hex string length before parsing
+          if (userPrivateKey.length !== 64) {
+            throw new Error(`Invalid private key format - must be 64 character hex string or nsec. Got length: ${userPrivateKey.length}`);
+          }
+          console.log('Converting hex private key of length:', userPrivateKey.length);
           // Treat as hex string
           privateKeyBytes = new Uint8Array(
             userPrivateKey.match(/.{1,2}/g)?.map(byte => parseInt(byte, 16)) || []
@@ -205,6 +244,8 @@ export function useNip02Contacts(options: UseNip02ContactsOptions = {}): UseNip0
       } else {
         privateKeyBytes = userPrivateKey;
       }
+
+      console.log('Private key bytes length:', privateKeyBytes.length);
 
       // Sign the event using finalizeEvent
       const signedEvent = finalizeEvent(event, privateKeyBytes);
@@ -228,13 +269,30 @@ export function useNip02Contacts(options: UseNip02ContactsOptions = {}): UseNip0
       throw new Error('Pubkey is required');
     }
 
+    // Convert pubkey to hex format if it's in npub format
+    let pubkeyHex: string;
+    if (pubkey.startsWith('npub')) {
+      const decoded = nip19.decode(pubkey);
+      if (decoded.type === 'npub') {
+        pubkeyHex = decoded.data;
+      } else {
+        throw new Error('Invalid npub public key');
+      }
+    } else {
+      // Validate hex format
+      if (pubkey.length !== 64) {
+        throw new Error('Invalid pubkey format - must be 64 character hex string or npub');
+      }
+      pubkeyHex = pubkey;
+    }
+
     // Check if already following
-    const existingContact = contacts.find(c => c.pubkey === pubkey);
+    const existingContact = contacts.find(c => c.pubkey === pubkeyHex);
     if (existingContact) {
       throw new Error('Already following this pubkey');
     }
 
-    const newContact: Contact = { pubkey, relay, petname };
+    const newContact: Contact = { pubkey: pubkeyHex, relay, petname };
     const newContacts = [...contacts, newContact];
 
     try {
@@ -243,7 +301,7 @@ export function useNip02Contacts(options: UseNip02ContactsOptions = {}): UseNip0
       
       // Fetch profile for the new contact
       const pool = new SimplePool();
-      const profiles = await fetchContactProfiles(pool, [pubkey]);
+      const profiles = await fetchContactProfiles(pool, [pubkeyHex]);
       setContactProfiles(prev => ({ ...prev, ...profiles }));
       pool.close(memoizedRelays);
       
@@ -259,7 +317,20 @@ export function useNip02Contacts(options: UseNip02ContactsOptions = {}): UseNip0
       throw new Error('Pubkey is required');
     }
 
-    const newContacts = contacts.filter(c => c.pubkey !== pubkey);
+    // Convert pubkey to hex format if it's in npub format
+    let pubkeyHex: string;
+    if (pubkey.startsWith('npub')) {
+      const decoded = nip19.decode(pubkey);
+      if (decoded.type === 'npub') {
+        pubkeyHex = decoded.data;
+      } else {
+        throw new Error('Invalid npub public key');
+      }
+    } else {
+      pubkeyHex = pubkey;
+    }
+
+    const newContacts = contacts.filter(c => c.pubkey !== pubkeyHex);
 
     try {
       await publishContactList(newContacts);
@@ -268,7 +339,7 @@ export function useNip02Contacts(options: UseNip02ContactsOptions = {}): UseNip0
       // Remove profile from state
       setContactProfiles(prev => {
         const updated = { ...prev };
-        delete updated[pubkey];
+        delete updated[pubkeyHex];
         return updated;
       });
       
@@ -284,8 +355,32 @@ export function useNip02Contacts(options: UseNip02ContactsOptions = {}): UseNip0
       throw new Error('Pubkeys array is required and cannot be empty');
     }
 
+    // Convert all pubkeys to hex format and filter out already followed ones
+    const hexPubkeys: string[] = [];
+    
+    for (const pubkey of pubkeys) {
+      let pubkeyHex: string;
+      if (pubkey.startsWith('npub')) {
+        const decoded = nip19.decode(pubkey);
+        if (decoded.type === 'npub') {
+          pubkeyHex = decoded.data;
+        } else {
+          console.warn('Invalid npub public key, skipping:', pubkey);
+          continue;
+        }
+      } else {
+        // Validate hex format
+        if (pubkey.length !== 64) {
+          console.warn('Invalid pubkey format, skipping:', pubkey);
+          continue;
+        }
+        pubkeyHex = pubkey;
+      }
+      hexPubkeys.push(pubkeyHex);
+    }
+
     // Filter out pubkeys that are already being followed
-    const newPubkeys = pubkeys.filter(pubkey => !contacts.some(c => c.pubkey === pubkey));
+    const newPubkeys = hexPubkeys.filter(pubkey => !contacts.some(c => c.pubkey === pubkey));
     
     if (newPubkeys.length === 0) {
       throw new Error('All pubkeys from this starter pack are already being followed');
@@ -318,7 +413,24 @@ export function useNip02Contacts(options: UseNip02ContactsOptions = {}): UseNip0
 
   // Check if a pubkey is being followed
   const isFollowing = useCallback((pubkey: string): boolean => {
-    return contacts.some(c => c.pubkey === pubkey);
+    // Convert pubkey to hex format if it's in npub format
+    let pubkeyHex: string;
+    if (pubkey.startsWith('npub')) {
+      try {
+        const decoded = nip19.decode(pubkey);
+        if (decoded.type === 'npub') {
+          pubkeyHex = decoded.data;
+        } else {
+          return false;
+        }
+      } catch {
+        return false;
+      }
+    } else {
+      pubkeyHex = pubkey;
+    }
+
+    return contacts.some(c => c.pubkey === pubkeyHex);
   }, [contacts]);
 
   // Refresh contacts manually

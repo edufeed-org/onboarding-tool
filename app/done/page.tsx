@@ -87,6 +87,12 @@ export default function DonePage() {
         if (storedKeys) {
             try {
                 const keys = JSON.parse(storedKeys);
+                console.log('Loaded keys from localStorage:', {
+                    npub: keys.npub ? `${keys.npub.slice(0, 20)}...` : 'missing',
+                    nsec: keys.nsec ? `${keys.nsec.slice(0, 20)}...` : 'missing',
+                    npubLength: keys.npub?.length,
+                    nsecLength: keys.nsec?.length
+                });
                 if (keys.npub) {
                     setNostrProfileUrl(`njump.me/${keys.npub}`);
                 }
