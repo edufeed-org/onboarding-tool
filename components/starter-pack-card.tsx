@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { StarterPack } from '@/hooks/useStarterPacks';
 import { Users, Plus, ExternalLink } from 'lucide-react';
@@ -46,9 +47,11 @@ export function StarterPackCard({
       <div className="flex items-start gap-3 mb-3">
         {starterPack.image && (
           <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0 rounded-lg overflow-hidden bg-secondary">
-            <img
+            <Image
               src={starterPack.image}
-              alt={starterPack.title}
+              alt={starterPack.title || 'Starter Pack'}
+              width={64}
+              height={64}
               className="w-full h-full object-cover"
               onError={(e) => {
                 // Hide image if it fails to load
@@ -68,9 +71,11 @@ export function StarterPackCard({
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
               {starterPack.author.picture && (
                 <div className="w-4 h-4 rounded-full overflow-hidden bg-secondary">
-                  <img
+                  <Image
                     src={starterPack.author.picture}
                     alt={starterPack.author.name || 'Author'}
+                    width={16}
+                    height={16}
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';

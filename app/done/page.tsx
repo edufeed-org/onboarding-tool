@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import ReactConfetti from 'react-confetti';
-import { useStarterPacks } from "@/hooks/useStarterPacks";
+import { useStarterPacks, StarterPack } from "@/hooks/useStarterPacks";
 import { StarterPackCard, StarterPackCardSkeleton } from "@/components/starter-pack-card";
 
 export default function DonePage() {
@@ -35,7 +35,7 @@ export default function DonePage() {
     const { starterPacks, loading: packsLoading, error: packsError, refresh } = useStarterPacks(starterPacksOptions);
 
     // Handle following a starter pack
-    const handleFollowPack = (starterPack: any) => {
+    const handleFollowPack = (starterPack: StarterPack) => {
         // Here you would implement the logic to follow all profiles in the starter pack
         console.log('Following starter pack:', starterPack);
         // For now, just show an alert - you could implement actual following logic
@@ -43,7 +43,7 @@ export default function DonePage() {
     };
 
     // Handle viewing starter pack details
-    const handleViewPackDetails = (starterPack: any) => {
+    const handleViewPackDetails = (starterPack: StarterPack) => {
         // Open in a new window or show modal with details
         window.open(`https://following.space/d/${starterPack.identifier}`, '_blank');
     };

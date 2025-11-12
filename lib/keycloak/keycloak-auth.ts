@@ -101,7 +101,7 @@ export const syncNostrKeysWithKeycloak = async (nsec: string, npub: string): Pro
       let errorData;
       try {
         errorData = JSON.parse(errorText);
-      } catch (e) {
+      } catch {
         // If the error response is not valid JSON
         console.error('Server returned non-JSON error response:', errorText);
         throw new Error(`Server error: ${response.status} ${response.statusText}`);

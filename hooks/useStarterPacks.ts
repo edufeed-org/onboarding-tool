@@ -3,6 +3,13 @@
 import { useEffect, useState, useCallback, useMemo } from 'react';
 import { SimplePool, Filter, Event } from 'nostr-tools';
 
+// Author profile interface
+interface AuthorProfile {
+  name?: string;
+  picture?: string;
+  about?: string;
+}
+
 export interface StarterPack {
   id: string;
   pubkey: string;
@@ -12,11 +19,7 @@ export interface StarterPack {
   description?: string;
   image?: string;
   profiles: string[]; // pubkeys to follow
-  author?: {
-    name?: string;
-    picture?: string;
-    about?: string;
-  };
+  author?: AuthorProfile;
 }
 
 export interface UseStarterPacksOptions {
@@ -55,7 +58,7 @@ export function useStarterPacks(options: UseStarterPacksOptions = {}): UseStarte
   // Memoize the relays array to prevent dependency changes
   const memoizedRelays = useMemo(() => relays, [JSON.stringify(relays)]);
   
-  // Memoize predefinedPacks array to prevent dependency changes
+  // Memoize predefinedPacks array to prevent dependency changes  
   const memoizedPredefinedPacks = useMemo(() => predefinedPacks, [JSON.stringify(predefinedPacks)]);
 
   const parseStarterPack = useCallback((event: Event): StarterPack | null => {
@@ -116,7 +119,7 @@ export function useStarterPacks(options: UseStarterPacksOptions = {}): UseStarte
       authors: Array.from(pubkeys)
     };
 
-    const profiles: Record<string, any> = {};
+    const profiles: Record<string, AuthorProfile> = {};
     const events = await pool.querySync(memoizedRelays, filter);
     
     for (const event of events) {
