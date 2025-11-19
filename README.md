@@ -1,249 +1,238 @@
-# Nostr Onboarding with Keycloak Integration
+# MKStack
 
-A modern, user-friendly onboarding platform for the Nostr protocol with optional enterprise identity management through Keycloak integration.
+**The Complete Framework for Building Nostr Clients with AI**
 
-## 🌟 Overview
+MKStack is an AI-powered framework for building Nostr applications with React 18.x, TailwindCSS 3.x, Vite, shadcn/ui, and Nostrify. Build powerful Nostr applications with AI-first development - from social feeds to private messaging, MKStack provides everything you need to create decentralized apps on the Nostr protocol.
 
-This Next.js application provides a seamless onboarding experience for new Nostr users, guiding them through account creation, profile setup, and secure key management. The platform supports both individual users and organizations with optional Keycloak SSO integration.
+## 🚀 Quick Start
 
-## ✨ Features
+Build your Nostr app in 3 simple steps:
 
-### Core Onboarding
-- **Step-by-step guided flow** for Nostr account creation
-- **Educational approach** explaining Nostr concepts
-- **Secure key pair generation** with client-side cryptography
-- **Multiple backup options** (copy, download, QR codes)
-- **Complete profile setup** including photo, bio, and website
+### 1. Install & Create
+```bash
+npm install -g @getstacks/stacks
+stacks mkstack
+```
 
-### Profile Management
-- 📸 **Profile picture upload** with built-in editing
-- 👤 **Username and display name** setup
-- 📝 **Bio and description** customization
-- 🌐 **Website URL** integration
-- 🔒 **Privacy controls** for all profile elements
+### 2. Build with AI
+```bash
+stacks agent
+# Tell Dork AI what you want: "Build a group chat application"
+```
 
-### Security Features
-- 🔐 **Client-side key generation** (keys never leave the device)
-- 💾 **Multiple backup formats** (encrypted file, QR code, mnemonic)
-- 🛡️ **Security education** and best practices
-- 📋 **Copy-to-clipboard** with security warnings
-- 🔍 **Audit logging** for enterprise compliance
+### 3. Deploy Instantly
+```bash
+npm run deploy
+# ✅ App deployed to NostrDeploy.com!
+```
 
-### Enterprise Integration
-- 🏢 **Keycloak SSO integration** for organizations
-  - Optional synchronization of Nostr private keys (nsec) with Keycloak
-  - Secure key storage in distributed signers
-  - Environment variable control for enabling/disabling this feature
-- 👥 **Bulk user onboarding** capabilities
-- 📊 **Analytics and reporting** dashboard
-- 🔧 **Role-based access control**
-- 📜 **Compliance features** (SOC 2, GDPR ready)
+## ✨ What Makes MKStack Special
 
-## ⚙️ Keycloak Integration
+- **🤖 AI-First Development**: Build complete Nostr apps with just one prompt using Dork AI agent
+- **⚡ 8 Minutes Average**: From idea to deployed application in minutes, not months
+- **🔗 50+ NIPs Supported**: Comprehensive Nostr protocol implementation
+- **🎨 Beautiful UI**: 48+ shadcn/ui components with light/dark theme support
+- **🔐 Built-in Security**: NIP-07 browser signing, NIP-44 encryption, event validation
+- **💰 Payments Ready**: Lightning zaps (NIP-57), Cashu wallets (NIP-60), Wallet Connect (NIP-47)
+- **📱 Production Ready**: TypeScript, testing, deployment, and responsive design included
 
-The Keycloak integration allows users to securely store their Nostr private keys (nsec) with their Keycloak account, providing an additional recovery method while maintaining security.
+## 🛠 Technology Stack
 
-**Key Security Features:**
-- Private keys are encrypted using AES-256-GCM before storage
-- Encryption keys never leave the server
-- Custom user attributes in Keycloak for secure storage
+- **React 18.x**: Stable version with hooks, concurrent rendering, and improved performance
+- **TailwindCSS 3.x**: Utility-first CSS framework for styling
+- **Vite**: Fast build tool and development server
+- **shadcn/ui**: 48+ unstyled, accessible UI components built with Radix UI
+- **Nostrify**: Nostr protocol framework for Deno and web
+- **React Router**: Client-side routing with BrowserRouter
+- **TanStack Query**: Data fetching, caching, and state management
+- **TypeScript**: Type-safe JavaScript development
 
-### Configuration
+## 🎯 Real-World Examples
 
-To enable Keycloak integration:
+### Built with One Prompt
 
-1. Follow the detailed setup instructions in [KEYCLOAK_SETUP.md](KEYCLOAK_SETUP.md)
-2. Set `NEXT_PUBLIC_ENABLE_KEYCLOAK_SYNC=true` 
-3. Configure all required environment variables:
-   ```
-   # Public Keycloak configuration (available in browser)
-   NEXT_PUBLIC_KEYCLOAK_INSTANCE_URL=https://your-keycloak-domain/auth
-   NEXT_PUBLIC_KEYCLOAK_REALM=nostr-onboarding
-   NEXT_PUBLIC_KEYCLOAK_CLIENT_ID=nostr-onboarding-client
+Each of these applications was created with just a single prompt to Dork AI:
 
-   # Server-side Keycloak configuration (not exposed to browser)
-   KEYCLOAK_URL=https://your-keycloak-domain/auth
-   KEYCLOAK_REALM=nostr-onboarding
-   KEYCLOAK_CLIENT_ID=nostr-onboarding-service
-   KEYCLOAK_CLIENT_SECRET=your-client-secret
+- **Group Chat Application**: `"Build me a group chat application"`
+  - [Live Demo](https://groupchat-74z9j26wq-mks-projects-1f1254c4.vercel.app/)
 
-   # Security configuration
-   ENCRYPTION_KEY=your-64-character-hex-encryption-key
-   ```
+- **Decentralized Goodreads**: `"Build a decentralized goodreads alternative. Use OpenLibrary API for book data."`
+  - [Live Demo](https://bookstr123-87phkwjcy-mks-projects-1f1254c4.vercel.app/)
 
-When enabled, users will see an additional step in the onboarding process where they can choose to sync their key with Keycloak. This step is entirely optional and can be skipped.
+- **Chess Game**: `"Build a chess game with NIP 64"`
+  - [Live Demo](https://chess-l0d7ms7m3-mks-projects-1f1254c4.vercel.app/chess)
 
-## 🚀 Getting Started
+### Production Apps
 
-### Prerequisites
-- Node.js 18+ 
-- npm, yarn, pnpm, or bun
-- (Optional) Keycloak server for enterprise features
+Real Nostr applications built using MKStack:
 
-### Installation
+- **[Chorus](https://chorus.community/)**: Facebook-style groups on Nostr with built-in eCash wallet
+- **[Blobbi](https://www.blobbi.pet/)**: Digital pet companions that live forever on the decentralized web
+- **[Treasures](https://treasures.to/)**: Decentralized geocaching adventure powered by Nostr
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/nostr-onboarding-keycloak.git
-   cd nostr-onboarding-keycloak
-   ```
+[Browse more apps made with MKStack →](https://nostrhub.io/apps/t/mkstack/)
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   ```
+## 🔧 Core Features
 
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env.local
-   ```
-   Configure the following variables in `.env.local`:
-   ```env
-   # Nostr Configuration
-   NEXT_PUBLIC_DEFAULT_RELAYS=wss://relay.damus.io,wss://nos.lol
+### Authentication & Users
+- `LoginArea` component with account switching
+- `useCurrentUser` hook for authentication state
+- `useAuthor` hook for fetching user profiles
+- NIP-07 browser signing support
+- Multi-account management
 
-   # Keycloak Configuration
-   NEXT_PUBLIC_ENABLE_KEYCLOAK_SYNC=true
-   NEXT_PUBLIC_KEYCLOAK_INSTANCE_URL=https://your-keycloak-domain/auth
-   NEXT_PUBLIC_KEYCLOAK_REALM=nostr-onboarding
-   NEXT_PUBLIC_KEYCLOAK_CLIENT_ID=nostr-onboarding-client
+### Nostr Protocol Support
+- **Social Features**: User profiles (NIP-01), follow lists (NIP-02), reactions (NIP-25), reposts (NIP-18)
+- **Messaging**: Private DMs (NIP-17), public chat (NIP-28), group chat (NIP-29), encryption (NIP-44)
+- **Payments**: Lightning zaps (NIP-57), Cashu wallets (NIP-60), Nutzaps (NIP-61), Wallet Connect (NIP-47)
+- **Content**: Long-form articles (NIP-23), file metadata (NIP-94), live events (NIP-53), calendars (NIP-52)
 
-   # Server-side Keycloak configuration
-   KEYCLOAK_URL=https://your-keycloak-domain/auth
-   KEYCLOAK_REALM=nostr-onboarding
-   KEYCLOAK_CLIENT_ID=nostr-onboarding-service
-   KEYCLOAK_CLIENT_SECRET=your-client-secret
+### Data Management
+- `useNostr` hook for querying and publishing
+- `useNostrPublish` hook with automatic client tagging
+- Event validation and filtering
+- Infinite scroll with TanStack Query
+- Multi-relay support
 
-   # Security
-   ENCRYPTION_KEY=your-64-character-hex-encryption-key
-   ```
+### UI Components
+- 48+ shadcn/ui components (buttons, forms, dialogs, etc.)
+- `NoteContent` component for rich text rendering
+- `EditProfileForm` for profile management
+- `RelaySelector` for relay switching
+- `CommentsSection` for threaded discussions
+- Light/dark theme system
 
-4. **Run the development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   ```
+### Media & Files
+- `useUploadFile` hook with Blossom server integration
+- NIP-94 compatible file metadata
+- Image and video support
+- File attachment to events
 
-5. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
+### Advanced Features
+- NIP-19 identifier routing (`npub1`, `note1`, `nevent1`, `naddr1`)
+- Cryptographic operations (encryption/decryption)
+- Lightning payments and zaps
+- Real-time event subscriptions
+- Responsive design with mobile support
 
-## 🏗️ Project Structure
+## 🤖 AI Development with Dork
+
+MKStack includes Dork, a built-in AI agent that understands your codebase and Nostr protocols:
+
+### Supported AI Providers
+
+Configure your AI provider with `stacks configure`:
+
+- **OpenRouter** ([openrouter.ai](https://openrouter.ai/)): Enter your API key from settings
+- **Routstr** ([routstr.com](https://www.routstr.com/)): Use Cashu tokens for payment
+- **PayPerQ** ([ppq.ai](https://ppq.ai/)): OpenAI-compatible API
+
+### How Dork Works
+
+- **Context-Aware**: Understands your entire codebase and project structure
+- **Nostr Expert**: Built-in knowledge of 50+ NIPs and best practices
+- **Instant Implementation**: Makes changes directly to your code following React/TypeScript best practices
+
+Example prompts:
+```bash
+"Add user profiles with avatars and bio"
+"Implement NIP-17 private messaging"
+"Add a dark mode toggle"
+"Create a marketplace with NIP-15"
+```
+
+## 📁 Project Structure
 
 ```
-├── app/                    # Next.js App Router
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx          # Home page
-│   ├── onboarding/       # Onboarding flow pages
-│   └── api/              # API routes
-├── components/           # React components
-│   ├── ui/              # Reusable UI components
-│   ├── onboarding/      # Onboarding-specific components
-│   └── profile/         # Profile management components
+src/
+├── components/           # UI components
+│   ├── ui/              # shadcn/ui components (48+ available)
+│   ├── auth/            # Authentication components
+│   └── comments/        # Comment system components
+├── hooks/               # Custom React hooks
+│   ├── useNostr         # Core Nostr integration
+│   ├── useAuthor        # User profile data
+│   ├── useCurrentUser   # Authentication state
+│   ├── useNostrPublish  # Event publishing
+│   ├── useUploadFile    # File uploads
+│   └── useZaps          # Lightning payments
+├── pages/               # Page components
 ├── lib/                 # Utility functions
-│   ├── nostr.ts        # Nostr protocol utilities
-│   ├── crypto.ts       # Cryptographic functions
-│   └── keycloak.ts     # Keycloak integration
-├── public/             # Static assets
-└── types/              # TypeScript type definitions
+├── contexts/            # React context providers
+└── test/                # Testing utilities
 ```
 
-## 🛠️ Development
+## 🎨 UI Components
 
-### Available Scripts
+MKStack includes 48+ shadcn/ui components:
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
-- `npm run test` - Run test suite
+**Layout**: Card, Separator, Sheet, Sidebar, ScrollArea, Resizable
+**Navigation**: Breadcrumb, NavigationMenu, Menubar, Tabs, Pagination
+**Forms**: Button, Input, Textarea, Select, Checkbox, RadioGroup, Switch, Slider
+**Feedback**: Alert, AlertDialog, Toast, Progress, Skeleton
+**Overlay**: Dialog, Popover, HoverCard, Tooltip, ContextMenu, DropdownMenu
+**Data Display**: Table, Avatar, Badge, Calendar, Chart, Carousel
+**And many more...
 
-### Key Technologies
+## 🔐 Security & Best Practices
 
-- **[Next.js 15](https://nextjs.org/)** - React framework with App Router
-- **[TypeScript](https://www.typescriptlang.com/)** - Type-safe JavaScript
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[shadcn/ui](https://ui.shadcn.com/)** - Modern UI components
-- **[Nostr Tools](https://github.com/nbd-wtf/nostr-tools)** - Nostr protocol implementation
-- **[NextAuth.js](https://next-auth.js.org/)** - Authentication with Keycloak support
+- **Never use `any` type**: Always use proper TypeScript types
+- **Event validation**: Filter events through validator functions for custom kinds
+- **Efficient queries**: Minimize separate queries to avoid rate limiting
+- **Proper error handling**: Graceful handling of invalid NIP-19 identifiers
+- **Secure authentication**: Use signer interface, never request private keys directly
 
-## 🔧 Configuration
+## 📱 Responsive Design
 
-### Nostr Configuration
-Configure default relays and protocol settings in `lib/nostr.ts`:
+- Mobile-first approach with Tailwind breakpoints
+- `useIsMobile` hook for responsive behavior
+- Touch-friendly interactions
+- Optimized for all screen sizes
 
-```typescript
-export const DEFAULT_RELAYS = [
-  'wss://relay.damus.io',
-  'wss://nos.lol',
-  'wss://relay.snort.social'
-];
+## 🧪 Testing
+
+- Vitest with jsdom environment
+- React Testing Library with jest-dom matchers
+- `TestApp` component provides all necessary context providers
+- Mocked browser APIs (matchMedia, scrollTo, IntersectionObserver, ResizeObserver)
+
+## 🚀 Deployment
+
+Built-in deployment to NostrDeploy.com:
+
+```bash
+npm run deploy
 ```
 
-### Keycloak Setup
-1. Create a new client in your Keycloak realm
-2. Set the client type to "OpenID Connect"
-3. Configure redirect URIs to include your domain
-4. Update environment variables with your Keycloak settings
+Your app goes live instantly with:
+- Automatic builds
+- CDN distribution
+- HTTPS support
+- Custom domains available
 
-## 📱 User Flow
+## 📚 Documentation
 
-1. **Welcome Screen** - Introduction to Nostr and the onboarding process
-2. **Account Type** - Choose between individual or organization onboarding
-3. **Key Generation** - Secure creation of Nostr key pair with education
-4. **Profile Setup** - Add display name, bio, profile picture, and website
-5. **Security Backup** - Multiple options for backing up private keys
-6. **Completion** - Profile preview and next steps recommendations
+For detailed documentation on building Nostr applications with MKStack:
 
-## 🔒 Security Considerations
-
-- All private keys are generated client-side using Web Crypto API
-- Private keys are never transmitted to servers
-- Multiple secure backup options are provided
-- Educational content emphasizes security best practices
-- Enterprise features include audit logging and compliance tools
+- [Tutorial](https://soapbox.pub/blog/mkstack-tutorial)
+- [Nostr Protocol Documentation](https://nostr.com)
+- [shadcn/ui Components](https://ui.shadcn.com)
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+MKStack is open source and welcomes contributions. The framework is designed to be:
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- **Extensible**: Easy to add new NIPs and features
+- **Maintainable**: Clean architecture with TypeScript
+- **Testable**: Comprehensive testing setup included
+- **Documented**: Clear patterns and examples
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-- 📚 **Documentation**: Check our [Vision Document](VISION.md) for project goals
-- 🐛 **Issues**: Report bugs via [GitHub Issues](https://github.com/your-username/nostr-onboarding-keycloak/issues)
-- 💬 **Discussions**: Join our [GitHub Discussions](https://github.com/your-username/nostr-onboarding-keycloak/discussions)
-- 📧 **Contact**: For enterprise inquiries, contact [your-email@domain.com]
-
-## 🗺️ Roadmap
-
-- [ ] **Phase 1**: Core onboarding flow and basic Keycloak integration
-- [ ] **Phase 2**: Advanced profile features and multiple backup methods
-- [ ] **Phase 3**: Enterprise dashboard and bulk onboarding
-- [ ] **Phase 4**: Client integrations and ecosystem partnerships
-
-## 🙏 Acknowledgments
-
-- The [Nostr Protocol](https://nostr.com/) community for creating an open, decentralized social protocol
-- [Keycloak](https://www.keycloak.org/) for enterprise identity management
-- All the open-source contributors who make projects like this possible
+Open source - build amazing Nostr applications and help grow the decentralized web!
 
 ---
 
-**Made with ❤️ for the decentralized web**
+**"Vibed with MKStack"** - [Learn more about MKStack](https://soapbox.pub/mkstack)
+
+*Build your Nostr app in minutes, not months. Start with AI, deploy instantly.*
