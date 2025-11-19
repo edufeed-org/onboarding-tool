@@ -183,14 +183,14 @@ export default function UserTypePage() {
       <footer className="border-t mt-20">
         <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
           <p>
-            Vibed with{" "}
+            Ein Tool von{" "}
             <a 
-              href="https://soapbox.pub/mkstack" 
+              href="https://edufeed.org" 
               target="_blank" 
               rel="noopener noreferrer"
               className="underline hover:text-foreground transition-colors"
             >
-              MKStack
+              edufeed.org
             </a>
           </p>
         </div>

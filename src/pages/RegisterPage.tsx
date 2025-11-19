@@ -323,14 +323,14 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
       <footer className="border-t mt-20">
         <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
           <p>
-            Vibed with{" "}
-            <a
-              href="https://soapbox.pub/mkstack"
-              target="_blank"
+            Ein Tool von{" "}
+            <a 
+              href="https://edufeed.org" 
+              target="_blank" 
               rel="noopener noreferrer"
               className="underline hover:text-foreground transition-colors"
             >
-              MKStack
+              edufeed.org
             </a>
           </p>
         </div>
