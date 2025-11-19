@@ -1,238 +1,328 @@
-# MKStack
+# Nostr Onboarding Tool
 
-**The Complete Framework for Building Nostr Clients with AI**
+**Die umfassende Plattform für den Einstieg in das Nostr-Netzwerk**
 
-MKStack is an AI-powered framework for building Nostr applications with React 18.x, TailwindCSS 3.x, Vite, shadcn/ui, and Nostrify. Build powerful Nostr applications with AI-first development - from social feeds to private messaging, MKStack provides everything you need to create decentralized apps on the Nostr protocol.
+Das Nostr Onboarding Tool ist eine benutzerfreundliche Webanwendung, die neuen Nutzern und Plattformbetreibenden den Einstieg in das dezentrale Nostr-Protokoll erleichtert. Mit interaktiven Anleitungen, automatischer Schlüsselverwaltung und umfassenden Ressourcen macht diese Anwendung den Start ins Nostr-Ökosystem so einfach wie möglich.
 
-## 🚀 Quick Start
+## 🎯 Vision
 
-Build your Nostr app in 3 simple steps:
+Nostr ist die Zukunft der dezentralen Kommunikation – ein offenes Protokoll ohne zentrale Kontrolle, Zensur oder Datenkraken. Doch für viele Neueinsteiger ist das Konzept kryptographischer Schlüssel, dezentraler Relays und Event-basierter Architektur überwältigend.
 
-### 1. Install & Create
-```bash
-npm install -g @getstacks/stacks
-stacks mkstack
-```
+**Unsere Vision**: Jeder Mensch sollte Zugang zu zensurresistenten, dezentralen sozialen Netzwerken haben – ohne technische Barrieren.
 
-### 2. Build with AI
-```bash
-stacks agent
-# Tell Dork AI what you want: "Build a group chat application"
-```
+Das Nostr Onboarding Tool:
+- **Vereinfacht** den Einstieg durch geführte Registrierung und Schlüsselverwaltung
+- **Erklärt** die Konzepte und Möglichkeiten des Nostr-Protokolls verständlich
+- **Befähigt** sowohl Endnutzer als auch Entwickler, das Nostr-Ökosystem zu nutzen und zu erweitern
+- **Demokratisiert** den Zugang zu dezentraler Technologie
 
-### 3. Deploy Instantly
-```bash
-npm run deploy
-# ✅ App deployed to NostrDeploy.com!
-```
+### Für wen ist dieses Tool?
 
-## ✨ What Makes MKStack Special
+**Endnutzer**:
+- Erste Schritte mit Nostr ohne technische Vorkenntnisse
+- Sichere Schlüsselverwaltung und Account-Erstellung
+- Einführung in Social Media, Messaging, Lightning-Zahlungen und Communities
 
-- **🤖 AI-First Development**: Build complete Nostr apps with just one prompt using Dork AI agent
-- **⚡ 8 Minutes Average**: From idea to deployed application in minutes, not months
-- **🔗 50+ NIPs Supported**: Comprehensive Nostr protocol implementation
-- **🎨 Beautiful UI**: 48+ shadcn/ui components with light/dark theme support
-- **🔐 Built-in Security**: NIP-07 browser signing, NIP-44 encryption, event validation
-- **💰 Payments Ready**: Lightning zaps (NIP-57), Cashu wallets (NIP-60), Wallet Connect (NIP-47)
-- **📱 Production Ready**: TypeScript, testing, deployment, and responsive design included
+**Plattformbetreibende & Entwickler**:
+- Technische Ressourcen und Dokumentation zu NIPs (Nostr Implementation Possibilities)
+- Integration von Nostr in bestehende Plattformen
+- Beispiele für Kanban-Boards, Kalender, Marktplätze und mehr
 
-## 🛠 Technology Stack
+## ✨ Features
 
-- **React 18.x**: Stable version with hooks, concurrent rendering, and improved performance
-- **TailwindCSS 3.x**: Utility-first CSS framework for styling
-- **Vite**: Fast build tool and development server
-- **shadcn/ui**: 48+ unstyled, accessible UI components built with Radix UI
-- **Nostrify**: Nostr protocol framework for Deno and web
-- **React Router**: Client-side routing with BrowserRouter
-- **TanStack Query**: Data fetching, caching, and state management
-- **TypeScript**: Type-safe JavaScript development
+### 🚀 Geführtes Onboarding
 
-## 🎯 Real-World Examples
+- **Interaktiver Willkommensbildschirm**: Ansprechende Einführung in Nostr mit animierten Gradient-Überschriften und klaren Kernbotschaften
+- **Nutzertyp-Auswahl**: Personalisierte Pfade für Endnutzer und Plattformbetreibende mit visuellen Kartendesigns
+- **Sichere Schlüsselerstellung**: Automatische Generierung von nsec/npub-Schlüsselpaaren mit Sicherheitshinweisen
+- **Schlüssel-Download**: Exportfunktion für sicheres Offline-Backup der Schlüssel
+- **Automatischer Login**: Nahtlose Integration nach der Registrierung
 
-### Built with One Prompt
+### 🎨 Benutzerfreundliches Interface
 
-Each of these applications was created with just a single prompt to Dork AI:
+- **Dark/Light Mode**: Vollständige Theme-Unterstützung mit eleganten Farbübergängen
+- **Responsive Design**: Optimiert für Desktop, Tablet und Mobile
+- **Moderne UI-Komponenten**: 48+ shadcn/ui Komponenten mit Radix UI
+- **Intuitive Navigation**: React Router mit ScrollToTop-Funktionalität
+- **Barrierefreiheit**: WCAG 2.1 AA-konforme Implementierung
 
-- **Group Chat Application**: `"Build me a group chat application"`
-  - [Live Demo](https://groupchat-74z9j26wq-mks-projects-1f1254c4.vercel.app/)
+### 📚 Umfassende Dokumentation
 
-- **Decentralized Goodreads**: `"Build a decentralized goodreads alternative. Use OpenLibrary API for book data."`
-  - [Live Demo](https://bookstr123-87phkwjcy-mks-projects-1f1254c4.vercel.app/)
+- **Feature-Übersicht**: Detaillierte Erklärungen zu Social Media, Kalender, Direktnachrichten, Lightning-Zahlungen, Communities und mehr
+- **Technische Ressourcen**: Links zu NIPs, SDKs, Relay-Implementierungen und Entwickler-Tools
+- **Best Practices**: Anleitungen zu Event-Arten, Relay-Architektur, Tagging und Metadaten
 
-- **Chess Game**: `"Build a chess game with NIP 64"`
-  - [Live Demo](https://chess-l0d7ms7m3-mks-projects-1f1254c4.vercel.app/chess)
+### 👤 User Dashboard
 
-### Production Apps
+Nach erfolgreicher Registrierung erhalten Nutzer Zugang zu:
+- **Profilverwaltung**: Bearbeitung des Nostr-Profils mit EditProfileForm
+- **Quick Actions**: Erste Nachricht posten, Nutzern folgen, Events entdecken
+- **Feature-Katalog**: Übersicht über Messaging, Reactions, Kalender, Lightning, Communities
+- **Lernressourcen**: Schritt-für-Schritt-Anleitungen für typische Anwendungsfälle
 
-Real Nostr applications built using MKStack:
+### 🏢 Plattform-Dashboard
 
-- **[Chorus](https://chorus.community/)**: Facebook-style groups on Nostr with built-in eCash wallet
-- **[Blobbi](https://www.blobbi.pet/)**: Digital pet companions that live forever on the decentralized web
-- **[Treasures](https://treasures.to/)**: Decentralized geocaching adventure powered by Nostr
+Entwickler und Betreiber erhalten:
+- **NIP-Referenzen**: Direkte Links zur offiziellen Nostr-Protokoll-Dokumentation
+- **SDK-Integration**: Nostrify, nostr-tools und weitere JavaScript/TypeScript-Bibliotheken
+- **Relay-Guides**: Informationen zum Betrieb eigener Relay-Server
+- **Integration-Beispiele**: Konkrete Implementierungen für Kanban-Boards, Event-Systeme, Metadaten-Strukturen
+- **Event-Arten erklärt**: Übersicht über Kind 0-31923 mit Anwendungsfällen
 
-[Browse more apps made with MKStack →](https://nostrhub.io/apps/t/mkstack/)
+### 🔐 Sicherheit & Datenschutz
 
-## 🔧 Core Features
+- **Client-seitige Schlüsselerzeugung**: Private Keys verlassen niemals den Browser während der Erstellung
+- **NIP-07 Browser Signing**: Unterstützung für Browser-Extensions wie Alby, nos2x
+- **NIP-44 Verschlüsselung**: Moderne Verschlüsselung für Direktnachrichten
 
-### Authentication & Users
-- `LoginArea` component with account switching
-- `useCurrentUser` hook for authentication state
-- `useAuthor` hook for fetching user profiles
-- NIP-07 browser signing support
-- Multi-account management
+### 💬 Kommunikationsfeatures
 
-### Nostr Protocol Support
-- **Social Features**: User profiles (NIP-01), follow lists (NIP-02), reactions (NIP-25), reposts (NIP-18)
-- **Messaging**: Private DMs (NIP-17), public chat (NIP-28), group chat (NIP-29), encryption (NIP-44)
-- **Payments**: Lightning zaps (NIP-57), Cashu wallets (NIP-60), Nutzaps (NIP-61), Wallet Connect (NIP-47)
-- **Content**: Long-form articles (NIP-23), file metadata (NIP-94), live events (NIP-53), calendars (NIP-52)
+- **NIP-04 Direktnachrichten**: Legacy-Verschlüsselung für maximale Kompatibilität
+- **NIP-17 Private Messaging**: Moderne, verbesserte Privatsphäre-Implementierung
+- **Kommentarsystem (NIP-22)**: Threaded Comments mit `CommentsSection`-Komponente
+- **AI-Chat-Integration**: Shakespeare API für KI-gestützte Konversationen
 
-### Data Management
-- `useNostr` hook for querying and publishing
-- `useNostrPublish` hook with automatic client tagging
-- Event validation and filtering
-- Infinite scroll with TanStack Query
-- Multi-relay support
+### ⚡ Lightning-Integration
 
-### UI Components
-- 48+ shadcn/ui components (buttons, forms, dialogs, etc.)
-- `NoteContent` component for rich text rendering
-- `EditProfileForm` for profile management
-- `RelaySelector` for relay switching
-- `CommentsSection` for threaded discussions
-- Light/dark theme system
+- **WebLN-Unterstützung**: Browser-Wallet-Integration über Alby
+- **Nostr Wallet Connect (NIP-47)**: Remote-Wallet-Verbindung
+- **Zaps (NIP-57)**: Mikrozahlungen direkt an Content-Ersteller
+- **Wallet-Modal**: Benutzerfreundliche Zahlungsinterfaces
 
-### Media & Files
-- `useUploadFile` hook with Blossom server integration
-- NIP-94 compatible file metadata
-- Image and video support
-- File attachment to events
+## 🛠️ Tech Stack
 
-### Advanced Features
-- NIP-19 identifier routing (`npub1`, `note1`, `nevent1`, `naddr1`)
-- Cryptographic operations (encryption/decryption)
-- Lightning payments and zaps
-- Real-time event subscriptions
-- Responsive design with mobile support
+### Frontend-Framework
+- **React 18.x**: Moderne React-Version mit Hooks, Concurrent Rendering und Suspense
+- **TypeScript**: Typ-sichere Entwicklung für bessere Code-Qualität
+- **Vite**: Schneller Build-Prozess und Hot Module Replacement
 
-## 🤖 AI Development with Dork
+### Styling & UI
+- **TailwindCSS 3.x**: Utility-First CSS-Framework
+- **shadcn/ui**: 48+ zugängliche UI-Komponenten basierend auf Radix UI
+- **Radix UI**: Primitive UI-Komponenten für Accessibility
+- **class-variance-authority**: Type-safe Varianten-Management
+- **Lucide Icons**: Umfangreiche Icon-Bibliothek
 
-MKStack includes Dork, a built-in AI agent that understands your codebase and Nostr protocols:
+### Nostr-Integration
+- **Nostrify**: Nostr-Protocol-Framework für Web (v0.47.1)
+- **@nostrify/react**: React-Hooks für Nostr (v0.2.17)
+- **nostr-tools**: Kryptographie, NIP-19-Dekodierung, Event-Validierung
 
-### Supported AI Providers
+### State Management & Data Fetching
+- **TanStack Query (React Query)**: Server-State-Management, Caching, Infinite Scroll
+- **React Context API**: Globaler State für AppContext, DMContext, NWCContext
+- **LocalStorage Hooks**: Persistenter State für Einstellungen und Relay-Konfiguration
 
-Configure your AI provider with `stacks configure`:
+### Routing & SEO
+- **React Router v6**: Deklaratives Client-Side-Routing
+- **@unhead/react**: SEO-Meta-Tags und Head-Management
+- **ScrollToTop**: Automatisches Scrollen bei Route-Wechsel
 
-- **OpenRouter** ([openrouter.ai](https://openrouter.ai/)): Enter your API key from settings
-- **Routstr** ([routstr.com](https://www.routstr.com/)): Use Cashu tokens for payment
-- **PayPerQ** ([ppq.ai](https://ppq.ai/)): OpenAI-compatible API
+### Formulare & Validierung
+- **React Hook Form**: Performante Formular-Verwaltung
+- **Zod**: Schema-Validierung mit TypeScript-Integration
+- **@hookform/resolvers**: Zod-Integration für React Hook Form
 
-### How Dork Works
+### Lightning & Wallet
+- **@getalby/sdk**: Alby SDK für Lightning-Zahlungen
+- **WebLN**: Browser-Wallet-Standard
+- **NWC (Nostr Wallet Connect)**: Remote-Wallet-Verbindungen
 
-- **Context-Aware**: Understands your entire codebase and project structure
-- **Nostr Expert**: Built-in knowledge of 50+ NIPs and best practices
-- **Instant Implementation**: Makes changes directly to your code following React/TypeScript best practices
+### Testing
+- **Vitest**: Schnelle Unit-Tests mit jsdom-Umgebung
+- **React Testing Library**: Component-Tests mit Accessibility-Focus
+- **@testing-library/jest-dom**: Custom Matchers für DOM-Tests
 
-Example prompts:
-```bash
-"Add user profiles with avatars and bio"
-"Implement NIP-17 private messaging"
-"Add a dark mode toggle"
-"Create a marketplace with NIP-15"
-```
+### Entwickler-Tools
+- **ESLint**: Code-Linting mit Custom Rules
+- **PostCSS**: CSS-Transformationen mit Autoprefixer
+- **TypeScript Compiler**: Typ-Checking vor dem Build
 
-## 📁 Project Structure
+### Deployment
+- **NostrDeploy CLI**: One-Command-Deployment auf NostrDeploy.com
+- **Vercel/Netlify**: Alternative Hosting-Plattformen mit `_redirects`-Konfiguration
+- **GitHub Pages**: Deployment auf GitHub Pages via GitHub Actions
+
+## 📁 Projektstruktur
 
 ```
 src/
-├── components/           # UI components
-│   ├── ui/              # shadcn/ui components (48+ available)
-│   ├── auth/            # Authentication components
-│   └── comments/        # Comment system components
-├── hooks/               # Custom React hooks
-│   ├── useNostr         # Core Nostr integration
-│   ├── useAuthor        # User profile data
-│   ├── useCurrentUser   # Authentication state
-│   ├── useNostrPublish  # Event publishing
-│   ├── useUploadFile    # File uploads
-│   └── useZaps          # Lightning payments
-├── pages/               # Page components
-├── lib/                 # Utility functions
-├── contexts/            # React context providers
-└── test/                # Testing utilities
+├── pages/                      # Hauptseiten der Anwendung
+│   ├── WelcomePage.tsx        # Einstiegsseite mit Hero-Section
+│   ├── FeaturesPage.tsx       # Feature-Übersicht
+│   ├── UserTypePage.tsx       # Nutzertyp-Auswahl
+│   ├── RegisterPage.tsx       # Schlüsselerstellung und Login
+│   ├── UserDashboardPage.tsx  # Dashboard für Endnutzer
+│   └── PlatformDashboardPage.tsx # Dashboard für Entwickler
+│
+├── components/                 # Wiederverwendbare Komponenten
+│   ├── auth/                  # Authentifizierung
+│   │   ├── LoginArea.tsx      # Login/Signup UI
+│   │   ├── LoginDialog.tsx    # Login-Modal
+│   │   ├── SignupDialog.tsx   # Registrierungs-Modal
+│   │   └── AccountSwitcher.tsx # Account-Verwaltung
+│   │
+│   ├── dm/                    # Direct Messaging
+│   │   ├── DMMessagingInterface.tsx
+│   │   ├── DMConversationList.tsx
+│   │   ├── DMChatArea.tsx
+│   │   └── DMStatusInfo.tsx
+│   │
+│   ├── comments/              # Kommentarsystem (NIP-22)
+│   │   ├── CommentsSection.tsx
+│   │   ├── Comment.tsx
+│   │   └── CommentForm.tsx
+│   │
+│   ├── ui/                    # shadcn/ui Komponenten (48+)
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── dialog.tsx
+│   │   ├── input.tsx
+│   │   └── ... (weitere 44+ Komponenten)
+│   │
+│   ├── AppProvider.tsx        # App-weiter State-Provider
+│   ├── NostrProvider.tsx      # Nostr-Client-Provider
+│   ├── DMProvider.tsx         # Direct-Messaging-Provider
+│   ├── EditProfileForm.tsx    # Profilbearbeitung
+│   ├── RelayListManager.tsx   # NIP-65 Relay-Verwaltung
+│   ├── NostrSync.tsx          # Relay-Sync bei Login
+│   ├── NoteContent.tsx        # Rich-Text-Rendering für Notes
+│   ├── ZapButton.tsx          # Lightning-Zap-Button
+│   ├── ZapDialog.tsx          # Zap-Zahlungs-Dialog
+│   └── WalletModal.tsx        # Wallet-Auswahl-Modal
+│
+├── hooks/                     # Custom React Hooks
+│   ├── useNostr.ts           # Nostr Query/Publish
+│   ├── useAuthor.ts          # User-Profile abrufen
+│   ├── useCurrentUser.ts     # Aktuell eingeloggter User
+│   ├── useNostrPublish.ts    # Event-Publishing
+│   ├── useUploadFile.ts      # Blossom-Server-Upload
+│   ├── useZaps.ts            # Lightning-Zaps
+│   ├── useWallet.ts          # Wallet-Detection (WebLN + NWC)
+│   ├── useNWC.ts             # Nostr Wallet Connect
+│   ├── useComments.ts        # Kommentare laden
+│   ├── usePostComment.ts     # Kommentar erstellen
+│   ├── useDMContext.ts       # Direct-Messaging-Context
+│   ├── useConversationMessages.ts # Paginierte DM-Messages
+│   ├── useShakespeare.ts     # AI-Chat-Integration
+│   ├── useTheme.ts           # Theme-Verwaltung
+│   ├── useToast.ts           # Toast-Benachrichtigungen
+│   ├── useLocalStorage.ts    # Persistenter State
+│   ├── useLoggedInAccounts.ts # Multi-Account-Management
+│   ├── useLoginActions.ts    # Login/Logout-Actions
+│   └── useIsMobile.tsx       # Responsive-Helper
+│
+├── contexts/                  # React Context Definitions
+│   ├── AppContext.ts         # App-Konfiguration & Theme
+│   ├── DMContext.ts          # Direct-Messaging-State
+│   └── NWCContext.tsx        # Nostr-Wallet-Connect-State
+│
+├── lib/                       # Utility-Funktionen
+│   ├── utils.ts              # Allgemeine Hilfsfunktionen
+│   ├── genUserName.ts        # Nutzer-Display-Names generieren
+│   ├── dmConstants.ts        # DM-Protokoll-Konstanten
+│   ├── dmMessageStore.ts     # Lokaler DM-Speicher
+│   └── dmUtils.ts            # DM-Helper-Funktionen
+│
+├── test/                      # Testing-Setup
+│   ├── TestApp.tsx           # Test-Wrapper mit Providern
+│   ├── setup.ts              # Vitest-Konfiguration
+│   └── ErrorBoundary.test.tsx # Beispiel-Tests
+│
+├── App.tsx                    # Haupt-App-Komponente mit Providern
+├── AppRouter.tsx             # React Router-Konfiguration
+├── main.tsx                  # App-Entry-Point
+└── index.css                 # Globale Styles & Theme-Variablen
+
+docs/                          # Erweiterte Dokumentation
+├── AI_CHAT.md                # Shakespeare API-Integration
+├── NOSTR_COMMENTS.md         # Kommentarsystem-Implementierung
+├── NOSTR_DIRECT_MESSAGES.md  # DM-System (NIP-04 & NIP-17)
+└── NOSTR_INFINITE_SCROLL.md  # Feed-Pagination
+
+eslint-rules/                  # Custom ESLint-Regeln
+├── no-inline-script.js       # Verhindert Inline-Scripts
+├── no-placeholder-comments.js # Warnt bei Placeholder-Kommentaren
+└── require-webmanifest.js    # Erzwingt Web-Manifest
+
+public/                        # Statische Assets
+├── manifest.webmanifest      # PWA-Manifest
+├── robots.txt                # SEO-Konfiguration
+└── _redirects                # Netlify/Vercel-Routing
+
+AGENTS.md                      # Umfassende Dokumentation für AI-Agenten
 ```
 
-## 🎨 UI Components
+## 🚀 Installation & Entwicklung
 
-MKStack includes 48+ shadcn/ui components:
+### Voraussetzungen
 
-**Layout**: Card, Separator, Sheet, Sidebar, ScrollArea, Resizable
-**Navigation**: Breadcrumb, NavigationMenu, Menubar, Tabs, Pagination
-**Forms**: Button, Input, Textarea, Select, Checkbox, RadioGroup, Switch, Slider
-**Feedback**: Alert, AlertDialog, Toast, Progress, Skeleton
-**Overlay**: Dialog, Popover, HoverCard, Tooltip, ContextMenu, DropdownMenu
-**Data Display**: Table, Avatar, Badge, Calendar, Chart, Carousel
-**And many more...
+- Node.js 18+ und npm
+- Grundkenntnisse in React (für Entwickler)
 
-## 🔐 Security & Best Practices
-
-- **Never use `any` type**: Always use proper TypeScript types
-- **Event validation**: Filter events through validator functions for custom kinds
-- **Efficient queries**: Minimize separate queries to avoid rate limiting
-- **Proper error handling**: Graceful handling of invalid NIP-19 identifiers
-- **Secure authentication**: Use signer interface, never request private keys directly
-
-## 📱 Responsive Design
-
-- Mobile-first approach with Tailwind breakpoints
-- `useIsMobile` hook for responsive behavior
-- Touch-friendly interactions
-- Optimized for all screen sizes
-
-## 🧪 Testing
-
-- Vitest with jsdom environment
-- React Testing Library with jest-dom matchers
-- `TestApp` component provides all necessary context providers
-- Mocked browser APIs (matchMedia, scrollTo, IntersectionObserver, ResizeObserver)
-
-## 🚀 Deployment
-
-Built-in deployment to NostrDeploy.com:
+### Lokale Entwicklung starten
 
 ```bash
+# Repository klonen
+git clone https://github.com/edufeed-org/onboarding-tool.git
+cd onboarding-tool
+
+# Abhängigkeiten installieren und Dev-Server starten
+npm run dev
+```
+
+Die Anwendung läuft nun unter `http://localhost:5173`
+
+### Build für Produktion
+
+```bash
+# Optimierten Production-Build erstellen
+npm run build
+
+# Deployment auf NostrDeploy.com
 npm run deploy
 ```
 
-Your app goes live instantly with:
-- Automatic builds
-- CDN distribution
-- HTTPS support
-- Custom domains available
+### Tests ausführen
 
-## 📚 Documentation
+```bash
+# TypeScript-Prüfung, Linting und Tests
+npm test
+```
 
-For detailed documentation on building Nostr applications with MKStack:
+## 📚 Weiterführende Dokumentation
 
-- [Tutorial](https://soapbox.pub/blog/mkstack-tutorial)
-- [Nostr Protocol Documentation](https://nostr.com)
-- [shadcn/ui Components](https://ui.shadcn.com)
+- **[AGENTS.md](./AGENTS.md)**: Vollständige technische Dokumentation für Entwickler und AI-Agenten
+- **[docs/AI_CHAT.md](./docs/AI_CHAT.md)**: Integration von Shakespeare AI für Chat-Features
+- **[docs/NOSTR_COMMENTS.md](./docs/NOSTR_COMMENTS.md)**: Kommentarsystem mit NIP-22
+- **[docs/NOSTR_DIRECT_MESSAGES.md](./docs/NOSTR_DIRECT_MESSAGES.md)**: Verschlüsselte Direktnachrichten (NIP-04 & NIP-17)
+- **[docs/NOSTR_INFINITE_SCROLL.md](./docs/NOSTR_INFINITE_SCROLL.md)**: Infinite-Scroll für Event-Feeds
+
+### Externe Ressourcen
+
+- **[Nostr Protocol](https://nostr.com)**: Offizielle Nostr-Website
+- **[NIPs Repository](https://github.com/nostr-protocol/nips)**: Nostr Implementation Possibilities
+- **[Nostrify Documentation](https://nostrify.dev)**: SDK-Dokumentation
+- **[shadcn/ui](https://ui.shadcn.com)**: UI-Komponenten-Bibliothek
+
+## 🎨 Design-Prinzipien
+
+- **Benutzerfreundlichkeit über alles**: Komplexe Konzepte werden vereinfacht, ohne technische Genauigkeit zu verlieren
+- **Vertrauen durch Transparenz**: Sicherheitshinweise und Erklärungen bei kritischen Aktionen
+- **Responsive & Accessible**: Funktioniert auf allen Geräten und für alle Nutzer
+- **Visuell ansprechend**: Moderne Gradients, Animationen und durchdachte Typografie
 
 ## 🤝 Contributing
 
-MKStack is open source and welcomes contributions. The framework is designed to be:
+Beiträge sind willkommen! Das Projekt ist Open Source und lebt von der Community.
 
-- **Extensible**: Easy to add new NIPs and features
-- **Maintainable**: Clean architecture with TypeScript
-- **Testable**: Comprehensive testing setup included
-- **Documented**: Clear patterns and examples
+### Richtlinien
 
-## 📄 License
+- Folge den bestehenden TypeScript- und React-Patterns
+- Keine `any`-Types – immer typsicher bleiben
+- Schreibe Tests für neue Features
+- Dokumentiere neue Hooks und Komponenten
 
-Open source - build amazing Nostr applications and help grow the decentralized web!
+## 📄 Lizenz
 
----
-
-**"Vibed with MKStack"** - [Learn more about MKStack](https://soapbox.pub/mkstack)
-
-*Build your Nostr app in minutes, not months. Start with AI, deploy instantly.*
+Open Source – helfen Sie mit, das dezentrale Web zu gestalten!
