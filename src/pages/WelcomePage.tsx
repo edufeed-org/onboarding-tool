@@ -9,8 +9,8 @@ export default function WelcomePage() {
   const { theme, setTheme } = useTheme();
 
   useSeoMeta({
-    title: 'Willkommen bei Nostr Onboarding',
-    description: 'Entdecken Sie die dezentrale Zukunft sozialer Netzwerke mit Nostr.',
+    title: 'Willkommen beim edufeed Nostr Onboarding',
+    description: 'Entdecken Sie die dezentrale Zukunft edufeeds mit Nostr.',
   });
 
   return (
@@ -35,7 +35,7 @@ export default function WelcomePage() {
           <h1 className="text-5xl lg:text-7xl font-bold tracking-tight">
             Willkommen bei{" "}
             <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Nostr
+              edufeed
             </span>
           </h1>
           
