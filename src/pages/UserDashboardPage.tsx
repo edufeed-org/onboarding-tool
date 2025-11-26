@@ -105,7 +105,7 @@ export default function UserDashboardPage() {
           <h1 className="text-4xl lg:text-5xl font-bold tracking-tight">
             Willkommen bei{" "}
             <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Nostr
+              edufeed
             </span>
           </h1>
           <p className="text-lg text-muted-foreground">

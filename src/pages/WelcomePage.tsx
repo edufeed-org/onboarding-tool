@@ -104,7 +104,7 @@ export default function WelcomePage() {
         <div className="mt-20 max-w-3xl mx-auto">
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">Was ist Nostr?</CardTitle>
+              <CardTitle className="text-2xl">Was ist edufeed und nostr?</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
