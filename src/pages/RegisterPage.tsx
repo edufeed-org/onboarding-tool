@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useTheme } from "@/hooks/useTheme";
-import { Moon, Sun, Key, Copy, Eye, EyeOff, Download, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Key, Copy, Eye, EyeOff, Download, AlertCircle, CheckCircle2 } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { useState, useEffect } from "react";
@@ -9,9 +8,9 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { generateSecretKey, getPublicKey, nip19 } from 'nostr-tools';
 import { useLoginActions } from "@/hooks/useLoginActions";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { PageHeader } from "@/components/PageHeader";
 
 export default function RegisterPage() {
-  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const userType = searchParams.get('type') || 'user';
@@ -105,19 +104,7 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Theme Toggle */}
-      <div className="fixed top-6 right-6 z-50">
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className="rounded-full"
-        >
-          <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Theme wechseln</span>
-        </Button>
-      </div>
+      <PageHeader />
 
       <div className="container mx-auto px-4 py-20">
         {/* Header */}
