@@ -39,53 +39,64 @@ function StarterPackSkeleton() {
 }
 
 export function StarterPacksSection() {
-  const { data: starterPacks, isLoading, isError } = useStarterPacks();
+  const {
+    data: starterPacks,
+    isLoading: isLoadingPacks,
+    isError: isPacksError,
+  } = useStarterPacks();
+
+  const hasStarterPacks = !!starterPacks && starterPacks.length > 0;
+  const shouldShowPacksSection = isLoadingPacks || isPacksError || hasStarterPacks;
 
   // Don't show section if there are no packs and loading is complete
-  if (!isLoading && (!starterPacks || starterPacks.length === 0)) {
+  if (!shouldShowPacksSection) {
     return null;
   }
 
   return (
     <div className="max-w-5xl mx-auto mb-12">
-      <div className="mb-6">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="flex items-center justify-center p-2 bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/30 dark:to-blue-900/30 rounded-lg">
-            <Users className="h-6 w-6 text-green-600" />
-          </div>
-          <h2 className="text-2xl font-bold">Empfohlene Starter Packs</h2>
-        </div>
-        <p className="text-muted-foreground">
-          Folge kuratierten Listen interessanter Profile, um schnell loszulegen
-        </p>
-      </div>
-
-      {isError && (
-        <Card className="border-dashed">
-          <CardContent className="py-12 px-8 text-center">
-            <div className="max-w-sm mx-auto space-y-4">
-              <p className="text-muted-foreground">
-                Starter Packs konnten nicht geladen werden. Bitte versuche es später erneut.
-              </p>
+      {shouldShowPacksSection && (
+        <section>
+          <div className="mb-6">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="flex items-center justify-center p-2 bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/30 dark:to-blue-900/30 rounded-lg">
+                <Users className="h-6 w-6 text-green-600" />
+              </div>
+              <h2 className="text-2xl font-bold">Empfohlene Starter Packs</h2>
             </div>
-          </CardContent>
-        </Card>
-      )}
+            <p className="text-muted-foreground">
+              Folge kuratierten Listen interessanter Profile, um schnell loszulegen
+            </p>
+          </div>
 
-      {isLoading && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[1, 2, 3].map((i) => (
-            <StarterPackSkeleton key={i} />
-          ))}
-        </div>
-      )}
+          {isPacksError && (
+            <Card className="border-dashed">
+              <CardContent className="py-12 px-8 text-center">
+                <div className="max-w-sm mx-auto space-y-4">
+                  <p className="text-muted-foreground">
+                    Starter Packs konnten nicht geladen werden. Bitte versuche es später erneut.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
-      {!isLoading && starterPacks && starterPacks.length > 0 && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {starterPacks.map((pack) => (
-            <StarterPackCard key={pack.event.id} pack={pack} />
-          ))}
-        </div>
+          {isLoadingPacks && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3].map((i) => (
+                <StarterPackSkeleton key={`pack-skeleton-${i}`} />
+              ))}
+            </div>
+          )}
+
+          {!isLoadingPacks && starterPacks && starterPacks.length > 0 && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {starterPacks.map((pack) => (
+                <StarterPackCard key={pack.event.id} pack={pack} />
+              ))}
+            </div>
+          )}
+        </section>
       )}
     </div>
   );

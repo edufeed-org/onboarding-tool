@@ -7,7 +7,7 @@ import { type StarterPack } from "@/hooks/useStarterPacks";
 import { useAuthor } from "@/hooks/useAuthor";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useNostrPublish } from "@/hooks/useNostrPublish";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNostr } from "@nostrify/react";
 import { useState } from "react";
 import { genUserName } from "@/lib/genUserName";
@@ -46,6 +46,7 @@ export function StarterPackCard({ pack }: StarterPackCardProps) {
   const { nostr } = useNostr();
   const { mutate: publish, isPending: isPublishing } = useNostrPublish();
   const [isFollowing, setIsFollowing] = useState(false);
+  const queryClient = useQueryClient();
 
   // Get current user's follow list (kind 3)
   const { data: followList } = useQuery({
@@ -100,6 +101,9 @@ export function StarterPackCard({ pack }: StarterPackCardProps) {
       {
         onSuccess: () => {
           setIsFollowing(false);
+          if (user?.pubkey) {
+            queryClient.invalidateQueries({ queryKey: ['follow-list', user.pubkey] });
+          }
         },
         onError: () => {
           setIsFollowing(false);
