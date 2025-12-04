@@ -20,10 +20,10 @@ interface InterestSetConfig {
 
 const INTEREST_SET_CONFIGS: InterestSetConfig[] = [
   {
-    id: 'learning-wave',
-    title: 'Lernen & EdTech',
+    id: 'lernen-bildung',
+    title: 'Lernen & Bildung',
     description: 'Kuratiert Inhalte rund um offene Bildung, Lerncommunities und moderne Didaktik.',
-    hashtags: ['bildung', 'lernen', 'edtech', 'openlearning', 'eduai'],
+    hashtags: ['bildung', 'lernen', 'edtech', 'openlearning'],
   },
   {
     id: 'culture-civic',
@@ -32,10 +32,10 @@ const INTEREST_SET_CONFIGS: InterestSetConfig[] = [
     hashtags: ['kultur', 'commons', 'civictech', 'community', 'fedi'],
   },
   {
-    id: 'privacy-tech',
-    title: 'Privacy & Infra',
-    description: 'Folge Projekten zu Privatsphäre, offenen Protokollen und resilienter Infrastruktur.',
-    hashtags: ['privacy', 'security', 'nostr', 'opensource', 'infra'],
+    id: 'edufeed',
+    title: 'EduFeed',
+    description: 'Folge Projekten bzgl. EduFeed',
+    hashtags: ['edufeed', 'edufeed-de', 'eduDE' ],
   },
 ];
 

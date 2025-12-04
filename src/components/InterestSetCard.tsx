@@ -109,8 +109,8 @@ export function InterestSetCard({ interestSet }: InterestSetCardProps) {
         </div>
       </CardHeader>
 
-      <CardContent className="flex-1 flex flex-col gap-4">
-        <div className="flex flex-wrap gap-2">
+      <CardContent className="flex-1 flex flex-col">
+        <div className="flex flex-wrap gap-2 mb-4">
           {hashtags.map((tag) => (
             <Badge key={tag} variant="outline" className="text-xs font-medium">
               #{tag}
@@ -118,38 +118,40 @@ export function InterestSetCard({ interestSet }: InterestSetCardProps) {
           ))}
         </div>
 
-        <Button
-          onClick={handleFollowSet}
-          disabled={!user || isPublishing || isUpdating || isFullyFollowing}
-          className="w-full"
-          variant={isFullyFollowing ? 'outline' : 'default'}
-        >
-          {isFullyFollowing ? (
-            <>
-              <Check className="h-4 w-4 mr-2" />
-              Bereits abonniert
-            </>
-          ) : isPublishing || isUpdating ? (
-            <>Wird aktualisiert...</>
-          ) : (
-            <>
-              <Sparkles className="h-4 w-4 mr-2" />
-              Interesse folgen
-            </>
+        <div className="mt-auto space-y-3">
+          <Button
+            onClick={handleFollowSet}
+            disabled={!user || isPublishing || isUpdating || isFullyFollowing}
+            className="w-full"
+            variant={isFullyFollowing ? 'outline' : 'default'}
+          >
+            {isFullyFollowing ? (
+              <>
+                <Check className="h-4 w-4 mr-2" />
+                Bereits abonniert
+              </>
+            ) : isPublishing || isUpdating ? (
+              <>Wird aktualisiert...</>
+            ) : (
+              <>
+                <Sparkles className="h-4 w-4 mr-2" />
+                Interesse folgen
+              </>
+            )}
+          </Button>
+
+          {!user && (
+            <p className="text-xs text-center text-muted-foreground">
+              Melde dich an, um Themen zu abonnieren
+            </p>
           )}
-        </Button>
 
-        {!user && (
-          <p className="text-xs text-center text-muted-foreground">
-            Melde dich an, um Themen zu abonnieren
-          </p>
-        )}
-
-        {alreadyFollowingCount > 0 && !isFullyFollowing && (
-          <p className="text-xs text-muted-foreground text-center">
-            {alreadyFollowingCount} Hashtags folgst du bereits
-          </p>
-        )}
+          {alreadyFollowingCount > 0 && !isFullyFollowing && (
+            <p className="text-xs text-muted-foreground text-center">
+              {alreadyFollowingCount} Hashtags folgst du bereits
+            </p>
+          )}
+        </div>
       </CardContent>
     </Card>
   );
