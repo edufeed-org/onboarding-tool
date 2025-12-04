@@ -5,6 +5,7 @@ import { Moon, Sun, User, MessageSquare, Calendar, Wallet, Heart, Users, Trendin
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { EditProfileForm } from "@/components/EditProfileForm";
+import { StarterPacksSection } from "@/components/StarterPacksSection";
 import { useState } from "react";
 
 export default function UserDashboardPage() {
@@ -113,6 +114,9 @@ export default function UserDashboardPage() {
             Jetzt können Sie die dezentrale Welt erkunden!
           </p>
         </div>
+
+        {/* Starter Packs Section */}
+        <StarterPacksSection />
 
         {/* Profile Form Section */}
         {showProfileForm && (
