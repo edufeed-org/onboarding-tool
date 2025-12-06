@@ -4,13 +4,10 @@ import { useTheme } from "@/hooks/useTheme";
 import { Moon, Sun, User, MessageSquare, Calendar, Wallet, Heart, Users, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
-import { EditProfileForm } from "@/components/EditProfileForm";
 import { StarterPacksSection } from "@/components/StarterPacksSection";
-import { useState } from "react";
 
 export default function UserDashboardPage() {
   const { theme, setTheme } = useTheme();
-  const [showProfileForm, setShowProfileForm] = useState(false);
 
   useSeoMeta({
     title: 'Dashboard - Nostr Onboarding',
@@ -23,7 +20,7 @@ export default function UserDashboardPage() {
       title: "Profil bearbeiten",
       description: "Vervollständigen Sie Ihr Profil",
       color: "text-purple-600",
-      action: () => setShowProfileForm(!showProfileForm)
+      href: "/edit-profile"
     },
     {
       icon: MessageSquare,
@@ -118,34 +115,13 @@ export default function UserDashboardPage() {
         {/* Starter Packs Section */}
         <StarterPacksSection />
 
-        {/* Profile Form Section */}
-        {showProfileForm && (
-          <div className="max-w-3xl mx-auto mb-12">
-            <Card className="border-2">
-              <CardHeader>
-                <CardTitle>Profil vervollständigen</CardTitle>
-                <CardDescription>
-                  Fügen Sie Informationen zu Ihrem Profil hinzu, damit andere Sie finden können.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <EditProfileForm />
-              </CardContent>
-            </Card>
-          </div>
-        )}
-
         {/* Quick Actions */}
         <div className="max-w-5xl mx-auto mb-12">
           <h2 className="text-2xl font-bold mb-6 text-center">Erste Schritte</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {quickActions.map((action, index) => (
-              action.action ? (
-                <Card
-                  key={index}
-                  className="border-2 hover:shadow-lg transition-all cursor-pointer hover:border-primary"
-                  onClick={action.action}
-                >
+              <Link key={index} to={action.href || "/"}>
+                <Card className="border-2 hover:shadow-lg transition-all hover:border-primary h-full">
                   <CardHeader className="text-center">
                     <action.icon className={`h-10 w-10 mx-auto mb-2 ${action.color}`} />
                     <CardTitle className="text-lg">{action.title}</CardTitle>
@@ -154,19 +130,7 @@ export default function UserDashboardPage() {
                     </CardDescription>
                   </CardHeader>
                 </Card>
-              ) : (
-                <Link key={index} to={action.href || "/"}>
-                  <Card className="border-2 hover:shadow-lg transition-all hover:border-primary h-full">
-                    <CardHeader className="text-center">
-                      <action.icon className={`h-10 w-10 mx-auto mb-2 ${action.color}`} />
-                      <CardTitle className="text-lg">{action.title}</CardTitle>
-                      <CardDescription className="text-sm">
-                        {action.description}
-                      </CardDescription>
-                    </CardHeader>
-                  </Card>
-                </Link>
-              )
+              </Link>
             ))}
           </div>
         </div>

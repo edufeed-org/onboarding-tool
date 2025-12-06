@@ -7,6 +7,7 @@ import UserTypePage from "./pages/UserTypePage";
 import RegisterPage from "./pages/RegisterPage";
 import PlatformDashboardPage from "./pages/PlatformDashboardPage";
 import UserDashboardPage from "./pages/UserDashboardPage";
+import EditProfilePage from "./pages/EditProfilePage";
 import { NIP19Page } from "./pages/NIP19Page";
 import NotFound from "./pages/NotFound";
 
@@ -21,6 +22,7 @@ export function AppRouter() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/platform-dashboard" element={<PlatformDashboardPage />} />
         <Route path="/user-dashboard" element={<UserDashboardPage />} />
+        <Route path="/edit-profile" element={<EditProfilePage />} />
         {/* NIP-19 route for npub1, note1, naddr1, nevent1, nprofile1 */}
         <Route path="/:nip19" element={<NIP19Page />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
