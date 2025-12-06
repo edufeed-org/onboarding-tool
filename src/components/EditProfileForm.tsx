@@ -233,7 +233,7 @@ export const EditProfileForm: React.FC = () => {
           />
         </div>
 
-        <FormField
+        {/* <FormField
           control={form.control}
           name="bot"
           render={({ field }) => (
@@ -252,7 +252,7 @@ export const EditProfileForm: React.FC = () => {
               </FormControl>
             </FormItem>
           )}
-        />
+        /> */}
 
         <Button 
           type="submit" 
