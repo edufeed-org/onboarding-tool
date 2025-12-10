@@ -15,8 +15,8 @@ import { LoginArea } from '@/components/auth/LoginArea';
 
 export default function KanbansPage() {
   useSeoMeta({
-    title: 'Kanban Boards - Nostr Onboarding',
-    description: 'Explore and manage Kanban boards on Nostr.',
+    title: 'Kanban-Boards - Nostr Onboarding',
+    description: 'Entdecke und verwalte Kanban-Boards auf Nostr.',
   });
 
   const [activeTab, setActiveTab] = useState<'all' | 'interests' | 'following'>('all');
@@ -90,20 +90,20 @@ export default function KanbansPage() {
         <div className="max-w-4xl mx-auto text-center space-y-6 mb-12">
           <Kanban className="h-16 w-16 mx-auto text-blue-600" />
           <h1 className="text-4xl lg:text-5xl font-bold tracking-tight">
-            Kanban Boards
+            Kanban-Boards
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Explore decentralized Kanban boards on the Nostr network. 
-            Organize tasks, track progress, and collaborate with visual workflows.
+            Entdecke dezentrale Kanban-Boards im Nostr-Netzwerk. 
+            Organisiere Aufgaben, verfolge Fortschritte und arbeite mit visuellen Workflows zusammen.
           </p>
         </div>
 
         {/* Tabs for filtering */}
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as typeof activeTab)} className="max-w-6xl mx-auto mb-8">
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-3">
-            <TabsTrigger value="all">All Boards</TabsTrigger>
-            <TabsTrigger value="interests" disabled={!user}>My Interests</TabsTrigger>
-            <TabsTrigger value="following" disabled={!user}>Following</TabsTrigger>
+            <TabsTrigger value="all">Alle Boards</TabsTrigger>
+            <TabsTrigger value="interests" disabled={!user}>Meine Interessen</TabsTrigger>
+            <TabsTrigger value="following" disabled={!user}>Folge ich</TabsTrigger>
           </TabsList>
 
           {/* All Boards Tab */}
@@ -117,14 +117,14 @@ export default function KanbansPage() {
           {/* My Interests Tab */}
           <TabsContent value="interests" className="mt-8">
             {!user ? (
-              <LoginPrompt message="Log in to see Kanban boards based on your interest hashtags." />
+              <LoginPrompt message="Melde dich an, um Kanban-Boards basierend auf deinen Interesse-Hashtags zu sehen." />
             ) : isLoading ? (
               <LoadingSkeleton />
             ) : error ? (
               <ErrorState />
             ) : filteredBoards.length === 0 ? (
               <EmptyState 
-                message="No Kanban boards found matching your interests. Follow some hashtags to see relevant boards here!" 
+                message="Keine Kanban-Boards gefunden, die deinen Interessen entsprechen. Folge einigen Hashtags, um relevante Boards hier zu sehen!" 
               />
             ) : (
               <BoardsGrid boards={filteredBoards} />
@@ -134,14 +134,14 @@ export default function KanbansPage() {
           {/* Following Tab */}
           <TabsContent value="following" className="mt-8">
             {!user ? (
-              <LoginPrompt message="Log in to see Kanban boards from people you follow." />
+              <LoginPrompt message="Melde dich an, um Kanban-Boards von Personen zu sehen, denen du folgst." />
             ) : isLoading ? (
               <LoadingSkeleton />
             ) : error ? (
               <ErrorState />
             ) : filteredBoards.length === 0 ? (
               <EmptyState 
-                message="No Kanban boards found from people you follow. Start following users to see their boards here!" 
+                message="Keine Kanban-Boards von Personen gefunden, denen du folgst. Beginne, Benutzern zu folgen, um ihre Boards hier zu sehen!" 
               />
             ) : (
               <BoardsGrid boards={filteredBoards} />
@@ -182,7 +182,7 @@ function ErrorState() {
       <Card className="border-dashed border-red-200">
         <CardContent className="py-12 px-8 text-center">
           <p className="text-muted-foreground">
-            Failed to load Kanban boards. Please try again later.
+            Kanban-Boards konnten nicht geladen werden. Bitte versuche es später erneut.
           </p>
         </CardContent>
       </Card>
@@ -197,7 +197,7 @@ function EmptyState({ message }: { message?: string }) {
         <CardContent className="py-12 px-8 text-center">
           <div className="max-w-sm mx-auto space-y-6">
             <p className="text-muted-foreground">
-              {message || 'No Kanban boards found. Check your relay connections or wait a moment for content to load.'}
+              {message || 'Keine Kanban-Boards gefunden. Überprüfe deine Relay-Verbindungen oder warte einen Moment, bis Inhalte geladen werden.'}
             </p>
           </div>
         </CardContent>
