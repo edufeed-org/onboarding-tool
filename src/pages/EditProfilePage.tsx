@@ -5,6 +5,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { Moon, Sun, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
+import { PageHeader } from "@/components/PageHeader";
 
 export default function EditProfilePage() {
   const { theme, setTheme } = useTheme();
@@ -31,6 +32,8 @@ export default function EditProfilePage() {
       </div>
 
       <div className="container mx-auto px-4 py-20">
+        <PageHeader />
+
         {/* Back Button */}
         <div className="max-w-3xl mx-auto mb-6">
           <Link to="/user-dashboard">
@@ -39,18 +42,6 @@ export default function EditProfilePage() {
               Zurück zum Dashboard
             </Button>
           </Link>
-        </div>
-
-        {/* Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-4 mb-12">
-          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Profil bearbeiten
-            </span>
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Vervollständigen Sie Ihr Profil, damit andere Sie finden können.
-          </p>
         </div>
 
         {/* Profile Form */}
