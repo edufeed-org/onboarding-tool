@@ -6,16 +6,26 @@ import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { EditProfileForm } from "@/components/EditProfileForm";
 import { StarterPacksSection } from "@/components/StarterPacksSection";
+import { InterestSetsSection } from "@/components/InterestSetsSection";
+import { useInterestSets } from "@/hooks/useInterestSets";
 import { useState } from "react";
 
 export default function UserDashboardPage() {
   const { theme, setTheme } = useTheme();
   const [showProfileForm, setShowProfileForm] = useState(false);
+  const {
+    data: interestSets,
+    isLoading: isLoadingInterests,
+    isError: isInterestsError,
+  } = useInterestSets();
 
   useSeoMeta({
     title: 'Dashboard - Nostr Onboarding',
     description: 'Ihr persönliches Nostr Dashboard.',
   });
+
+  const shouldShowInterestSection =
+    isLoadingInterests || isInterestsError || (!!interestSets && interestSets.length > 0);
 
   const quickActions = [
     {
@@ -117,6 +127,16 @@ export default function UserDashboardPage() {
 
         {/* Starter Packs Section */}
         <StarterPacksSection />
+
+        {shouldShowInterestSection && (
+          <div className="max-w-5xl mx-auto mb-12">
+            <InterestSetsSection
+              interestSets={interestSets}
+              isLoading={isLoadingInterests}
+              isError={isInterestsError}
+            />
+          </div>
+        )}
 
         {/* Profile Form Section */}
         {showProfileForm && (
