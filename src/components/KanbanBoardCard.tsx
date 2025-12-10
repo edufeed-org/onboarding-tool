@@ -1,8 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { KanbanBoard } from '@/hooks/useKanbanBoards';
+import { useAuthor } from '@/hooks/useAuthor';
+import { genUserName } from '@/lib/genUserName';
 
 interface KanbanBoardCardProps {
   board: KanbanBoard;
@@ -10,6 +13,11 @@ interface KanbanBoardCardProps {
 
 export function KanbanBoardCard({ board }: KanbanBoardCardProps) {
   const navigate = useNavigate();
+  const author = useAuthor(board.event.pubkey);
+  const metadata = author.data?.metadata;
+
+  const displayName = metadata?.name || metadata?.display_name || genUserName(board.event.pubkey);
+  const profileImage = metadata?.picture;
 
   const handleClick = () => {
     // Navigate to the detail page using the board's full id (kind:pubkey:d-tag)
@@ -33,6 +41,15 @@ export function KanbanBoardCard({ board }: KanbanBoardCardProps) {
                 {board.description}
               </CardDescription>
             )}
+            <div className="flex items-center gap-2 mt-3">
+              <Avatar className="h-6 w-6">
+                <AvatarImage src={profileImage} alt={displayName} />
+                <AvatarFallback>{displayName[0]?.toUpperCase()}</AvatarFallback>
+              </Avatar>
+              <span className="text-sm text-muted-foreground truncate">
+                {displayName}
+              </span>
+            </div>
           </div>
           <ChevronRight className="h-5 w-5 text-muted-foreground flex-shrink-0" />
         </div>
