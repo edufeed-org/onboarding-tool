@@ -7,6 +7,7 @@ import UserTypePage from "./pages/UserTypePage";
 import RegisterPage from "./pages/RegisterPage";
 import PlatformDashboardPage from "./pages/PlatformDashboardPage";
 import UserDashboardPage from "./pages/UserDashboardPage";
+import EditProfilePage from "./pages/EditProfilePage";
 import NotesPage from "./pages/NotesPage";
 import KanbansPage from "./pages/KanbansPage";
 import KanbanDetailPage from "./pages/KanbanDetailPage";
@@ -24,6 +25,7 @@ export function AppRouter() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/platform-dashboard" element={<PlatformDashboardPage />} />
         <Route path="/user-dashboard" element={<UserDashboardPage />} />
+        <Route path="/edit-profile" element={<EditProfilePage />} />
         <Route path="/notes" element={<NotesPage />} />
         <Route path="/kanbans" element={<KanbansPage />} />
         <Route path="/kanban/:id" element={<KanbanDetailPage />} />
