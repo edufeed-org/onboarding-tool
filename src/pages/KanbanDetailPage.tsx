@@ -1,15 +1,21 @@
 import { useSeoMeta } from '@unhead/react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Kanban, Lock, Globe, Users } from 'lucide-react';
+import { ArrowLeft, Kanban, Lock, Globe, Users, Copy, Check } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PageHeader } from '@/components/PageHeader';
 import { useKanbanBoard } from '@/hooks/useKanbanBoard';
 import { useAuthor } from '@/hooks/useAuthor';
+import { useToast } from '@/hooks/useToast';
+import { nip19 } from 'nostr-tools';
+import { useState } from 'react';
+import { genUserName } from '@/lib/genUserName';
+import type { KanbanCard } from '@/hooks/useKanbanBoard';
 
-function BoardColumnView({ columnId, columnName, cards }: { columnId: string; columnName: string; cards: any[] }) {
+function BoardColumnView({ columnId, columnName, cards }: { columnId: string; columnName: string; cards: KanbanCard[] }) {
   const columnCards = cards.filter(card => card.columnId === columnId);
 
   return (
@@ -63,10 +69,71 @@ function BoardColumnView({ columnId, columnName, cards }: { columnId: string; co
   );
 }
 
+function MaintainerBadge({ pubkey }: { pubkey: string }) {
+  const author = useAuthor(pubkey);
+  const { toast } = useToast();
+  const [copied, setCopied] = useState(false);
+
+  const displayName = author.data?.metadata?.name || 
+                     author.data?.metadata?.display_name || 
+                     genUserName(pubkey);
+  const avatarUrl = author.data?.metadata?.picture;
+
+  const handleCopy = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const npub = nip19.npubEncode(pubkey);
+    await navigator.clipboard.writeText(npub);
+    setCopied(true);
+    toast({
+      title: 'Copied!',
+      description: 'npub copied to clipboard',
+    });
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="flex items-center gap-2 bg-muted/50 rounded-lg px-3 py-2">
+      <Avatar className="h-6 w-6">
+        <AvatarImage src={avatarUrl} alt={displayName} />
+        <AvatarFallback className="text-xs">
+          {displayName.substring(0, 2).toUpperCase()}
+        </AvatarFallback>
+      </Avatar>
+      <span className="text-sm font-medium">{displayName}</span>
+      <Button
+        variant="ghost"
+        size="sm"
+        className="h-6 w-6 p-0 ml-auto"
+        onClick={handleCopy}
+      >
+        {copied ? (
+          <Check className="h-3 w-3 text-green-600" />
+        ) : (
+          <Copy className="h-3 w-3" />
+        )}
+      </Button>
+    </div>
+  );
+}
+
 export default function KanbanDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { data: board, isLoading, error } = useKanbanBoard(id || '');
   const author = useAuthor(board?.event.pubkey || '');
+  const { toast } = useToast();
+  const [copiedCreator, setCopiedCreator] = useState(false);
+
+  const handleCopyCreator = async () => {
+    if (!board?.event.pubkey) return;
+    const npub = nip19.npubEncode(board.event.pubkey);
+    await navigator.clipboard.writeText(npub);
+    setCopiedCreator(true);
+    toast({
+      title: 'Copied!',
+      description: 'Creator npub copied to clipboard',
+    });
+    setTimeout(() => setCopiedCreator(false), 2000);
+  };
 
   useSeoMeta({
     title: board ? `${board.title} - Kanban Board` : 'Kanban Board',
@@ -175,12 +242,53 @@ export default function KanbanDetailPage() {
                       )}
                     </div>
 
+                    {/* Creator Info */}
                     {author.data?.metadata && (
-                      <div className="text-sm text-muted-foreground">
-                        Created by{' '}
-                        <span className="font-medium">
-                          {author.data.metadata.name || author.data.metadata.display_name || 'Anonymous'}
-                        </span>
+                      <div className="flex items-center gap-2">
+                        <Avatar className="h-8 w-8">
+                          <AvatarImage src={author.data.metadata.picture} alt={author.data.metadata.name || 'Creator'} />
+                          <AvatarFallback className="text-xs">
+                            {(author.data.metadata.name || author.data.metadata.display_name || 'A').substring(0, 2).toUpperCase()}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                          <div className="text-sm">
+                            <span className="text-muted-foreground">Created by </span>
+                            <span className="font-medium">
+                              {author.data.metadata.name || author.data.metadata.display_name || 'Anonymous'}
+                            </span>
+                          </div>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={handleCopyCreator}
+                          className="flex items-center gap-2"
+                        >
+                          {copiedCreator ? (
+                            <>
+                              <Check className="h-4 w-4 text-green-600" />
+                              <span>Copied</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="h-4 w-4" />
+                              <span>Copy npub</span>
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                    )}
+
+                    {/* Maintainers Section */}
+                    {board.maintainers.length > 0 && (
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold text-muted-foreground">Maintainers</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {board.maintainers.map((maintainerPubkey) => (
+                            <MaintainerBadge key={maintainerPubkey} pubkey={maintainerPubkey} />
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>

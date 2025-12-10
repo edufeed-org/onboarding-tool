@@ -105,7 +105,7 @@ export function useKanbanBoard(boardId: string) {
           kind = naddr.kind;
           pubkey = naddr.pubkey;
           dTag = naddr.identifier;
-        } catch (error) {
+        } catch {
           throw new Error('Failed to decode naddr');
         }
       } else {
