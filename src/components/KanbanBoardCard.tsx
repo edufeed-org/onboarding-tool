@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ExternalLink } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import type { KanbanBoard } from '@/hooks/useKanbanBoards';
 
 interface KanbanBoardCardProps {
@@ -8,12 +9,11 @@ interface KanbanBoardCardProps {
 }
 
 export function KanbanBoardCard({ board }: KanbanBoardCardProps) {
+  const navigate = useNavigate();
+
   const handleClick = () => {
-    // Extract the d-tag identifier from the board id
-    const dTag = board.event.tags.find(([name]) => name === 'd')?.[1];
-    if (dTag) {
-      window.location.href = `https://edufeed-org.github.io/kanban-editor/cardsboard/${dTag}`;
-    }
+    // Navigate to the detail page using the board's full id (kind:pubkey:d-tag)
+    navigate(`/kanban/${encodeURIComponent(board.id)}`);
   };
 
   // Extract column count
@@ -34,7 +34,7 @@ export function KanbanBoardCard({ board }: KanbanBoardCardProps) {
               </CardDescription>
             )}
           </div>
-          <ExternalLink className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+          <ChevronRight className="h-5 w-5 text-muted-foreground flex-shrink-0" />
         </div>
       </CardHeader>
       <CardContent>
