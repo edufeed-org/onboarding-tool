@@ -39,10 +39,10 @@ export default function UserDashboardPage() {
     },
     {
       icon: Users,
-      title: "Nutzer folgen",
-      description: "Finden Sie interessante Personen",
+      title: "Starter Packs folgen",
+      description: "Finden Sie interessante Personengruppen",
       color: "text-green-600",
-      href: "/users"
+      href: "/starter-packs"
     },
     {
       icon: Calendar,
