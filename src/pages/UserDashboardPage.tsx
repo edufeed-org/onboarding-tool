@@ -32,24 +32,24 @@ export default function UserDashboardPage() {
     },
     {
       icon: MessageSquare,
-      title: "Erste Nachricht",
-      description: "Teilen Sie Ihre ersten Gedanken",
+      title: "Erkunde Posts",
+      description: "Erkunden Sie erste Gedanken",
       color: "text-blue-600",
-      href: "/"
+      href: "/notes"
     },
     {
       icon: Users,
       title: "Nutzer folgen",
       description: "Finden Sie interessante Personen",
       color: "text-green-600",
-      href: "/"
+      href: "/users"
     },
     {
       icon: Calendar,
-      title: "Events entdecken",
-      description: "Finden Sie lokale Events",
+      title: "Kanban Board",
+      description: "Entdecken Sie Kanban Boards",
       color: "text-orange-600",
-      href: "/"
+      href: "/kanbans"
     }
   ];
 
