@@ -1,12 +1,9 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useTheme } from "@/hooks/useTheme";
-import { Moon, Sun, Code, Server, Boxes, BookOpen, GitBranch, Webhook, ExternalLink } from "lucide-react";
+import { Code, Server, Boxes, BookOpen, GitBranch, Webhook, ExternalLink } from "lucide-react";
 import { useSeoMeta } from '@unhead/react';
+import { PageHeader } from "@/components/PageHeader";
 
 export default function PlatformDashboardPage() {
-  const { theme, setTheme } = useTheme();
-
   useSeoMeta({
     title: 'Plattform-Dashboard - Nostr Onboarding',
     description: 'Technische Ressourcen für Plattformbetreibende.',
@@ -94,19 +91,7 @@ export default function PlatformDashboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Theme Toggle */}
-      <div className="fixed top-6 right-6 z-50">
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className="rounded-full"
-        >
-          <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Theme wechseln</span>
-        </Button>
-      </div>
+      <PageHeader />
 
       <div className="container mx-auto px-4 py-20">
         {/* Header */}
