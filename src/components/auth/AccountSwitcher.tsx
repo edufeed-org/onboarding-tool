@@ -1,7 +1,7 @@
 // NOTE: This file is stable and usually should not be modified.
 // It is important that all functionality in this file is preserved, and should only be modified if explicitly requested.
 
-import { ChevronDown, LayoutDashboard, LogOut, Settings as SettingsIcon, UserIcon, UserPlus, Wallet } from 'lucide-react';
+import { ChevronDown, LayoutDashboard, LogOut, Settings as SettingsIcon, UserIcon, UserPlus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import {
   DropdownMenu,
@@ -11,7 +11,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu.tsx';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar.tsx';
-import { WalletModal } from '@/components/WalletModal';
 import { useLoggedInAccounts, type Account } from '@/hooks/useLoggedInAccounts';
 import { genUserName } from '@/lib/genUserName';
 
@@ -74,23 +73,23 @@ export function AccountSwitcher({ onAddAccountClick }: AccountSwitcherProps) {
           className='flex items-center gap-2 cursor-pointer p-2 rounded-md'
         >
           <SettingsIcon className='w-4 h-4' />
-          <span>Settings</span>
+          <span>Einstellungen</span>
         </DropdownMenuItem>
-        <WalletModal>
+        {/* <WalletModal>
           <DropdownMenuItem
             className='flex items-center gap-2 cursor-pointer p-2 rounded-md'
             onSelect={(e) => e.preventDefault()}
           >
             <Wallet className='w-4 h-4' />
-            <span>Wallet Settings</span>
+            <span>Wallet Einstellungen</span>
           </DropdownMenuItem>
-        </WalletModal>
+        </WalletModal> */}
         <DropdownMenuItem
           onClick={onAddAccountClick}
           className='flex items-center gap-2 cursor-pointer p-2 rounded-md'
         >
           <UserPlus className='w-4 h-4' />
-          <span>Add another account</span>
+          <span>Konto hinzufügen</span>
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => removeLogin(currentUser.id)}
