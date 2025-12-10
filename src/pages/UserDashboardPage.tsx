@@ -5,12 +5,9 @@ import { useSeoMeta } from '@unhead/react';
 import { StarterPacksSection } from "@/components/StarterPacksSection";
 import { InterestSetsSection } from "@/components/InterestSetsSection";
 import { useInterestSets } from "@/hooks/useInterestSets";
-import { useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
-import { EditProfileForm } from "@/components/EditProfileForm";
 
 export default function UserDashboardPage() {
-  const [showProfileForm, setShowProfileForm] = useState(false);
   const {
     data: interestSets,
     isLoading: isLoadingInterests,
@@ -121,23 +118,6 @@ export default function UserDashboardPage() {
               isLoading={isLoadingInterests}
               isError={isInterestsError}
             />
-          </div>
-        )}
-
-        {/* Profile Form Section */}
-        {showProfileForm && (
-          <div className="max-w-3xl mx-auto mb-12">
-            <Card className="border-2">
-              <CardHeader>
-                <CardTitle>Profil vervollständigen</CardTitle>
-                <CardDescription>
-                  Fügen Sie Informationen zu Ihrem Profil hinzu, damit andere Sie finden können.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <EditProfileForm />
-              </CardContent>
-            </Card>
           </div>
         )}
 
