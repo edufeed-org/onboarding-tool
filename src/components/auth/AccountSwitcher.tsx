@@ -1,7 +1,7 @@
 // NOTE: This file is stable and usually should not be modified.
 // It is important that all functionality in this file is preserved, and should only be modified if explicitly requested.
 
-import { ChevronDown, LogOut, Settings as SettingsIcon, UserIcon, UserPlus, Wallet } from 'lucide-react';
+import { ChevronDown, LayoutDashboard, LogOut, Settings as SettingsIcon, UserIcon, UserPlus, Wallet } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import {
   DropdownMenu,
@@ -62,6 +62,13 @@ export function AccountSwitcher({ onAddAccountClick }: AccountSwitcherProps) {
           </DropdownMenuItem>
         ))}
         <DropdownMenuSeparator />
+        <DropdownMenuItem
+          onClick={() => navigate('/user-dashboard')}
+          className='flex items-center gap-2 cursor-pointer p-2 rounded-md'
+        >
+          <LayoutDashboard className='w-4 h-4' />
+          <span>Dashboard</span>
+        </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => navigate('/settings')}
           className='flex items-center gap-2 cursor-pointer p-2 rounded-md'
