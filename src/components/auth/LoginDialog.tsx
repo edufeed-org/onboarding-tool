@@ -338,13 +338,42 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
             </TabsContent>
 
             <TabsContent value='keycloak' className='space-y-3'>
-              <div className='text-center p-4 rounded-lg bg-muted/60 opacity-60'>
-                <Shield className='w-12 h-12 mx-auto mb-3 text-muted-foreground' />
-                <p className='text-sm text-muted-foreground mb-4'>
-                  KeyCloak-Login ist noch nicht implementiert.
-                </p>
+              <div className='p-4 rounded-lg bg-muted/60 opacity-60 space-y-4'>
+                <div className="text-center">
+                  <Shield className='w-12 h-12 mx-auto mb-3 text-muted-foreground' />
+                  <p className='text-sm text-muted-foreground'>
+                    KeyCloak-Login ist noch nicht implementiert.
+                  </p>
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="keycloak-email" className="text-sm font-medium">
+                    E-Mail
+                  </label>
+                  <Input
+                    id="keycloak-email"
+                    type="email"
+                    placeholder="name@firma.de"
+                    disabled
+                    autoComplete="off"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="keycloak-password" className="text-sm font-medium">
+                    Passwort
+                  </label>
+                  <Input
+                    id="keycloak-password"
+                    type="password"
+                    placeholder="••••••••"
+                    disabled
+                    autoComplete="off"
+                  />
+                </div>
+
                 <Button className='w-full rounded-full py-4' disabled>
-                  Kommt bald
+                  Anmelden
                 </Button>
               </div>
             </TabsContent>
