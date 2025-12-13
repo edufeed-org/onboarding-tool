@@ -193,7 +193,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
         <div className='px-6 pt-2 pb-4 space-y-4 overflow-y-auto flex-1'>
           {/* Login Methods */}
           <Tabs defaultValue={defaultTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 bg-muted/80 rounded-lg mb-4">
+            <TabsList className="grid w-full grid-cols-4 bg-muted/80 rounded-lg mb-4">
               <TabsTrigger value="extension" className="flex items-center gap-2">
                 <Shield className="w-4 h-4" />
                 <span>Extension</span>
@@ -205,6 +205,10 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
               <TabsTrigger value="bunker" className="flex items-center gap-2">
                 <Cloud className="w-4 h-4" />
                 <span>Bunker</span>
+              </TabsTrigger>
+              <TabsTrigger value="keycloak" className="flex items-center gap-2">
+                {/* <Shield className="w-4 h-4" /> */}
+                <span>KeyCloak</span>
               </TabsTrigger>
             </TabsList>
             <TabsContent value='extension' className='space-y-3 bg-muted'>
@@ -329,6 +333,18 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
                   disabled={isLoading || !bunkerUri.trim()}
                 >
                   {isLoading ? 'Verbindung wird hergestellt...' : 'Mit Bunker anmelden'}
+                </Button>
+              </div>
+            </TabsContent>
+
+            <TabsContent value='keycloak' className='space-y-3'>
+              <div className='text-center p-4 rounded-lg bg-muted/60 opacity-60'>
+                <Shield className='w-12 h-12 mx-auto mb-3 text-muted-foreground' />
+                <p className='text-sm text-muted-foreground mb-4'>
+                  KeyCloak-Login ist noch nicht implementiert.
+                </p>
+                <Button className='w-full rounded-full py-4' disabled>
+                  Kommt bald
                 </Button>
               </div>
             </TabsContent>
