@@ -2,7 +2,7 @@
 // It is important that all functionality in this file is preserved, and should only be modified if explicitly requested.
 
 import React, { useRef, useState, useEffect } from 'react';
-import { Shield, Upload, AlertTriangle, KeyRound, Cloud } from 'lucide-react';
+import { Shield, AlertTriangle, KeyRound, Cloud } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogDescription } from "@/components/ui/dialog";
@@ -28,7 +28,7 @@ const validateBunkerUri = (uri: string) => {
 
 const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isFileLoading, setIsFileLoading] = useState(false);
+  const [_isFileLoading, setIsFileLoading] = useState(false);
   const [nsec, setNsec] = useState('');
   const [bunkerUri, setBunkerUri] = useState('');
   const [errors, setErrors] = useState<{
@@ -141,7 +141,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
     }
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const _handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -211,14 +211,14 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
                 <span>KeyCloak</span>
               </TabsTrigger>
             </TabsList>
-            <TabsContent value='extension' className='space-y-3 bg-muted'>
+            <TabsContent value='extension' className='space-y-3'>
               {errors.extension && (
                 <Alert variant="destructive">
                   <AlertTriangle className="h-4 w-4" />
                   <AlertDescription>{errors.extension}</AlertDescription>
                 </Alert>
               )}
-              <div className='text-center p-4 rounded-lg bg-gray-50 dark:bg-gray-800'>
+              <div className='text-center p-4'>
                 <Shield className='w-12 h-12 mx-auto mb-3 text-primary' />
                 <p className='text-sm text-gray-600 dark:text-gray-300 mb-4'>
                   Mit einem Klick über die Browser-Erweiterung anmelden
@@ -268,7 +268,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
                   {isLoading ? 'Überprüfung läuft...' : 'Anmelden'}
                 </Button>
 
-                <div className='relative'>
+                {/* <div className='relative'>
                   <div className='absolute inset-0 flex items-center'>
                     <div className='w-full border-t border-muted'></div>
                   </div>
@@ -299,13 +299,13 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
                   {errors.file && (
                     <p className="text-sm text-red-500 mt-2">{errors.file}</p>
                   )}
-                </div>
+                </div> */}
               </div>
             </TabsContent>
 
-            <TabsContent value='bunker' className='space-y-3 bg-muted'>
+            <TabsContent value='bunker' className='space-y-3'>
               <div className='space-y-2'>
-                <label htmlFor='bunkerUri' className='text-sm font-medium text-gray-700 dark:text-gray-400'>
+                <label htmlFor='bunkerUri' className='text-sm font-medium'>
                   Bunker-URI
                 </label>
                 <Input
@@ -338,10 +338,10 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
             </TabsContent>
 
             <TabsContent value='keycloak' className='space-y-3'>
-              <div className='p-4 rounded-lg bg-muted/60 opacity-60 space-y-4'>
+              <div className='p-4 space-y-4'>
                 <div className="text-center">
-                  <Shield className='w-12 h-12 mx-auto mb-3 text-muted-foreground' />
-                  <p className='text-sm text-muted-foreground'>
+                  <Shield className='w-12 h-12 mx-auto mb-3' />
+                  <p className='text-sm'>
                     KeyCloak-Login ist noch nicht implementiert.
                   </p>
                 </div>
