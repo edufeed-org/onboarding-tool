@@ -65,14 +65,14 @@ export const EditProfileForm: React.FC = () => {
       const [[_, url]] = await uploadFile(file);
       form.setValue(field, url);
       toast({
-        title: 'Success',
-        description: `${field === 'picture' ? 'Profile picture' : 'Banner'} uploaded successfully`,
+        title: 'Erfolg',
+        description: `${field === 'picture' ? 'Profilbild' : 'Banner'} erfolgreich hochgeladen`,
       });
     } catch (error) {
       console.error(`Failed to upload ${field}:`, error);
       toast({
-        title: 'Error',
-        description: `Failed to upload ${field === 'picture' ? 'profile picture' : 'banner'}. Please try again.`,
+        title: 'Fehler',
+        description: `${field === 'picture' ? 'Profilbild' : 'Banner'} konnte nicht hochgeladen werden. Bitte versuchen Sie es erneut.`,
         variant: 'destructive',
       });
     }
@@ -81,8 +81,8 @@ export const EditProfileForm: React.FC = () => {
   const onSubmit = async (values: NostrMetadata) => {
     if (!user) {
       toast({
-        title: 'Error',
-        description: 'You must be logged in to update your profile',
+        title: 'Fehler',
+        description: 'Sie müssen angemeldet sein, um Ihr Profil zu aktualisieren',
         variant: 'destructive',
       });
       return;
@@ -110,14 +110,14 @@ export const EditProfileForm: React.FC = () => {
       queryClient.invalidateQueries({ queryKey: ['author', user.pubkey] });
 
       toast({
-        title: 'Success',
-        description: 'Your profile has been updated',
+        title: 'Erfolg',
+        description: 'Ihr Profil wurde aktualisiert',
       });
     } catch (error) {
       console.error('Failed to update profile:', error);
       toast({
-        title: 'Error',
-        description: 'Failed to update your profile. Please try again.',
+        title: 'Fehler',
+        description: 'Ihr Profil konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut.',
         variant: 'destructive',
       });
     }
@@ -133,10 +133,10 @@ export const EditProfileForm: React.FC = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Your name" {...field} />
+                <Input placeholder="Ihr Name" {...field} />
               </FormControl>
               <FormDescription>
-                This is your display name that will be displayed to others.
+                Dies ist Ihr Anzeigename, der anderen angezeigt wird.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -151,13 +151,13 @@ export const EditProfileForm: React.FC = () => {
               <FormLabel>Bio</FormLabel>
               <FormControl>
                 <Textarea 
-                  placeholder="Tell others about yourself" 
+                  placeholder="Erzählen Sie anderen über sich" 
                   className="resize-none" 
                   {...field} 
                 />
               </FormControl>
               <FormDescription>
-                A short description about yourself.
+                Eine kurze Beschreibung über Sie.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -171,9 +171,9 @@ export const EditProfileForm: React.FC = () => {
             render={({ field }) => (
               <ImageUploadField
                 field={field}
-                label="Profile Picture"
-                placeholder="https://example.com/profile.jpg"
-                description="URL to your profile picture. You can upload an image or provide a URL."
+                label="Profilbild"
+                placeholder="https://example.com/profil.jpg"
+                description="URL zu Ihrem Profilbild. Sie können ein Bild hochladen oder eine URL angeben."
                 previewType="square"
                 onUpload={(file) => uploadPicture(file, 'picture')}
               />
@@ -186,9 +186,9 @@ export const EditProfileForm: React.FC = () => {
             render={({ field }) => (
               <ImageUploadField
                 field={field}
-                label="Banner Image"
+                label="Banner"
                 placeholder="https://example.com/banner.jpg"
-                description="URL to a wide banner image for your profile. You can upload an image or provide a URL."
+                description="URL zu einem breiten Bannerbild für Ihr Profil. Sie können ein Bild hochladen oder eine URL angeben."
                 previewType="wide"
                 onUpload={(file) => uploadPicture(file, 'banner')}
               />
@@ -204,10 +204,10 @@ export const EditProfileForm: React.FC = () => {
               <FormItem>
                 <FormLabel>Website</FormLabel>
                 <FormControl>
-                  <Input placeholder="https://yourwebsite.com" {...field} />
+                  <Input placeholder="https://ihrewebsite.com" {...field} />
                 </FormControl>
                 <FormDescription>
-                  Your personal website or social media link.
+                  Ihre persönliche Website oder Social-Media-Link.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -221,10 +221,10 @@ export const EditProfileForm: React.FC = () => {
               <FormItem>
                 <FormLabel>NIP-05 Identifier</FormLabel>
                 <FormControl>
-                  <Input placeholder="you@example.com" {...field} />
+                  <Input placeholder="sie@example.com" {...field} />
                 </FormControl>
                 <FormDescription>
-                  Your verified Nostr identifier.
+                  Ihr verifizierter Nostr-Identifier.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -261,7 +261,7 @@ export const EditProfileForm: React.FC = () => {
           {(isPending || isUploading) && (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           )}
-          Save Profile
+          Profil speichern
         </Button>
       </form>
     </Form>
@@ -326,7 +326,7 @@ const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
             onClick={() => fileInputRef.current?.click()}
           >
             <Upload className="h-4 w-4 mr-2" />
-            Upload Image
+            Bild hochladen
           </Button>
           {field.value && (
             <div className={`h-10 ${previewType === 'square' ? 'w-10' : 'w-24'} rounded overflow-hidden`}>
