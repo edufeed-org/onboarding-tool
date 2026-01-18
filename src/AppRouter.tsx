@@ -9,6 +9,7 @@ import PlatformDashboardPage from "./pages/PlatformDashboardPage";
 import UserDashboardPage from "./pages/UserDashboardPage";
 import EditProfilePage from "./pages/EditProfilePage";
 import NotesPage from "./pages/NotesPage";
+import StarterPacksPage from "./pages/StarterPacksPage";
 import KanbansPage from "./pages/KanbansPage";
 import KanbanDetailPage from "./pages/KanbanDetailPage";
 import { NIP19Page } from "./pages/NIP19Page";
@@ -28,6 +29,7 @@ export function AppRouter() {
         <Route path="/user-dashboard" element={<UserDashboardPage />} />
         <Route path="/edit-profile" element={<EditProfilePage />} />
         <Route path="/notes" element={<NotesPage />} />
+        <Route path="/starter-packs" element={<StarterPacksPage />} />
         <Route path="/kanbans" element={<KanbansPage />} />
         <Route path="/kanban/:id" element={<KanbanDetailPage />} />
         <Route path="/settings" element={<SettingsPage />} />
