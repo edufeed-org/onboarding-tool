@@ -12,6 +12,7 @@ import NotesPage from "./pages/NotesPage";
 import StarterPacksPage from "./pages/StarterPacksPage";
 import KanbansPage from "./pages/KanbansPage";
 import KanbanDetailPage from "./pages/KanbanDetailPage";
+import OIDCCallbackPage from "./pages/OIDCCallbackPage";
 import { NIP19Page } from "./pages/NIP19Page";
 import { SettingsPage } from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
@@ -33,6 +34,8 @@ export function AppRouter() {
         <Route path="/kanbans" element={<KanbansPage />} />
         <Route path="/kanban/:id" element={<KanbanDetailPage />} />
         <Route path="/settings" element={<SettingsPage />} />
+        {/* OIDC callback route */}
+        <Route path="/auth/callback" element={<OIDCCallbackPage />} />
         {/* NIP-19 route for npub1, note1, naddr1, nevent1, nprofile1 */}
         <Route path="/:nip19" element={<NIP19Page />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
