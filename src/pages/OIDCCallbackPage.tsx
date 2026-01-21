@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { NLogin, useNostrLogin } from '@nostrify/react/login';
+import { NLogin, NLoginType, useNostrLogin } from '@nostrify/react/login';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, AlertTriangle, CheckCircle } from 'lucide-react';
@@ -104,7 +104,7 @@ export default function OIDCCallbackPage() {
 
         // Create login - prefer nsec if available (kept in memory only)
         // Otherwise use npub (will require external signer for signing)
-        let login: NLogin;
+        let login: NLoginType;
         if (nsec) {
           // SECURITY: nsec is kept in memory only via NLogin
           // It is never persisted to localStorage/IndexedDB
