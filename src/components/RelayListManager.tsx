@@ -59,8 +59,8 @@ export function RelayListManager() {
   const handleAddRelay = () => {
     if (!isValidRelayUrl(newRelayUrl)) {
       toast({
-        title: 'Invalid relay URL',
-        description: 'Please enter a valid relay URL (e.g., wss://relay.example.com)',
+        title: 'Ungültige Relay-URL',
+        description: 'Bitte gib eine gültige Relay-URL ein (z. B. wss://relay.example.com)',
         variant: 'destructive',
       });
       return;
@@ -70,8 +70,8 @@ export function RelayListManager() {
 
     if (relays.some(r => r.url === normalized)) {
       toast({
-        title: 'Relay already exists',
-        description: 'This relay is already in your list.',
+        title: 'Relay existiert bereits',
+        description: 'Dieses Relay ist bereits in deiner Liste.',
         variant: 'destructive',
       });
       return;
@@ -146,15 +146,15 @@ export function RelayListManager() {
       {
         onSuccess: () => {
           toast({
-            title: 'Relay list published',
-            description: 'Your relay list has been published to Nostr.',
+            title: 'Relay-Liste veröffentlicht',
+            description: 'Deine Relay-Liste wurde auf Nostr veröffentlicht.',
           });
         },
         onError: (error) => {
           console.error('Failed to publish relay list:', error);
           toast({
-            title: 'Failed to publish relay list',
-            description: 'There was an error publishing your relay list to Nostr.',
+            title: 'Relay-Liste konnte nicht veröffentlicht werden',
+            description: 'Beim Veröffentlichen deiner Relay-Liste auf Nostr ist ein Fehler aufgetreten.',
             variant: 'destructive',
           });
         },
@@ -208,7 +208,7 @@ export function RelayListManager() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <Label htmlFor={`read-${relay.url}`} className="text-sm cursor-pointer">
-                      Read
+                      Lesen
                     </Label>
                     <Switch
                       id={`read-${relay.url}`}
@@ -219,7 +219,7 @@ export function RelayListManager() {
                   </div>
                   <div className="flex items-center justify-between">
                     <Label htmlFor={`write-${relay.url}`} className="text-sm cursor-pointer">
-                      Write
+                      Schreiben
                     </Label>
                     <Switch
                       id={`write-${relay.url}`}
@@ -250,11 +250,11 @@ export function RelayListManager() {
       <div className="flex gap-2">
         <div className="flex-1">
           <Label htmlFor="new-relay-url" className="sr-only">
-            Relay URL
+            Relay-URL
           </Label>
           <Input
             id="new-relay-url"
-            placeholder="Enter relay URL (e.g., wss://relay.example.com)"
+            placeholder="Relay-URL eingeben (z. B. wss://relay.example.com)"
             value={newRelayUrl}
             onChange={(e) => setNewRelayUrl(e.target.value)}
             onKeyDown={(e) => {
@@ -272,13 +272,13 @@ export function RelayListManager() {
           className="h-10 shrink-0"
         >
           <Plus className="h-4 w-4 mr-2" />
-          Add Relay
+          Relay hinzufügen
         </Button>
       </div>
 
       {!user && (
         <p className="text-xs text-muted-foreground">
-          Log in to sync your relay list with Nostr
+          Melde dich an, um deine Relay-Liste mit Nostr zu synchronisieren
         </p>
       )}
     </div>
