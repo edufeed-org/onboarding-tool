@@ -9,12 +9,12 @@ export function SettingsPage() {
 
       <div className="container max-w-4xl mx-auto px-4 py-20">
         <Card>
-          <CardHeader>
-            <CardTitle>Relay Settings</CardTitle>
-            <CardDescription>
-              Manage your Nostr relay connections. Relays are used to read and write events on the Nostr network.
-            </CardDescription>
-          </CardHeader>
+            <CardHeader>
+              <CardTitle>Relay-Einstellungen</CardTitle>
+              <CardDescription>
+                Verwalte deine Nostr-Relay-Verbindungen. Relays werden verwendet, um Ereignisse im Nostr-Netzwerk zu lesen und zu schreiben.
+              </CardDescription>
+            </CardHeader>
           <CardContent>
             <RelayListManager />
           </CardContent>
