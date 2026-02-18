@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code, Server, Boxes, BookOpen, GitBranch, Webhook, ExternalLink } from "lucide-react";
+import { Code, Boxes, BookOpen, GitBranch, Webhook, ExternalLink } from "lucide-react";
 import { useSeoMeta } from '@unhead/react';
 import { PageHeader } from "@/components/PageHeader";
 
