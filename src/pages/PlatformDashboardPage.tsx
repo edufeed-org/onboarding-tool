@@ -19,17 +19,17 @@ export default function PlatformDashboardPage() {
     },
     {
       icon: Code,
+      title: "MKStack",
+      description: "Framework für Nostr Website Entwicklung mit Vite",
+      link: "https://mkstack.xyz",
+      color: "text-green-600"
+    },
+    {
+      icon: Code,
       title: "Nostrify SDK",
       description: "TypeScript/JavaScript SDK für Nostr-Integration",
       link: "https://nostrify.dev",
       color: "text-purple-600"
-    },
-    {
-      icon: Server,
-      title: "Relay-Implementierungen",
-      description: "Verschiedene Relay-Server zum Selbst-Hosten",
-      link: "https://github.com/nostr-protocol/nostr#relays",
-      color: "text-green-600"
     },
     {
       icon: Webhook,
@@ -63,17 +63,6 @@ export default function PlatformDashboardPage() {
         "Clients abonnieren Events via Filter",
         "Relay sendet passende Events zurück",
         "Jeder kann einen Relay betreiben"
-      ]
-    },
-    {
-      title: "Kanban-Board Integration",
-      description: "Projektmanagement auf Nostr kann mit benutzerdefinierten Event-Kinds realisiert werden",
-      details: [
-        "Verwenden Sie addressable Events (Kind 30000-39999)",
-        "Boards als addressable Events mit 'd'-Tag",
-        "Tasks als referenzierte Events",
-        "Kollaboration über geteilte Relays",
-        "Verschlüsselung für private Boards möglich"
       ]
     },
     {
@@ -194,7 +183,7 @@ export default function PlatformDashboardPage() {
                   <div>
                     <h3 className="font-semibold mb-1">SDK wählen</h3>
                     <p className="text-sm text-muted-foreground">
-                      Verwenden Sie Nostrify (TypeScript) oder nostr-tools für einfache Integration.
+                      Verwenden Sie MKStack, Nostrify (TypeScript) oder nostr-tools für einfache Integration.
                     </p>
                   </div>
                 </div>
