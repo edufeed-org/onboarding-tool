@@ -49,10 +49,10 @@ export default function FeaturesPage() {
     },
     {
       icon: FileText,
-      title: "Long-Form Content",
+      title: "Artikel & Blog Posts",
       description: "Veröffentlichen Sie Artikel, Blogs und Dokumentation. Vollständige Formatierung unterstützt.",
       color: "text-teal-600",
-      url: ""
+      url: "https://zelo.news"
     }
   ];
 
