@@ -26,8 +26,7 @@ export default function WelcomePage() {
           </h1>
           
           <p className="text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            Die dezentrale, zensurresistente und offene Zukunft sozialer Netzwerke. 
-            Besitzen Sie Ihre Daten. Kontrollieren Sie Ihre Identität.
+            Tritt themenbasierten Communities bei, erstelle Veranstaltungen und nimm an Echtzeit-Diskussionen teil – auf Basis des Nostr-Protokoll.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -36,9 +35,6 @@ export default function WelcomePage() {
                 Jetzt starten
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="text-lg h-14 px-8">
-              <Link to="/features">Mehr erfahren</Link>
             </Button>
           </div>
         </div>
