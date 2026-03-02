@@ -10,8 +10,8 @@ import { LoginArea } from '@/components/auth/LoginArea';
 
 export default function NotesPage() {
   useSeoMeta({
-    title: 'Notes - Nostr Onboarding',
-    description: 'Discover notes based on your interests.',
+    title: 'Notizen - Nostr Onboarding',
+    description: 'Entdecke Notizen basierend auf deinen Interessen.',
   });
 
   const { user } = useCurrentUser();
@@ -26,11 +26,10 @@ export default function NotesPage() {
         <div className="max-w-4xl mx-auto text-center space-y-6 mb-12">
           <Newspaper className="h-16 w-16 mx-auto text-blue-600" />
           <h1 className="text-4xl lg:text-5xl font-bold tracking-tight">
-            Notes from Your Interests
+            Notizen zu deinen Interessen
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Discover content from the Nostr network filtered by your interest sets. 
-            Notes matching your selected hashtags will appear here.
+            Entdecke Inhalte aus dem Nostr-Netzwerk, gefiltert nach deinen Interessensgruppen. Hier erscheinen Notizen, die zu den von dir ausgewählten Hashtags passen.
           </p>
         </div>
 
@@ -41,7 +40,7 @@ export default function NotesPage() {
               <CardContent className="py-12 px-8 text-center space-y-6">
                 <div className="max-w-sm mx-auto space-y-6">
                   <p className="text-muted-foreground">
-                    Please log in to see notes based on your interests.
+                    Bitte melde dich an, um Notizen basierend auf deinen Interessen zu sehen.
                   </p>
                   <LoginArea className="flex justify-center" />
                 </div>
@@ -84,7 +83,7 @@ export default function NotesPage() {
             <Card className="border-dashed border-red-200">
               <CardContent className="py-12 px-8 text-center">
                 <p className="text-muted-foreground">
-                  Failed to load notes. Please try again later.
+                  Notizen konnten nicht geladen werden. Bitte versuche es später noch einmal.
                 </p>
               </CardContent>
             </Card>
@@ -98,11 +97,13 @@ export default function NotesPage() {
               <CardContent className="py-12 px-8 text-center">
                 <div className="max-w-sm mx-auto space-y-6">
                   <p className="text-muted-foreground">
-                    No notes found matching your interests. Try adding interest sets from the{' '}
+                    Keine Notizen gefunden, die zu deinen Interessen passen. Versuche Interessensgruppen im 
+                    {' '}
                     <a href="/user-dashboard" className="text-blue-600 hover:underline">
-                      dashboard
-                    </a>{' '}
-                    or wait a moment for content to load from your relays.
+                      Dashboard
+                    </a>
+                    {' '}
+                    hinzuzufügen oder warte kurz, bis Inhalte von deinen Relays geladen werden.
                   </p>
                 </div>
               </CardContent>
