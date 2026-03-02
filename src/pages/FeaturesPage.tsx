@@ -16,37 +16,43 @@ export default function FeaturesPage() {
       icon: MessageSquare,
       title: "Social Media",
       description: "Veröffentlichen Sie Notizen, Artikel und Inhalte ohne Zensur. Ihre Beiträge gehören Ihnen für immer.",
-      color: "text-blue-600"
+      color: "text-blue-600",
+      url: ""
     },
     {
       icon: Calendar,
       title: "Kalender & Events",
       description: "Erstellen und teilen Sie Events und Termine. Koordinieren Sie Treffen dezentral mit der Community.",
-      color: "text-purple-600"
+      color: "text-purple-600",
+      url: "https://edufeed.org/calendar"
     },
     {
       icon: MessageSquare,
       title: "Direktnachrichten",
       description: "Verschlüsselte private Nachrichten. Kommunizieren Sie sicher ohne Drittanbieter.",
-      color: "text-green-600"
+      color: "text-green-600",
+      url: ""
     },
     {
       icon: Users,
       title: "Communities",
       description: "Treten Sie Interessengruppen bei oder erstellen Sie eigene. Dezentrale Moderation möglich.",
-      color: "text-indigo-600"
+      color: "text-indigo-600",
+      url: "https://edufeed.org/discover?type=communities"
     },
     {
       icon: FileText,
       title: "Kanban-Boards",
       description: "Projektmanagement und Aufgabenverwaltung. Kollaborieren Sie transparent und offen.",
-      color: "text-orange-600"
+      color: "text-orange-600",
+      url: "https://kanban.edufeed.org/cardsboard"
     },
     {
       icon: FileText,
-      title: "Long-Form Content",
+      title: "Artikel & Blog Posts",
       description: "Veröffentlichen Sie Artikel, Blogs und Dokumentation. Vollständige Formatierung unterstützt.",
-      color: "text-teal-600"
+      color: "text-teal-600",
+      url: "https://zelo.news"
     }
   ];
 
@@ -71,17 +77,25 @@ export default function FeaturesPage() {
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
-          {features.map((feature, index) => (
-            <Card key={index} className="border-2 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <feature.icon className={`h-10 w-10 mb-2 ${feature.color}`} />
-                <CardTitle className="text-lg">{feature.title}</CardTitle>
-                <CardDescription className="text-sm">
-                  {feature.description}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
+          {features.map((feature, index) => {
+            const card = (
+              <Card key={index} className={`border-2 hover:shadow-lg transition-shadow${feature.url ? " cursor-pointer hover:border-primary" : ""}`}>
+                <CardHeader>
+                  <feature.icon className={`h-10 w-10 mb-2 ${feature.color}`} />
+                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                  <CardDescription className="text-sm">
+                    {feature.description}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            );
+
+            return feature.url ? (
+              <a key={index} href={feature.url} target="_blank" rel="noopener noreferrer" className="block">
+                {card}
+              </a>
+            ) : card;
+          })}
         </div>
 
         {/* CTA Section */}

@@ -116,7 +116,7 @@ export default function UserDashboardPage() {
           <h2 className="text-2xl font-bold mb-6 text-center">Erste Schritte</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {quickActions.map((action, index) => (
-              <Link key={index} to={action.href || "/"}>
+              <Link key={index} target="_blank" to={action.href || "/"}>
                 <Card className="border-2 hover:shadow-lg transition-all hover:border-primary h-full">
                   <CardHeader className="text-center">
                     <action.icon className={`h-10 w-10 mx-auto mb-2 ${action.color}`} />
