@@ -223,7 +223,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
                 <p className='text-sm text-gray-600 dark:text-gray-300 mb-4'>
                   Mit einem Klick über die Browser-Erweiterung anmelden
                 </p>
-                <div className="flex justify-center">
+                <div className="flex justify-center mb-4">
                   <Button
                     className='w-full rounded-full py-4'
                     onClick={handleExtensionLogin}
@@ -232,6 +232,27 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
                     {isLoading ? 'Anmeldung läuft...' : 'Mit Erweiterung anmelden'}
                   </Button>
                 </div>
+                <p className='text-xs text-gray-500 dark:text-gray-400'>
+                  Noch keine Erweiterung?{' '}
+                  <a
+                    href="https://keys.band"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    keys.band
+                  </a>
+                  {' oder '}
+                  <a
+                    href="https://getalby.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    Alby
+                  </a>
+                  {' installieren'}
+                </p>
               </div>
             </TabsContent>
 
