@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, MessageSquare, Calendar, Wallet, Heart, Users, TrendingUp } from "lucide-react";
+import { User, MessageSquare, Calendar, Heart, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { StarterPacksSection } from "@/components/StarterPacksSection";
@@ -70,19 +70,9 @@ export default function UserDashboardPage() {
       description: "Entdecken Sie Events in Ihrer Nähe oder erstellen Sie eigene. Koordinieren Sie Treffen dezentral."
     },
     {
-      icon: Wallet,
-      title: "Lightning-Zahlungen",
-      description: "Senden und empfangen Sie Bitcoin-Micropayments. Unterstützen Sie Creators direkt mit Zaps."
-    },
-    {
       icon: Users,
       title: "Communities beitreten",
       description: "Finden Sie Gleichgesinnte und treten Sie themenspezifischen Communities bei."
-    },
-    {
-      icon: TrendingUp,
-      title: "Ihre Reichweite erhöhen",
-      description: "Je aktiver Sie sind, desto mehr Menschen werden Sie entdecken. Bauen Sie Ihre Präsenz auf."
     }
   ];
 
@@ -208,7 +198,7 @@ export default function UserDashboardPage() {
         {/* Features Overview */}
         <div className="max-w-5xl mx-auto mb-12">
           <h2 className="text-2xl font-bold mb-6 text-center">Was Sie auf Nostr machen können</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
             {features.map((feature, index) => (
               <Card key={index} className="border-2">
                 <CardHeader>
@@ -243,13 +233,6 @@ export default function UserDashboardPage() {
                   <span>
                     <strong>Relays:</strong> Sie können in den Einstellungen verschiedene Relays 
                     hinzufügen oder entfernen, um mehr oder weniger Inhalte zu sehen.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-lg">⚡</span>
-                  <span>
-                    <strong>Lightning:</strong> Um Zaps zu senden/empfangen, richten Sie eine 
-                    Lightning-Wallet wie Alby oder Wallet of Satoshi ein.
                   </span>
                 </li>
                 <li className="flex items-start">

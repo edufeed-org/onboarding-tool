@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Network, Shield, Users, Zap } from "lucide-react";
+import { ArrowRight, Network, Shield, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { PageHeader } from "@/components/PageHeader";
@@ -44,7 +44,7 @@ export default function WelcomePage() {
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-20 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-3 gap-6 mt-20 max-w-6xl mx-auto">
           <Card className="border-2">
             <CardHeader>
               <Network className="h-10 w-10 mb-2 text-purple-600" />
@@ -71,16 +71,6 @@ export default function WelcomePage() {
               <CardTitle>Interoperabel</CardTitle>
               <CardDescription>
                 Eine Identität für alle Nostr-Anwendungen weltweit.
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="border-2">
-            <CardHeader>
-              <Zap className="h-10 w-10 mb-2 text-violet-600" />
-              <CardTitle>Lightning-Integration</CardTitle>
-              <CardDescription>
-                Senden und empfangen Sie Bitcoin-Micropayments direkt.
               </CardDescription>
             </CardHeader>
           </Card>

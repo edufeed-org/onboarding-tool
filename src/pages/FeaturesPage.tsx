@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Calendar, MessageSquare, Wallet, Users, FileText, Globe } from "lucide-react";
+import { ArrowRight, Calendar, MessageSquare, Users, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { PageHeader } from "@/components/PageHeader";
@@ -31,12 +31,6 @@ export default function FeaturesPage() {
       color: "text-green-600"
     },
     {
-      icon: Wallet,
-      title: "Lightning-Zahlungen",
-      description: "Senden und empfangen Sie Bitcoin-Micropayments. Unterstützen Sie Creators direkt mit Zaps.",
-      color: "text-yellow-600"
-    },
-    {
       icon: Users,
       title: "Communities",
       description: "Treten Sie Interessengruppen bei oder erstellen Sie eigene. Dezentrale Moderation möglich.",
@@ -47,12 +41,6 @@ export default function FeaturesPage() {
       title: "Kanban-Boards",
       description: "Projektmanagement und Aufgabenverwaltung. Kollaborieren Sie transparent und offen.",
       color: "text-orange-600"
-    },
-    {
-      icon: Globe,
-      title: "Marktplatz",
-      description: "Handeln Sie Waren und Dienstleistungen peer-to-peer. Keine Plattformgebühren.",
-      color: "text-red-600"
     },
     {
       icon: FileText,
@@ -82,7 +70,7 @@ export default function FeaturesPage() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
           {features.map((feature, index) => (
             <Card key={index} className="border-2 hover:shadow-lg transition-shadow">
               <CardHeader>
