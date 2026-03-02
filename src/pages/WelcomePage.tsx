@@ -80,9 +80,11 @@ export default function WelcomePage() {
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
+                Edufeed ist ein Ort für Bildungs-Communities und Events: entdecken, austauschen, Termine im Kalender finden und vieles mehr.
+              </p>
+              <p>
                 Nostr (Notes and Other Stuff Transmitted by Relays) ist ein offenes Protokoll für 
-                dezentrale soziale Netzwerke. Im Gegensatz zu traditionellen Plattformen wie Twitter 
-                oder Facebook gibt es keine zentrale Firma, die Ihre Daten kontrolliert.
+                dezentrale soziale Netzwerke. Im Gegensatz zu traditionellen Plattformen gibt es keine zentrale Firma, die Ihre Daten kontrolliert.
               </p>
               <p>
                 Mit Nostr erstellen Sie ein Schlüsselpaar - Ihr privater Schlüssel ist Ihr Passwort 
