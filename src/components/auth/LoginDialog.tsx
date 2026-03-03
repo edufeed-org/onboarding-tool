@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogDescription } from "@/compon
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useLoginActions } from '@/hooks/useLoginActions';
+import { isOIDCConfigured } from '@/lib/oidcConfig';
 import { cn } from '@/lib/utils';
 
 interface LoginDialogProps {
@@ -36,9 +37,11 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
     bunker?: string;
     file?: string;
     extension?: string;
+    oidc?: string;
   }>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
   const login = useLoginActions();
+  const oidcConfigured = isOIDCConfigured();
 
   // Reset all state when dialog opens/closes
   useEffect(() => {
@@ -55,6 +58,24 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
       }
     }
   }, [isOpen]);
+
+  const handleOIDCLogin = async () => {
+    setIsLoading(true);
+    setErrors(prev => ({ ...prev, oidc: undefined }));
+
+    try {
+      // This will redirect to IdP, so we won't return from this call
+      await login.oidc();
+    } catch (e: unknown) {
+      const error = e as Error;
+      console.error('OIDC login failed:', error);
+      setErrors(prev => ({
+        ...prev,
+        oidc: error instanceof Error ? error.message : 'SSO-Anmeldung fehlgeschlagen'
+      }));
+      setIsLoading(false);
+    }
+  };
 
   const handleExtensionLogin = async () => {
     setIsLoading(true);
@@ -359,44 +380,49 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
             </TabsContent>
 
             <TabsContent value='keycloak' className='space-y-3'>
-              <div className='p-4 space-y-4'>
-                <div className="text-center">
-                  <Shield className='w-12 h-12 mx-auto mb-3' />
-                  <p className='text-sm'>
-                    KeyCloak-Login ist noch nicht implementiert.
-                  </p>
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="keycloak-email" className="text-sm font-medium">
-                    E-Mail
-                  </label>
-                  <Input
-                    id="keycloak-email"
-                    type="email"
-                    placeholder="name@firma.de"
-                    disabled
-                    autoComplete="off"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="keycloak-password" className="text-sm font-medium">
-                    Passwort
-                  </label>
-                  <Input
-                    id="keycloak-password"
-                    type="password"
-                    placeholder="••••••••"
-                    disabled
-                    autoComplete="off"
-                  />
-                </div>
-
-                <Button className='w-full rounded-full py-4' disabled>
-                  Anmelden
-                </Button>
-              </div>
+              {!oidcConfigured ? (
+                <Alert>
+                  <AlertTriangle className="h-4 w-4" />
+                  <AlertDescription>
+                    <div className="space-y-2">
+                      <p className="font-semibold">SSO nicht konfiguriert</p>
+                      <p className="text-sm">
+                        Um SSO-Login zu nutzen, müssen folgende Umgebungsvariablen gesetzt werden:
+                      </p>
+                      <ul className="text-xs list-disc list-inside space-y-1 ml-2">
+                        <li>VITE_OIDC_CLIENT_ID</li>
+                        <li>VITE_OIDC_AUTHORIZATION_ENDPOINT</li>
+                        <li>VITE_OIDC_TOKEN_ENDPOINT</li>
+                        <li>VITE_OIDC_ISSUER</li>
+                      </ul>
+                    </div>
+                  </AlertDescription>
+                </Alert>
+              ) : (
+                <>
+                  {errors.oidc && (
+                    <Alert variant="destructive">
+                      <AlertTriangle className="h-4 w-4" />
+                      <AlertDescription>{errors.oidc}</AlertDescription>
+                    </Alert>
+                  )}
+                  <div className='text-center p-4'>
+                    <Shield className='w-12 h-12 mx-auto mb-3 text-primary' />
+                    <p className='text-sm text-gray-600 dark:text-gray-300 mb-4'>
+                      Mit Single Sign-On (SSO) über Ihren Identity Provider anmelden
+                    </p>
+                    <div className="flex justify-center">
+                      <Button
+                        className='w-full rounded-full py-4'
+                        onClick={handleOIDCLogin}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? 'Weiterleitung...' : 'Mit SSO anmelden'}
+                      </Button>
+                    </div>
+                  </div>
+                </>
+              )}
             </TabsContent>
           </Tabs>
         </div>
