@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 
 // Import polyfills first
 import './lib/polyfills.ts';
+import '@fontsource/roboto-condensed';
 
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import App from './App.tsx';
