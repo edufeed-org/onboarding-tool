@@ -1,0 +1,89 @@
+name: ✨ Feature Request
+description: Schlage eine neue Funktion oder Verbesserung vor
+title: "[FEATURE]: "
+labels: ["enhancement"]
+projects: ["edufeed-org/2"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Vielen Dank für deinen Feature-Vorschlag! 
+        
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Motivation
+      description: |
+        Welches Problem löst dieses Feature? Warum brauchst du es?
+        "Ich bin frustriert, wenn..."
+      placeholder: |
+        Beispiel: "Ich möchte gerne mehrere Accounts gleichzeitig nutzen können, 
+        weil ich oft zwischen verschiedenen Benutzern wechseln muss."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Gewünschte Lösung
+      description: |
+        Beschreibe, wie das Feature funktionieren sollte.
+        Sei so konkret wie möglich!
+      placeholder: |
+        Beispiel: "Multi-Select ermöglicht. 
+        Dann ein Kontext-Menü mit 'Wechseln zu...' Option."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Lösungen
+      description: |
+        Hast du über alternative Ansätze nachgedacht?
+        Gibt es Workarounds, die aktuell funktionieren?
+      placeholder: |
+        Beispiel: "Aktuell muss ich jeden Account einzeln wechseln."
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priorität aus Nutzer-Sicht
+      description: Wie wichtig ist dieses Feature für dich?
+      options:
+        - Critical (Ohne das Feature ist die App für mich unbrauchbar)
+        - High (Feature würde meine Produktivität stark erhöhen)
+        - Medium (Nice-to-have, würde meine Arbeit erleichtern)
+        - Low (Nettes Feature, aber nicht dringend)
+    validations:
+      required: true
+
+  - type: textarea
+    id: ui-mockup
+    attributes:
+      label: UI-Mockup / Design-Idee
+      description: |
+        Optional: Hast du eine Vorstellung, wie das Feature aussehen könnte?
+        Du kannst Skizzen hochladen, Links zu Mockups teilen, oder es beschreiben.
+      placeholder: |
+        "Ein Toolbar am oberen Rand mit 'Alle auswählen', 'Auswahl aufheben', 'Verschieben', 'Löschen' Buttons"
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Zusätzlicher Kontext
+      description: Gibt es noch weitere Informationen, die relevant sein könnten?
+      placeholder: |
+        - Links zu Research/Artikeln
+        - Nutzer-Feedback von anderen
+        - Statistiken zur Nutzung
+        - ...
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **Danke für deinen Feature-Vorschlag!** 🚀
+        
+        Das Team wird deinen Vorschlag evaluieren und sich bei Rückfragen melden.
