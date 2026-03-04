@@ -4,8 +4,11 @@ import { ArrowRight, Calendar, MessageSquare, Users, FileText } from "lucide-rea
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { PageHeader } from "@/components/PageHeader";
+import { useToast } from "@/hooks/useToast";
 
 export default function FeaturesPage() {
+  const { toast } = useToast();
+
   useSeoMeta({
     title: 'Features - Nostr Onboarding',
     description: 'Entdecken Sie die vielfältigen Möglichkeiten des Nostr-Protokolls.',
@@ -79,7 +82,7 @@ export default function FeaturesPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
           {features.map((feature, index) => {
             const card = (
-              <Card key={index} className={`border-2 hover:shadow-lg transition-shadow${feature.url ? " cursor-pointer hover:border-primary" : ""}`}>
+              <Card key={index} className="border-2 hover:shadow-lg transition-shadow cursor-pointer hover:border-primary">
                 <CardHeader>
                   <feature.icon className={`h-10 w-10 mb-2 ${feature.color}`} />
                   <CardTitle className="text-lg">{feature.title}</CardTitle>
@@ -94,7 +97,11 @@ export default function FeaturesPage() {
               <a key={index} href={feature.url} target="_blank" rel="noopener noreferrer" className="block">
                 {card}
               </a>
-            ) : card;
+            ) : (
+              <div key={index} onClick={() => toast({ title: "Kommt bald..", description: "Dieses Feature ist noch in Entwicklung." })}>
+                {card}
+              </div>
+            );
           })}
         </div>
 
