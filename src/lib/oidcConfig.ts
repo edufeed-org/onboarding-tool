@@ -7,6 +7,7 @@
 
 export interface OIDCConfig {
   clientId: string;
+  clientSecret?: string;
   authorizationEndpoint: string;
   tokenEndpoint: string;
   redirectUri: string;
@@ -19,6 +20,7 @@ export interface OIDCConfig {
  * 
  * To configure, set these environment variables:
  * - VITE_OIDC_CLIENT_ID
+ * - VITE_OIDC_CLIENT_SECRET
  * - VITE_OIDC_AUTHORIZATION_ENDPOINT
  * - VITE_OIDC_TOKEN_ENDPOINT
  * - VITE_OIDC_ISSUER
@@ -26,6 +28,7 @@ export interface OIDCConfig {
  */
 export function getOIDCConfig(): OIDCConfig {
   const clientId = import.meta.env.VITE_OIDC_CLIENT_ID || '';
+  const clientSecret = import.meta.env.VITE_OIDC_CLIENT_SECRET || '';
   const authorizationEndpoint = import.meta.env.VITE_OIDC_AUTHORIZATION_ENDPOINT || '';
   const tokenEndpoint = import.meta.env.VITE_OIDC_TOKEN_ENDPOINT || '';
   const issuer = import.meta.env.VITE_OIDC_ISSUER || '';
@@ -36,6 +39,7 @@ export function getOIDCConfig(): OIDCConfig {
   
   return {
     clientId,
+    clientSecret: clientSecret || undefined,
     authorizationEndpoint,
     tokenEndpoint,
     redirectUri,

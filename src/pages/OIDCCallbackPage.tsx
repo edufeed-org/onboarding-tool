@@ -67,6 +67,11 @@ export default function OIDCCallbackPage() {
           code_verifier: codeVerifier,
         });
 
+        // Add client_secret if configured (required for confidential clients)
+        if (config.clientSecret) {
+          tokenBody.append('client_secret', config.clientSecret);
+        }
+
         const tokenResponse = await fetch(config.tokenEndpoint, {
           method: 'POST',
           headers: {
