@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NLogin, NLoginType, useNostrLogin } from '@nostrify/react/login';
+import { nip19 } from 'nostr-tools';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, AlertTriangle, CheckCircle } from 'lucide-react';
@@ -100,11 +101,32 @@ export default function OIDCCallbackPage() {
         validateJwtClaims(idClaims, config.issuer, config.clientId);
 
         // Extract Nostr credentials from claims
-        const npub = idClaims.npub as string | undefined;
-        const nsec = idClaims.nsec as string | undefined;
+        let npub = idClaims.npub as string | undefined;
+        let nsec = idClaims.nsec as string | undefined;
 
         if (!npub && !nsec) {
           throw new Error('Keine Nostr-Credentials (npub/nsec) in den Token-Claims gefunden');
+        }
+
+        // Convert hex to bech32 format if needed
+        if (nsec && !nsec.startsWith('nsec1')) {
+          // Assume hex format, convert to bech32
+          try {
+            const match = nsec.match(/.{1,2}/g)
+            if (!match) throw new Error('Invalid format')
+            nsec = nip19.nsecEncode(Uint8Array.from(match.map(b => parseInt(b, 16))));
+          } catch (err) {
+            throw new Error(`Ungültiges nsec-Format: ${err instanceof Error ? err.message : 'Unknown error'}`);
+          }
+        }
+
+        if (npub && !npub.startsWith('npub1')) {
+          // Assume hex format, convert to bech32
+          try {
+            npub = nip19.npubEncode(npub);
+          } catch (err) {
+            throw new Error(`Ungültiges npub-Format: ${err instanceof Error ? err.message : 'Unknown error'}`);
+          }
         }
 
         // Create login - prefer nsec if available (kept in memory only)
