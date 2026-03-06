@@ -24,7 +24,7 @@ export interface OIDCConfig {
  * - VITE_OIDC_AUTHORIZATION_ENDPOINT
  * - VITE_OIDC_TOKEN_ENDPOINT
  * - VITE_OIDC_ISSUER
- * - VITE_OIDC_SCOPE (optional, defaults to 'openid profile email nostr')
+ * - VITE_OIDC_SCOPE (optional, defaults to 'openid profile email')
  */
 export function getOIDCConfig(): OIDCConfig {
   const clientId = import.meta.env.VITE_OIDC_CLIENT_ID || '';
@@ -32,7 +32,7 @@ export function getOIDCConfig(): OIDCConfig {
   const authorizationEndpoint = import.meta.env.VITE_OIDC_AUTHORIZATION_ENDPOINT || '';
   const tokenEndpoint = import.meta.env.VITE_OIDC_TOKEN_ENDPOINT || '';
   const issuer = import.meta.env.VITE_OIDC_ISSUER || '';
-  const scope = import.meta.env.VITE_OIDC_SCOPE || 'openid profile email nostr';
+  const scope = import.meta.env.VITE_OIDC_SCOPE || 'openid profile email';
   
   // Redirect URI is dynamically generated based on current origin
   const redirectUri = `${window.location.origin}/auth/callback`;
