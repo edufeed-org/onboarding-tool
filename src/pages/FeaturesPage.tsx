@@ -1,14 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Calendar, MessageSquare, Users, FileText } from "lucide-react";
+import { ArrowRight, BookOpen, Calendar, Users, Kanban, Newspaper, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { PageHeader } from "@/components/PageHeader";
-import { useToast } from "@/hooks/useToast";
 
 export default function FeaturesPage() {
-  const { toast } = useToast();
-
   useSeoMeta({
     title: 'Features - Nostr Onboarding',
     description: 'Entdecken Sie die vielfältigen Möglichkeiten des Nostr-Protokolls.',
@@ -16,46 +13,46 @@ export default function FeaturesPage() {
 
   const features = [
     {
-      icon: MessageSquare,
-      title: "Social Media",
-      description: "Veröffentlichen Sie Notizen, Artikel und Inhalte ohne Zensur. Ihre Beiträge gehören Ihnen für immer.",
+      icon: BookOpen,
+      title: "Lehr- & Lernmaterialien",
+      description: "Entdecken Sie Lehr- und Lernmaterialien aus der Community.",
       color: "text-blue-600",
-      url: ""
-    },
-    {
-      icon: Calendar,
-      title: "Kalender & Events",
-      description: "Erstellen und teilen Sie Events und Termine. Koordinieren Sie Treffen dezentral mit der Community.",
-      color: "text-purple-600",
-      url: "https://edufeed.org/calendar"
-    },
-    {
-      icon: MessageSquare,
-      title: "Direktnachrichten",
-      description: "Verschlüsselte private Nachrichten. Kommunizieren Sie sicher ohne Drittanbieter.",
-      color: "text-green-600",
-      url: ""
+      url: "https://rpi.edufeed.org/discover?type=learning"
     },
     {
       icon: Users,
       title: "Communities",
       description: "Treten Sie Interessengruppen bei oder erstellen Sie eigene. Dezentrale Moderation möglich.",
       color: "text-indigo-600",
-      url: "https://edufeed.org/discover?type=communities"
+      url: "https://rpi.edufeed.org/discover?type=communities"
     },
     {
-      icon: FileText,
-      title: "Kanban-Boards",
+      icon: Calendar,
+      title: "Kalender",
+      description: "Erstellen und teilen Sie Events und Termine. Koordinieren Sie Treffen dezentral mit der Community.",
+      color: "text-purple-600",
+      url: "https://rpi.edufeed.org/discover?type=events"
+    },
+    {
+      icon: Kanban,
+      title: "Kanban",
       description: "Projektmanagement und Aufgabenverwaltung. Kollaborieren Sie transparent und offen.",
       color: "text-orange-600",
-      url: "https://kanban.edufeed.org/cardsboard"
+      url: "https://rpi.edufeed.org/discover?type=boards"
     },
     {
-      icon: FileText,
-      title: "Artikel & Blog Posts",
-      description: "Veröffentlichen Sie Artikel, Blogs und Dokumentation. Vollständige Formatierung unterstützt.",
+      icon: Newspaper,
+      title: "News / Blog",
+      description: "Lesen und veröffentlichen Sie Artikel, Blogs und Neuigkeiten aus der Community.",
       color: "text-teal-600",
-      url: "https://zelo.news"
+      url: "https://rpi.edufeed.org/discover?type=articles"
+    },
+    {
+      icon: Sparkles,
+      title: "Mehr kommt noch ✨",
+      description: "Weitere Funktionen wie ein Chat, Forum, Social Media-Verknüpfungen etc. sind geplant.",
+      color: "text-pink-500",
+      url: null
     }
   ];
 
@@ -81,8 +78,13 @@ export default function FeaturesPage() {
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
           {features.map((feature, index) => {
+            const isComingSoon = feature.url === null;
+
             const card = (
-              <Card key={index} className="border-2 hover:shadow-lg transition-shadow cursor-pointer hover:border-primary">
+              <Card
+                key={index}
+                className={`border-2 transition-shadow ${isComingSoon ? "opacity-75 border-dashed" : "hover:shadow-lg cursor-pointer hover:border-primary"}`}
+              >
                 <CardHeader>
                   <feature.icon className={`h-10 w-10 mb-2 ${feature.color}`} />
                   <CardTitle className="text-lg">{feature.title}</CardTitle>
@@ -93,14 +95,12 @@ export default function FeaturesPage() {
               </Card>
             );
 
-            return feature.url ? (
+            return isComingSoon || !feature.url ? (
+              <div key={index}>{card}</div>
+            ) : (
               <a key={index} href={feature.url} target="_blank" rel="noopener noreferrer" className="block">
                 {card}
               </a>
-            ) : (
-              <div key={index} onClick={() => toast({ title: "Kommt bald..", description: "Dieses Feature ist noch in Entwicklung." })}>
-                {card}
-              </div>
             );
           })}
         </div>
