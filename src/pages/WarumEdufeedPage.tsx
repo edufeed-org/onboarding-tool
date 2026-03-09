@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { ArrowRight, Compass, Share2, Users } from 'lucide-react';
 
 export default function WarumEdufeedPage() {
   const navigate = useNavigate();

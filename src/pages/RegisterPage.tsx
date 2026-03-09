@@ -93,13 +93,9 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
       // Log in the user with the generated private key
       loginActions.nsec(privateKey);
       
-      // Navigate to appropriate dashboard
-      if (userType === 'operator') {
-        navigate('/platform-dashboard');
-      } else {
-        navigate('/user-dashboard');
-      }
-    }
+      navigate('/options');
+     }
+
   };
 
   return (
