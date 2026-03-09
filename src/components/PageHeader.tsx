@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/useTheme";
 import { Moon, Sun } from "lucide-react";
-import { LoginArea } from "@/components/auth/LoginArea";
 import { useState, useEffect } from "react";
 
 export function PageHeader() {
@@ -25,9 +24,7 @@ export function PageHeader() {
     >
       <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-6">
         <div className="flex items-center justify-between">
-          {/* Login/Signup Area - Top Left */}
           <div className="pointer-events-auto">
-            <LoginArea className="flex" />
           </div>
 
           {/* Theme Toggle - Top Right */}

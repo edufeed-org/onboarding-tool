@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Network, Shield, Users } from "lucide-react";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Network, Shield, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { PageHeader } from "@/components/PageHeader";
@@ -26,17 +26,8 @@ export default function WelcomePage() {
           </h1>
           
           <p className="text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            Tritt themenbasierten Communities bei, erstelle Veranstaltungen und nimm an Echtzeit-Diskussionen teil – auf Basis des Nostr-Protokoll.
+            EduFeed verbindet Bildungsinhalte aus verschiedenen Plattformen in einem gemeinsamen, offenen Feed.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button asChild size="lg" className="text-lg h-14 px-8">
-              <Link to="/features">
-                Jetzt starten
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
         </div>
 
         {/* Benefits Grid */}
@@ -44,9 +35,9 @@ export default function WelcomePage() {
           <Card className="border-2">
             <CardHeader>
               <Network className="h-10 w-10 mb-2 text-purple-600" />
-              <CardTitle>Dezentral</CardTitle>
+              <CardTitle>Offener Bildungsfeed</CardTitle>
               <CardDescription>
-                Keine zentrale Kontrolle. Ihre Daten gehören Ihnen.
+                Inhalte aus verschiedenen Plattformen werden in einem gemeinsamen Feed sichtbar.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -54,9 +45,9 @@ export default function WelcomePage() {
           <Card className="border-2">
             <CardHeader>
               <Shield className="h-10 w-10 mb-2 text-blue-600" />
-              <CardTitle>Zensurresistent</CardTitle>
+              <CardTitle>Plattformübergreifende Inhalte</CardTitle>
               <CardDescription>
-                Niemand kann Sie zum Schweigen bringen oder sperren.
+                Beiträge können unabhängig von einzelnen Plattformen gefunden und genutzt werden.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -64,38 +55,20 @@ export default function WelcomePage() {
           <Card className="border-2">
             <CardHeader>
               <Users className="h-10 w-10 mb-2 text-indigo-600" />
-              <CardTitle>Interoperabel</CardTitle>
+              <CardTitle>Vernetzung und Austausch</CardTitle>
               <CardDescription>
-                Eine Identität für alle Nostr-Anwendungen weltweit.
+                Communities können Inhalte teilen, diskutieren und gemeinsam weiterentwickeln.
               </CardDescription>
             </CardHeader>
           </Card>
         </div>
 
-        {/* Additional Info Section */}
-        <div className="mt-20 max-w-3xl mx-auto">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl">Was ist edufeed und nostr?</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4 text-muted-foreground">
-              <p>
-                Edufeed ist ein Ort für Bildungs-Communities und Events: entdecken, austauschen, Termine im Kalender finden und vieles mehr.
-              </p>
-              <p>
-                Nostr (Notes and Other Stuff Transmitted by Relays) ist ein offenes Protokoll für 
-                dezentrale soziale Netzwerke. Im Gegensatz zu traditionellen Plattformen gibt es keine zentrale Firma, die Ihre Daten kontrolliert.
-              </p>
-              <p>
-                Mit Nostr erstellen Sie ein Schlüsselpaar - Ihr privater Schlüssel ist Ihr Passwort 
-                und Ihr öffentlicher Schlüssel ist Ihre Identität. Diese Identität gehört für immer 
-                Ihnen, unabhängig davon, welche Anwendungen Sie nutzen.
-              </p>
-              <p className="font-medium text-foreground">
-                Bereit, die Kontrolle über Ihre digitale Identität zu übernehmen?
-              </p>
-            </CardContent>
-          </Card>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-14">
+            <Button asChild size="lg" className="text-lg h-14 px-8">
+              <Link to="/warum-edufeed">
+                Weiter
+              </Link>
+            </Button>
         </div>
       </div>
 
