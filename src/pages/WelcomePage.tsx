@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Network, Shield, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { PageHeader } from "@/components/PageHeader";
@@ -34,7 +33,6 @@ export default function WelcomePage() {
         <div className="grid lg:grid-cols-3 gap-6 mt-20 max-w-6xl mx-auto">
           <Card className="border-2">
             <CardHeader>
-              <Network className="h-10 w-10 mb-2 text-purple-600" />
               <CardTitle>Offener Bildungsfeed</CardTitle>
               <CardDescription>
                 Inhalte aus verschiedenen Plattformen werden in einem gemeinsamen Feed sichtbar.
@@ -44,7 +42,6 @@ export default function WelcomePage() {
 
           <Card className="border-2">
             <CardHeader>
-              <Shield className="h-10 w-10 mb-2 text-blue-600" />
               <CardTitle>Plattformübergreifende Inhalte</CardTitle>
               <CardDescription>
                 Beiträge können unabhängig von einzelnen Plattformen gefunden und genutzt werden.
@@ -54,7 +51,6 @@ export default function WelcomePage() {
 
           <Card className="border-2">
             <CardHeader>
-              <Users className="h-10 w-10 mb-2 text-indigo-600" />
               <CardTitle>Vernetzung und Austausch</CardTitle>
               <CardDescription>
                 Communities können Inhalte teilen, diskutieren und gemeinsam weiterentwickeln.
