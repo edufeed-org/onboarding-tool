@@ -61,13 +61,12 @@ export default function WarumEdufeedPage() {
         {/* CTA Section */}
         <div className="flex justify-center">
           <Button
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/register?type=user')}
             size="lg"
             className="group relative overflow-hidden px-8 py-6 text-base font-semibold"
           >
             <span className="relative flex items-center gap-2">
               Weiter
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </Button>
         </div>

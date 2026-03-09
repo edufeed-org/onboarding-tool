@@ -116,62 +116,17 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
               Schlüsselpaar
             </span>
           </h1>
-          <p className="text-lg text-muted-foreground">
-            Wir haben ein einzigartiges Schlüsselpaar für Sie generiert. 
-            Dies ist Ihre dezentrale Identität im Nostr-Netzwerk.
+          <p className="text-xl text-muted-foreground">
+            Für dich wurde ein persönliches Schlüsselpaar erstellt.
+            <br></br>
+            Damit gehört deine digitale Identität nur dir und funktioniert auch in anderen Nostr-Apps.
           </p>
         </div>
 
-        {/* Warning Alert */}
-        <div className="max-w-2xl mx-auto mb-8">
-          <Alert className="border-orange-500 bg-orange-50 dark:bg-orange-950/20">
-            <AlertCircle className="h-4 w-4 text-orange-600" />
-            <AlertDescription className="text-sm">
-              <strong>Wichtig:</strong> Ihr privater Schlüssel ist wie ein Passwort. 
-              Bewahren Sie ihn sicher auf und teilen Sie ihn mit niemandem. 
-              Wenn Sie ihn verlieren, verlieren Sie den Zugriff auf Ihr Konto.
-            </AlertDescription>
-          </Alert>
-        </div>
 
         {/* Keys Display */}
         <div className="max-w-2xl mx-auto space-y-6 mb-8">
-          {/* Public Key */}
-          <Card className="border-2">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <span className="text-green-600">✓</span> Öffentlicher Schlüssel (npub)
-              </CardTitle>
-              <CardDescription>
-                Dies ist Ihre öffentliche Identität. Sie können sie mit anderen teilen.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="bg-muted p-4 rounded-lg font-mono text-sm break-all">
-                {publicKey}
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-full"
-                onClick={() => copyToClipboard(publicKey, 'public')}
-              >
-                {copied === 'public' ? (
-                  <>
-                    <CheckCircle2 className="mr-2 h-4 w-4" />
-                    Kopiert!
-                  </>
-                ) : (
-                  <>
-                    <Copy className="mr-2 h-4 w-4" />
-                    Kopieren
-                  </>
-                )}
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Private Key */}
+                    {/* Private Key */}
           <Card className="border-2 border-red-200 dark:border-red-900">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-red-600">
@@ -227,6 +182,18 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
             </CardContent>
           </Card>
 
+          {/* Warning Alert */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <Alert className="border-orange-500 bg-orange-50 dark:bg-orange-950/20">
+              <AlertCircle className="h-4 w-4 text-orange-600" />
+              <AlertDescription className="text-sm">
+                <strong>Wichtig:</strong> Ihr privater Schlüssel ist wie ein Passwort. 
+                Bewahren Sie ihn sicher auf und teilen Sie ihn mit niemandem. 
+                Wenn Sie ihn verlieren, verlieren Sie den Zugriff auf Ihr Konto.
+              </AlertDescription>
+            </Alert>
+          </div>
+
           {/* Download Button */}
           <Button
             variant="outline"
@@ -237,6 +204,41 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
             <Download className="mr-2 h-5 w-5" />
             Schlüssel als Textdatei herunterladen
           </Button>
+
+          {/* Public Key */}
+          <Card className="border-2">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <span className="text-green-600">✓</span> Öffentlicher Schlüssel (npub)
+              </CardTitle>
+              <CardDescription>
+                Dies ist Ihre öffentliche Identität. Sie können sie mit anderen teilen.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="bg-muted p-4 rounded-lg font-mono text-sm break-all">
+                {publicKey}
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full"
+                onClick={() => copyToClipboard(publicKey, 'public')}
+              >
+                {copied === 'public' ? (
+                  <>
+                    <CheckCircle2 className="mr-2 h-4 w-4" />
+                    Kopiert!
+                  </>
+                ) : (
+                  <>
+                    <Copy className="mr-2 h-4 w-4" />
+                    Kopieren
+                  </>
+                )}
+              </Button>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Confirmation */}
@@ -268,60 +270,10 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
             onClick={handleContinue}
             disabled={!confirmed}
           >
-            Weiter zum Dashboard
+            Weiter
           </Button>
         </div>
-
-        {/* Info Boxes */}
-        <div className="max-w-2xl mx-auto mt-12 space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Was sind diese Schlüssel?</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm text-muted-foreground">
-              <p>
-                <strong>Öffentlicher Schlüssel (npub):</strong> Ihre Adresse im Nostr-Netzwerk. 
-                Andere können Sie damit finden und Ihnen folgen.
-              </p>
-              <p>
-                <strong>Privater Schlüssel (nsec):</strong> Ihr Passwort. Damit signieren Sie 
-                Nachrichten und beweisen, dass Sie der Eigentümer Ihres Kontos sind.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Sicherheitstipps</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Speichern Sie Ihren privaten Schlüssel in einem Passwort-Manager</li>
-                <li>• Erstellen Sie eine Offline-Sicherungskopie (z.B. auf Papier)</li>
-                <li>• Verwenden Sie Browser-Extensions wie "nos2x" oder "Alby" für mehr Sicherheit</li>
-                <li>• Geben Sie Ihren privaten Schlüssel niemals auf Websites ein</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
       </div>
-
-      {/* Footer */}
-      <footer className="border-t mt-20">
-        <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
-          <p>
-            Ein Tool von{" "}
-            <a 
-              href="https://edufeed.org" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="underline hover:text-foreground transition-colors"
-            >
-              edufeed.org
-            </a>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
