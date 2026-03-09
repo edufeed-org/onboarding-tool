@@ -86,6 +86,5 @@ export default function PlatformDashboardPage() {
         </Button>
       </div>
     </div>
-    
   );
 }

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/useTheme";
 import { Moon, Sun } from "lucide-react";
 import { useState, useEffect } from "react";
+import { LoginArea } from "./auth/LoginArea";
 
 export function PageHeader() {
   const { theme, setTheme } = useTheme();
@@ -25,6 +26,7 @@ export function PageHeader() {
       <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-6">
         <div className="flex items-center justify-between">
           <div className="pointer-events-auto">
+            <LoginArea/>
           </div>
 
           {/* Theme Toggle - Top Right */}
