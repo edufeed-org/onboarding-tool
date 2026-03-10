@@ -1,13 +1,13 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, MessageSquare, Calendar, Heart, Users } from "lucide-react";
-import { Link } from "react-router-dom";
+import { User } from "lucide-react";
 import { useSeoMeta } from '@unhead/react';
-import { StarterPacksSection } from "@/components/StarterPacksSection";
 import { InterestSetsSection } from "@/components/InterestSetsSection";
 import { useInterestSets } from "@/hooks/useInterestSets";
 import { PageHeader } from "@/components/PageHeader";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from 'react-router-dom';
 
 export default function UserDashboardPage() {
+  const navigate = useNavigate();
   const {
     data: interestSets,
     isLoading: isLoadingInterests,
@@ -22,59 +22,6 @@ export default function UserDashboardPage() {
   const shouldShowInterestSection =
     isLoadingInterests || isInterestsError || (!!interestSets && interestSets.length > 0);
 
-  const quickActions = [
-    {
-      icon: User,
-      title: "Profil bearbeiten",
-      description: "Vervollständigen Sie Ihr Profil",
-      color: "text-purple-600",
-      href: "/edit-profile"
-    },
-    {
-      icon: MessageSquare,
-      title: "Erkunde Posts",
-      description: "Erkunden Sie erste Gedanken",
-      color: "text-blue-600",
-      href: "/notes"
-    },
-    {
-      icon: Users,
-      title: "Starter Packs folgen",
-      description: "Finden Sie interessante Personengruppen",
-      color: "text-green-600",
-      href: "/starter-packs"
-    },
-    {
-      icon: Calendar,
-      title: "Kanban Board",
-      description: "Entdecken Sie Kanban Boards",
-      color: "text-orange-600",
-      href: "https://kanban.edufeed.org/cardsboard"
-    }
-  ];
-
-  const features = [
-    {
-      icon: MessageSquare,
-      title: "Nachrichten posten",
-      description: "Teilen Sie Ihre Gedanken, Ideen und Erlebnisse mit der Community. Ihre Inhalte gehören für immer Ihnen."
-    },
-    {
-      icon: Heart,
-      title: "Mit anderen interagieren",
-      description: "Liken, kommentieren und teilen Sie Beiträge. Bauen Sie echte Verbindungen auf."
-    },
-    {
-      icon: Calendar,
-      title: "Events & Kalender",
-      description: "Entdecken Sie Events in Ihrer Nähe oder erstellen Sie eigene. Koordinieren Sie Treffen dezentral."
-    },
-    {
-      icon: Users,
-      title: "Communities beitreten",
-      description: "Finden Sie Gleichgesinnte und treten Sie themenspezifischen Communities bei."
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -99,7 +46,6 @@ export default function UserDashboardPage() {
         </div>
 
         {/* Starter Packs Section */}
-        <StarterPacksSection />
 
         {shouldShowInterestSection && (
           <div className="max-w-5xl mx-auto mb-12">
@@ -110,167 +56,18 @@ export default function UserDashboardPage() {
             />
           </div>
         )}
-
-        {/* Quick Actions */}
-        <div className="max-w-5xl mx-auto mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-center">Erste Schritte</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {quickActions.map((action, index) => (
-              <Link key={index} target="_blank" to={action.href || "/"}>
-                <Card className="border-2 hover:shadow-lg transition-all hover:border-primary h-full">
-                  <CardHeader className="text-center">
-                    <action.icon className={`h-10 w-10 mx-auto mb-2 ${action.color}`} />
-                    <CardTitle className="text-lg">{action.title}</CardTitle>
-                    <CardDescription className="text-sm">
-                      {action.description}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Welcome Card */}
-        <div className="max-w-3xl mx-auto mb-12">
-          <Card className="border-2 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20">
-            <CardHeader>
-              <CardTitle className="text-2xl">Was Sie jetzt tun können</CardTitle>
-              <CardDescription className="text-base">
-                Ihr Nostr-Abenteuer beginnt hier. Dies sind die ersten Schritte, um Teil der Community zu werden.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-sm">
-                    1
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">Profil vervollständigen</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Fügen Sie ein Profilbild, einen Namen und eine Beschreibung hinzu. 
-                      Das hilft anderen, Sie zu finden und kennenzulernen.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-sm">
-                    2
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">Erste Nachricht posten</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Stellen Sie sich der Community vor! Teilen Sie, wer Sie sind und was Sie interessiert.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-sm">
-                    3
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">Anderen Nutzern folgen</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Finden Sie interessante Menschen und folgen Sie ihnen. Ihr Feed wird mit deren Inhalten gefüllt.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-sm">
-                    4
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">Verschiedene Clients ausprobieren</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Ihr Schlüsselpaar funktioniert überall! Probieren Sie Damus, Amethyst, Snort oder andere Clients aus.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Features Overview */}
-        <div className="max-w-5xl mx-auto mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-center">Was Sie auf Nostr machen können</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
-            {features.map((feature, index) => (
-              <Card key={index} className="border-2">
-                <CardHeader>
-                  <feature.icon className="h-10 w-10 mb-2 text-purple-600" />
-                  <CardTitle className="text-lg">{feature.title}</CardTitle>
-                  <CardDescription className="text-sm">
-                    {feature.description}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Tips Section */}
-        <div className="max-w-3xl mx-auto">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-xl">💡 Tipps für den Start</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3 text-sm text-muted-foreground">
-                <li className="flex items-start">
-                  <span className="mr-2 text-lg">🔐</span>
-                  <span>
-                    <strong>Sicherheit:</strong> Installieren Sie eine Browser-Extension wie "nos2x" 
-                    oder "Alby" für sicherere Logins bei verschiedenen Clients.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-lg">🌐</span>
-                  <span>
-                    <strong>Relays:</strong> Sie können in den Einstellungen verschiedene Relays 
-                    hinzufügen oder entfernen, um mehr oder weniger Inhalte zu sehen.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-lg">🤝</span>
-                  <span>
-                    <strong>Community:</strong> Die Nostr-Community ist hilfsbereit! 
-                    Stellen Sie Fragen mit dem #asknostr Hashtag.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-lg">🆓</span>
-                  <span>
-                    <strong>Freiheit:</strong> Sie besitzen Ihre Identität. Niemand kann Sie 
-                    sperren oder Ihre Inhalte löschen. Mit großer Freiheit kommt große Verantwortung.
-                  </span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
       </div>
-
-      {/* Footer */}
-      <footer className="border-t mt-20">
-        <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
-          <p>
-            Ein Tool von{" "}
-            <a 
-              href="https://edufeed.org" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="underline hover:text-foreground transition-colors"
-            >
-              edufeed.org
-            </a>
-          </p>
-        </div>
-      </footer>
+      <div className="flex justify-center">
+        <Button
+          onClick={() => navigate('/starter-packs')}
+          size="lg"
+          className="group relative overflow-hidden px-8 py-6 text-base font-semibold"
+        >
+          <span className="relative flex items-center gap-2">
+            Staterpacks entdecken
+          </span>
+        </Button>
+      </div>
     </div>
   );
 }

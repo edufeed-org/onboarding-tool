@@ -11,6 +11,8 @@ import NotesPage from "./pages/NotesPage";
 import StarterPacksPage from "./pages/StarterPacksPage";
 import KanbansPage from "./pages/KanbansPage";
 import KanbanDetailPage from "./pages/KanbanDetailPage";
+import WarumEdufeedPage from "./pages/WarumEdufeedPage";
+import OptionsPage from "./pages/OptionsPage";
 import { NIP19Page } from "./pages/NIP19Page";
 import { SettingsPage } from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
@@ -21,8 +23,10 @@ export function AppRouter() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<WelcomePage />} />
+        <Route path="/warum-edufeed" element={<WarumEdufeedPage />} />
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/options" element={<OptionsPage />} />
         <Route path="/platform-dashboard" element={<PlatformDashboardPage />} />
         <Route path="/user-dashboard" element={<UserDashboardPage />} />
         <Route path="/edit-profile" element={<EditProfilePage />} />
