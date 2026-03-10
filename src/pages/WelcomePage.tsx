@@ -3,6 +3,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { PageHeader } from "@/components/PageHeader";
+import { OnboardingProgressBar } from "@/components/OnboardingProgressBar";
 
 export default function WelcomePage() {
   useSeoMeta({
@@ -13,6 +14,11 @@ export default function WelcomePage() {
   return (
     <div className="min-h-screen bg-background">
       <PageHeader />
+      
+      {/* Progress Bar */}
+      <div className="container mx-auto pt-8">
+        <OnboardingProgressBar currentStep={1} />
+      </div>
 
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-20 lg:py-32">

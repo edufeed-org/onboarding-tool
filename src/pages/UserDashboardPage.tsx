@@ -5,6 +5,7 @@ import { useInterestSets } from "@/hooks/useInterestSets";
 import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom';
+import { OnboardingProgressBar } from "@/components/OnboardingProgressBar";
 
 export default function UserDashboardPage() {
   const navigate = useNavigate();
@@ -26,6 +27,11 @@ export default function UserDashboardPage() {
   return (
     <div className="min-h-screen bg-background">
       <PageHeader />
+      
+      {/* Progress Bar */}
+      <div className="container mx-auto pt-8">
+        <OnboardingProgressBar currentStep={5} />
+      </div>
 
       <div className="container mx-auto px-4 py-20">
         {/* Header */}
@@ -58,8 +64,14 @@ export default function UserDashboardPage() {
         )}
       </div>
       <div className="flex justify-center gap-4">
-        <Button
-          onClick={() => navigate('/starter-packs')}
+        <Button          onClick={() => navigate('/options')}
+          variant="outline"
+          size="lg"
+          className="px-8 py-6 text-base font-semibold"
+        >
+          Zurück
+        </Button>
+        <Button          onClick={() => navigate('/starter-packs')}
           size="lg"
           className="group relative overflow-hidden px-8 py-6 text-base font-semibold"
         >
