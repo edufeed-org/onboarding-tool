@@ -49,7 +49,7 @@ export default function UserDashboardPage() {
       title: "Kanban Board",
       description: "Entdecken Sie Kanban Boards",
       color: "text-orange-600",
-      href: "https://edufeed-org.github.io/kanban-editor/cardsboard"
+      href: "https://kanban.edufeed.org/cardsboard"
     }
   ];
 
