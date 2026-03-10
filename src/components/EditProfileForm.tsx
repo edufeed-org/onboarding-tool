@@ -16,7 +16,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, Upload } from 'lucide-react';
+import { Info, Loader2, Upload } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { NSchema as n, type NostrMetadata } from '@nostrify/nostrify';
 import { useQueryClient } from '@tanstack/react-query';
 import { useUploadFile } from '@/hooks/useUploadFile';
@@ -219,12 +220,27 @@ export const EditProfileForm: React.FC = () => {
             name="nip05"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>NIP-05 Identifier</FormLabel>
+                <FormLabel className="flex items-center gap-1.5">
+                  Handle
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger type="button" tabIndex={-1}>
+                        <Info className="h-3.5 w-3.5 text-muted-foreground" />
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs text-sm">
+                        Ein Handle ist eine verifizierbare Adresse im Format name@domain.de. Sie können ein Handle z.B. über Ihren Nostr-Client oder Dienste wie nostr.com einrichten.
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </FormLabel>
                 <FormControl>
                   <Input placeholder="sie@example.com" {...field} />
                 </FormControl>
                 <FormDescription>
-                  Ihr verifizierter Nostr-Identifier.
+                  Ihre verifizierbare Nostr-Adresse.{' '}
+                  <a href="https://nostr.how/en/guides/get-verified" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
+                    Mehr erfahren →
+                  </a>
                 </FormDescription>
                 <FormMessage />
               </FormItem>

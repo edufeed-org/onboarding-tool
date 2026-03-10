@@ -71,7 +71,7 @@ export default function EditProfilePage() {
                 <li className="flex items-start">
                   <span className="mr-2 text-lg">✅</span>
                   <span>
-                    <strong>NIP-05:</strong> Eine verifizierte Nostr-Adresse (wie eine E-Mail) macht Ihr Profil vertrauenswürdiger.
+                    <strong>Handle:</strong> Eine verifizierbare Adresse macht Ihr Profil vertrauenswürdiger.
                   </span>
                 </li>
               </ul>
