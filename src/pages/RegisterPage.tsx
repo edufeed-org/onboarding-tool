@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Key, Copy, Eye, EyeOff, Download, AlertCircle, CheckCircle2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { useState, useEffect } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -12,8 +12,10 @@ import { PageHeader } from "@/components/PageHeader";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const loginActions = useLoginActions();
   const { user } = useCurrentUser();
+  const isOperator = searchParams.get('type') === 'operator';
 
   const [privateKey, setPrivateKey] = useState<string>("");
   const [publicKey, setPublicKey] = useState<string>("");
@@ -30,11 +32,19 @@ export default function RegisterPage() {
   useEffect(() => {
     if (user) {
       navigate('/options');
+      return;
     }
-  }, [user, navigate]);
+    if (isOperator) {
+      navigate('/platform-dashboard');
+    }
+  }, [user, isOperator, navigate]);
 
   // Generate keys on mount
   useEffect(() => {
+    if (isOperator) {
+      return;
+    }
+
     const secretKey = generateSecretKey();
     const pubKey = getPublicKey(secretKey);
     
@@ -43,7 +53,11 @@ export default function RegisterPage() {
     
     setPrivateKey(nsec);
     setPublicKey(npub);
-  }, []);
+  }, [isOperator]);
+
+  if (isOperator) {
+    return null;
+  }
 
   const copyToClipboard = (text: string, type: string) => {
     navigator.clipboard.writeText(text);
