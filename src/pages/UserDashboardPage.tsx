@@ -63,15 +63,17 @@ export default function UserDashboardPage() {
           </div>
         )}
       </div>
-      <div className="flex justify-center gap-4">
-        <Button          onClick={() => navigate('/options')}
+      <div className="flex justify-center gap-4 pb-10">
+        <Button
+          onClick={() => navigate('/options')}
           variant="outline"
           size="lg"
           className="px-8 py-6 text-base font-semibold"
         >
           Zurück
         </Button>
-        <Button          onClick={() => navigate('/starter-packs')}
+        <Button
+          onClick={() => navigate('/starter-packs')}
           size="lg"
           className="group relative overflow-hidden px-8 py-6 text-base font-semibold"
         >
