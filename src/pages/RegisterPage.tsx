@@ -23,7 +23,7 @@ export default function RegisterPage() {
 
   useSeoMeta({
     title: 'Registrierung - Nostr Onboarding',
-    description: 'Erstellen Sie Ihr Nostr-Schlüsselpaar.',
+    description: 'Erstelle dein Nostr-Schlüsselpaar.',
   });
 
   // Check if user is already logged in
@@ -52,7 +52,7 @@ export default function RegisterPage() {
   };
 
   const downloadKeys = () => {
-    const content = `Ihre Nostr-Schlüssel
+    const content = `Deine Nostr-Schlüssel
 =====================
 
 Öffentlicher Schlüssel (Public Key / npub):
@@ -61,11 +61,11 @@ ${publicKey}
 Privater Schlüssel (Private Key / nsec):
 ${privateKey}
 
-WICHTIG: Bewahren Sie Ihren privaten Schlüssel sicher auf!
-- Teilen Sie ihn niemals mit anderen
-- Speichern Sie ihn an einem sicheren Ort
-- Wenn Sie ihn verlieren, verlieren Sie den Zugriff auf Ihr Konto
-- Mit diesem Schlüssel kann jeder in Ihrem Namen handeln
+WICHTIG: Bewahre deinen privaten Schlüssel sicher auf!
+- Teile ihn niemals mit anderen
+- Speichere ihn an einem sicheren Ort
+- Wenn du ihn verlierst, verlierst du den Zugriff auf dein Konto
+- Mit diesem Schlüssel kann jede Person in deinem Namen handeln
 
 Generiert am: ${new Date().toLocaleString('de-DE')}
 `;
@@ -100,7 +100,7 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
         <div className="max-w-3xl mx-auto text-center space-y-6 mb-12">
           <Key className="h-16 w-16 mx-auto text-purple-600" />
           <h1 className="text-4xl lg:text-5xl font-bold tracking-tight">
-            Ihr{" "}
+            Dein{" "}
             <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
               Schlüsselpaar
             </span>
@@ -123,7 +123,7 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
                 Privater Schlüssel (nsec)
               </CardTitle>
               <CardDescription>
-                Dies ist Ihr Passwort. Teilen Sie es NIEMALS mit anderen!
+                Dies ist dein Passwort. Teile es NIEMALS mit anderen!
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -176,9 +176,9 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
             <Alert className="border-orange-500 bg-orange-50 dark:bg-orange-950/20">
               <AlertCircle className="h-4 w-4 text-orange-600" />
               <AlertDescription className="text-sm">
-                <strong>Wichtig:</strong> Ihr privater Schlüssel ist wie ein Passwort. 
-                Bewahren Sie ihn sicher auf und teilen Sie ihn mit niemandem. 
-                Wenn Sie ihn verlieren, verlieren Sie den Zugriff auf Ihr Konto.
+                <strong>Wichtig:</strong> Dein privater Schlüssel ist wie ein Passwort. 
+                Bewahre ihn sicher auf und teile ihn mit niemandem. 
+                Wenn du ihn verlierst, verlierst du den Zugriff auf dein Konto.
               </AlertDescription>
             </Alert>
           </div>
@@ -201,7 +201,7 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
                 <span className="text-green-600">✓</span> Öffentlicher Schlüssel (npub)
               </CardTitle>
               <CardDescription>
-                Dies ist Ihre öffentliche Identität. Sie können sie mit anderen teilen.
+                Dies ist deine öffentliche Identität. Du kannst sie mit anderen teilen.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">

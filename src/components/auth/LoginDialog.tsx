@@ -62,7 +62,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
 
     try {
       if (!('nostr' in window)) {
-        throw new Error('Nostr-Erweiterung nicht gefunden. Bitte installieren Sie eine NIP-07-Erweiterung.');
+        throw new Error('Nostr-Erweiterung nicht gefunden. Bitte installiere eine NIP-07-Erweiterung.');
       }
       await login.extension();
       onLogin();
@@ -92,7 +92,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
         onLogin();
         onClose();
       } catch {
-        setErrors({ nsec: "Anmeldung mit diesem Schlüssel fehlgeschlagen. Bitte überprüfen Sie, ob er korrekt ist." });
+        setErrors({ nsec: "Anmeldung mit diesem Schlüssel fehlgeschlagen. Bitte überprüfe, ob er korrekt ist." });
         setIsLoading(false);
       }
     }, 50);
@@ -100,7 +100,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
 
   const handleKeyLogin = () => {
     if (!nsec.trim()) {
-      setErrors(prev => ({ ...prev, nsec: 'Bitte geben Sie Ihren geheimen Schlüssel ein' }));
+      setErrors(prev => ({ ...prev, nsec: 'Bitte gib deinen geheimen Schlüssel ein' }));
       return;
     }
 
@@ -113,7 +113,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
 
   const handleBunkerLogin = async () => {
     if (!bunkerUri.trim()) {
-      setErrors(prev => ({ ...prev, bunker: 'Bitte geben Sie eine Bunker-URI ein' }));
+      setErrors(prev => ({ ...prev, bunker: 'Bitte gib eine Bunker-URI ein' }));
       return;
     }
 
@@ -134,7 +134,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin }) =
     } catch {
       setErrors(prev => ({
         ...prev,
-        bunker: 'Verbindung zum Bunker fehlgeschlagen. Bitte überprüfen Sie die URI.'
+        bunker: 'Verbindung zum Bunker fehlgeschlagen. Bitte überprüfe die URI.'
       }));
     } finally {
       setIsLoading(false);
