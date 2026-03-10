@@ -64,7 +64,7 @@ export default function UserDashboardPage() {
           className="group relative overflow-hidden px-8 py-6 text-base font-semibold"
         >
           <span className="relative flex items-center gap-2">
-            Staterpacks entdecken
+            Starterpacks entdecken
           </span>
         </Button>
       </div>
