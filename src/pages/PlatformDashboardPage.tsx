@@ -94,7 +94,7 @@ export default function PlatformDashboardPage() {
           </h1>
           <p className="text-lg text-muted-foreground">
             Technische Ressourcen und Anleitungen für die Integration des Nostr-Protokolls 
-            in Ihre Plattform.
+            in deine Plattform.
           </p>
         </div>
 
@@ -171,7 +171,7 @@ export default function PlatformDashboardPage() {
                   <div>
                     <h3 className="font-semibold mb-1">Protokoll verstehen</h3>
                     <p className="text-sm text-muted-foreground">
-                      Lesen Sie die NIPs (Nostr Implementation Possibilities), insbesondere NIP-01 für die Grundlagen.
+                      Lies die NIPs (Nostr Implementation Possibilities), insbesondere NIP-01 für die Grundlagen.
                     </p>
                   </div>
                 </div>
@@ -183,7 +183,7 @@ export default function PlatformDashboardPage() {
                   <div>
                     <h3 className="font-semibold mb-1">SDK wählen</h3>
                     <p className="text-sm text-muted-foreground">
-                      Verwenden Sie MKStack, Nostrify (TypeScript) oder nostr-tools für einfache Integration.
+                      Nutze MKStack, Nostrify (TypeScript) oder nostr-tools für einfache Integration.
                     </p>
                   </div>
                 </div>
@@ -195,7 +195,7 @@ export default function PlatformDashboardPage() {
                   <div>
                     <h3 className="font-semibold mb-1">Relay auswählen</h3>
                     <p className="text-sm text-muted-foreground">
-                      Verbinden Sie sich mit öffentlichen Relays oder hosten Sie Ihren eigenen.
+                      Verbinde dich mit öffentlichen Relays oder hoste deinen eigenen.
                     </p>
                   </div>
                 </div>
@@ -207,7 +207,7 @@ export default function PlatformDashboardPage() {
                   <div>
                     <h3 className="font-semibold mb-1">Events implementieren</h3>
                     <p className="text-sm text-muted-foreground">
-                      Erstellen und verarbeiten Sie Events nach Ihren Anforderungen.
+                      Erstelle und verarbeite Events nach deinen Anforderungen.
                     </p>
                   </div>
                 </div>
@@ -219,7 +219,7 @@ export default function PlatformDashboardPage() {
                   <div>
                     <h3 className="font-semibold mb-1">Testen & Optimieren</h3>
                     <p className="text-sm text-muted-foreground">
-                      Testen Sie mit verschiedenen Clients und optimieren Sie die Performance.
+                      Teste mit verschiedenen Clients und optimiere die Performance.
                     </p>
                   </div>
                 </div>
@@ -268,11 +268,11 @@ const events = await pool.querySync(relays, {
         <div className="max-w-5xl mx-auto">
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl">Benötigen Sie Unterstützung?</CardTitle>
+              <CardTitle className="text-xl">Benötigst du Unterstützung?</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                Die Nostr-Community ist sehr aktiv und hilfsbereit. Hier finden Sie weitere Hilfe:
+                Die Nostr-Community ist sehr aktiv und hilfsbereit. Hier findest du weitere Hilfe:
               </p>
               <div className="space-y-2">
                 <a

@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/PageHeader";
 export default function WelcomePage() {
   useSeoMeta({
     title: 'Willkommen beim edufeed Nostr Onboarding',
-    description: 'Entdecken Sie die dezentrale Zukunft edufeeds mit Nostr.',
+    description: 'Entdecke die dezentrale Zukunft edufeeds mit Nostr.',
   });
 
   return (

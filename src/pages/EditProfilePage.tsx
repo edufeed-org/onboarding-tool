@@ -9,7 +9,7 @@ import { PageHeader } from "@/components/PageHeader";
 export default function EditProfilePage() {
   useSeoMeta({
     title: 'Profil bearbeiten - Nostr Onboarding',
-    description: 'Bearbeiten Sie Ihr Nostr-Profil.',
+    description: 'Bearbeite dein Nostr-Profil.',
   });
 
   return (
@@ -33,7 +33,7 @@ export default function EditProfilePage() {
             <CardHeader>
               <CardTitle>Profil-Informationen</CardTitle>
               <CardDescription>
-                Fügen Sie Informationen zu Ihrem Profil hinzu. Diese werden auf Nostr veröffentlicht und sind öffentlich sichtbar.
+                Füge Informationen zu deinem Profil hinzu. Diese werden auf Nostr veröffentlicht und sind öffentlich sichtbar.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -46,32 +46,32 @@ export default function EditProfilePage() {
         <div className="max-w-3xl mx-auto mt-8">
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl">💡 Tipps für Ihr Profil</CardTitle>
+              <CardTitle className="text-xl">💡 Tipps für dein Profil</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-start">
                   <span className="mr-2 text-lg">📸</span>
                   <span>
-                    <strong>Profilbild:</strong> Ein erkennbares Profilbild hilft anderen, Sie zu identifizieren und macht Ihr Profil persönlicher.
+                    <strong>Profilbild:</strong> Ein erkennbares Profilbild hilft anderen, dich zu identifizieren und macht dein Profil persönlicher.
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2 text-lg">✍️</span>
                   <span>
-                    <strong>Name:</strong> Verwenden Sie Ihren echten Namen oder einen Nickname, unter dem Sie bekannt sein möchten.
+                    <strong>Name:</strong> Verwende deinen echten Namen oder einen Nickname, unter dem du bekannt sein möchtest.
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2 text-lg">📝</span>
                   <span>
-                    <strong>Bio:</strong> Eine kurze Beschreibung hilft anderen zu verstehen, wer Sie sind und was Sie interessiert.
+                    <strong>Bio:</strong> Eine kurze Beschreibung hilft anderen zu verstehen, wer du bist und was dich interessiert.
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2 text-lg">✅</span>
                   <span>
-                    <strong>Handle:</strong> Eine verifizierbare Adresse macht Ihr Profil vertrauenswürdiger.
+                    <strong>Handle:</strong> Eine verifizierbare Adresse macht dein Profil vertrauenswürdiger.
                   </span>
                 </li>
               </ul>

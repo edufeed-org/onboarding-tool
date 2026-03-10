@@ -8,42 +8,42 @@ import { PageHeader } from "@/components/PageHeader";
 export default function FeaturesPage() {
   useSeoMeta({
     title: 'Features - Nostr Onboarding',
-    description: 'Entdecken Sie die vielfältigen Möglichkeiten des Nostr-Protokolls.',
+    description: 'Entdecke die vielfältigen Möglichkeiten des Nostr-Protokolls.',
   });
 
   const features = [
     {
       icon: BookOpen,
       title: "Lehr- & Lernmaterialien",
-      description: "Entdecken Sie Lehr- und Lernmaterialien aus der Community.",
+      description: "Entdecke Lehr- und Lernmaterialien aus der Community.",
       color: "text-blue-600",
       url: "https://rpi.edufeed.org/discover?type=learning"
     },
     {
       icon: Users,
       title: "Communities",
-      description: "Treten Sie Interessengruppen bei oder erstellen Sie eigene. Dezentrale Moderation möglich.",
+      description: "Tritt Interessengruppen bei oder erstelle eigene. Dezentrale Moderation möglich.",
       color: "text-indigo-600",
       url: "https://rpi.edufeed.org/discover?type=communities"
     },
     {
       icon: Calendar,
       title: "Kalender",
-      description: "Erstellen und teilen Sie Events und Termine. Koordinieren Sie Treffen dezentral mit der Community.",
+      description: "Erstelle und teile Events und Termine. Koordiniere Treffen dezentral mit der Community.",
       color: "text-purple-600",
       url: "https://rpi.edufeed.org/discover?type=events"
     },
     {
       icon: Kanban,
       title: "Kanban",
-      description: "Projektmanagement und Aufgabenverwaltung. Kollaborieren Sie transparent und offen.",
+      description: "Projektmanagement und Aufgabenverwaltung. Kollaboriere transparent und offen.",
       color: "text-orange-600",
       url: "https://rpi.edufeed.org/discover?type=boards"
     },
     {
       icon: Newspaper,
       title: "News / Blog",
-      description: "Lesen und veröffentlichen Sie Artikel, Blogs und Neuigkeiten aus der Community.",
+      description: "Lies und veröffentliche Artikel, Blogs und Neuigkeiten aus der Community.",
       color: "text-teal-600",
       url: "https://rpi.edufeed.org/discover?type=articles"
     },
@@ -113,7 +113,7 @@ export default function FeaturesPage() {
                 Bereit, Teil der Bewegung zu werden?
               </CardTitle>
               <CardDescription className="text-base">
-                Erstellen Sie Ihr Schlüsselpaar und legen Sie los.
+                Erstelle dein Schlüsselpaar und leg los.
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col sm:flex-row gap-4 justify-center pb-8">
@@ -136,7 +136,7 @@ export default function FeaturesPage() {
             <CardContent className="pt-6">
               <p className="text-sm text-muted-foreground text-center">
                 <strong>Hinweis:</strong> Alle diese Features basieren auf dem gleichen Protokoll. 
-                Mit einem Nostr-Schlüsselpaar können Sie auf all diese Anwendungen zugreifen.
+                Mit einem Nostr-Schlüsselpaar kannst du auf all diese Anwendungen zugreifen.
               </p>
             </CardContent>
           </Card>

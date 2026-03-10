@@ -16,7 +16,7 @@ export default function UserDashboardPage() {
 
   useSeoMeta({
     title: 'Dashboard - Nostr Onboarding',
-    description: 'Ihr persönliches Nostr Dashboard.',
+    description: 'Dein persönliches Nostr Dashboard.',
   });
 
   const shouldShowInterestSection =
@@ -40,8 +40,8 @@ export default function UserDashboardPage() {
             </span>
           </h1>
           <p className="text-lg text-muted-foreground">
-            Sie haben erfolgreich Ihr Nostr-Schlüsselpaar erstellt. 
-            Jetzt können Sie die dezentrale Welt erkunden!
+            Du hast erfolgreich dein Nostr-Schlüsselpaar erstellt. 
+            Jetzt kannst du die dezentrale Welt erkunden!
           </p>
         </div>
 

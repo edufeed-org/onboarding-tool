@@ -73,7 +73,7 @@ export const EditProfileForm: React.FC = () => {
       console.error(`Failed to upload ${field}:`, error);
       toast({
         title: 'Fehler',
-        description: `${field === 'picture' ? 'Profilbild' : 'Banner'} konnte nicht hochgeladen werden. Bitte versuchen Sie es erneut.`,
+        description: `${field === 'picture' ? 'Profilbild' : 'Banner'} konnte nicht hochgeladen werden. Bitte versuche es erneut.`,
         variant: 'destructive',
       });
     }
@@ -83,7 +83,7 @@ export const EditProfileForm: React.FC = () => {
     if (!user) {
       toast({
         title: 'Fehler',
-        description: 'Sie müssen angemeldet sein, um Ihr Profil zu aktualisieren',
+        description: 'Du musst angemeldet sein, um dein Profil zu aktualisieren',
         variant: 'destructive',
       });
       return;
@@ -112,13 +112,13 @@ export const EditProfileForm: React.FC = () => {
 
       toast({
         title: 'Erfolg',
-        description: 'Ihr Profil wurde aktualisiert',
+        description: 'Dein Profil wurde aktualisiert',
       });
     } catch (error) {
       console.error('Failed to update profile:', error);
       toast({
         title: 'Fehler',
-        description: 'Ihr Profil konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut.',
+        description: 'Dein Profil konnte nicht aktualisiert werden. Bitte versuche es erneut.',
         variant: 'destructive',
       });
     }
@@ -134,10 +134,10 @@ export const EditProfileForm: React.FC = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Ihr Name" {...field} />
+                <Input placeholder="Dein Name" {...field} />
               </FormControl>
               <FormDescription>
-                Dies ist Ihr Anzeigename, der anderen angezeigt wird.
+                Dies ist dein Anzeigename, der anderen angezeigt wird.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -152,13 +152,13 @@ export const EditProfileForm: React.FC = () => {
               <FormLabel>Bio</FormLabel>
               <FormControl>
                 <Textarea 
-                  placeholder="Erzählen Sie anderen über sich" 
+                  placeholder="Erzähl anderen etwas über dich" 
                   className="resize-none" 
                   {...field} 
                 />
               </FormControl>
               <FormDescription>
-                Eine kurze Beschreibung über Sie.
+                Eine kurze Beschreibung über dich.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -174,7 +174,7 @@ export const EditProfileForm: React.FC = () => {
                 field={field}
                 label="Profilbild"
                 placeholder="https://example.com/profil.jpg"
-                description="URL zu Ihrem Profilbild. Sie können ein Bild hochladen oder eine URL angeben."
+                description="URL zu deinem Profilbild. Du kannst ein Bild hochladen oder eine URL angeben."
                 previewType="square"
                 onUpload={(file) => uploadPicture(file, 'picture')}
               />
@@ -189,7 +189,7 @@ export const EditProfileForm: React.FC = () => {
                 field={field}
                 label="Banner"
                 placeholder="https://example.com/banner.jpg"
-                description="URL zu einem breiten Bannerbild für Ihr Profil. Sie können ein Bild hochladen oder eine URL angeben."
+                description="URL zu einem breiten Bannerbild für dein Profil. Du kannst ein Bild hochladen oder eine URL angeben."
                 previewType="wide"
                 onUpload={(file) => uploadPicture(file, 'banner')}
               />
@@ -208,7 +208,7 @@ export const EditProfileForm: React.FC = () => {
                   <Input placeholder="https://ihrewebsite.com" {...field} />
                 </FormControl>
                 <FormDescription>
-                  Ihre persönliche Website oder Social-Media-Link.
+                  Deine persönliche Website oder dein Social-Media-Link.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -228,7 +228,7 @@ export const EditProfileForm: React.FC = () => {
                         <Info className="h-3.5 w-3.5 text-muted-foreground" />
                       </TooltipTrigger>
                       <TooltipContent side="top" className="max-w-xs text-sm">
-                        Ein Handle ist eine verifizierbare Adresse im Format name@domain.de. Sie können ein Handle z.B. über Ihren Nostr-Client oder Dienste wie nostr.com einrichten.
+                        Ein Handle ist eine verifizierbare Adresse im Format name@domain.de. Du kannst ein Handle z.B. über deinen Nostr-Client oder Dienste wie nostr.com einrichten.
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
@@ -237,7 +237,7 @@ export const EditProfileForm: React.FC = () => {
                   <Input placeholder="sie@example.com" {...field} />
                 </FormControl>
                 <FormDescription>
-                  Ihre verifizierbare Nostr-Adresse.{' '}
+                  Deine verifizierbare Nostr-Adresse.{' '}
                   <a href="https://nostr.how/en/guides/get-verified" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
                     Mehr erfahren →
                   </a>

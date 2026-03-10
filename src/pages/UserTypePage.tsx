@@ -12,7 +12,7 @@ export default function UserTypePage() {
 
   useSeoMeta({
     title: 'Nutzertyp wählen - Nostr Onboarding',
-    description: 'Wählen Sie aus, wie Sie Nostr nutzen möchten.',
+    description: 'Wähle aus, wie du Nostr nutzen möchtest.',
   });
 
   const handleContinue = () => {
@@ -29,14 +29,14 @@ export default function UserTypePage() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center space-y-6 mb-16">
           <h1 className="text-4xl lg:text-6xl font-bold tracking-tight">
-            Wer sind{" "}
+            Wer bist{" "}
             <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Sie?
+              du?
             </span>
           </h1>
           <p className="text-xl text-muted-foreground">
-            Wählen Sie aus, wie Sie Nostr nutzen möchten. 
-            Dies hilft uns, Ihnen die besten Informationen zu zeigen.
+            Wähle aus, wie du Nostr nutzen möchtest. 
+            Dies hilft uns, dir die besten Informationen zu zeigen.
           </p>
         </div>
 
@@ -159,7 +159,7 @@ export default function UserTypePage() {
             <CardContent className="pt-6">
               <p className="text-sm text-muted-foreground text-center">
                 <strong>Hinweis:</strong> Diese Auswahl ist nur für die Onboarding-Erfahrung. 
-                Mit einem Nostr-Schlüsselpaar können Sie später alle Funktionen nutzen.
+                Mit einem Nostr-Schlüsselpaar kannst du später alle Funktionen nutzen.
               </p>
             </CardContent>
           </Card>
