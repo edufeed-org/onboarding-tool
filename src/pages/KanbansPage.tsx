@@ -1,5 +1,5 @@
 import { useSeoMeta } from '@unhead/react';
-import { Kanban } from 'lucide-react';
+import { LayoutDashboard } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNostr } from '@nostrify/react';
@@ -88,7 +88,7 @@ export default function KanbansPage() {
       <div className="container mx-auto px-4 py-20">
         {/* Header */}
         <div className="max-w-4xl mx-auto text-center space-y-6 mb-12">
-          <Kanban className="h-16 w-16 mx-auto text-blue-600" />
+          <LayoutDashboard className="h-16 w-16 mx-auto text-blue-600" />
           <h1 className="text-4xl lg:text-5xl font-bold tracking-tight">
             Kanban-Boards
           </h1>
