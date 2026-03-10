@@ -3,7 +3,6 @@ import { ScrollToTop } from "./components/ScrollToTop";
 
 import WelcomePage from "./pages/WelcomePage";
 import FeaturesPage from "./pages/FeaturesPage";
-import UserTypePage from "./pages/UserTypePage";
 import RegisterPage from "./pages/RegisterPage";
 import PlatformDashboardPage from "./pages/PlatformDashboardPage";
 import UserDashboardPage from "./pages/UserDashboardPage";
@@ -23,7 +22,6 @@ export function AppRouter() {
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/features" element={<FeaturesPage />} />
-        <Route path="/user-type" element={<UserTypePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/platform-dashboard" element={<PlatformDashboardPage />} />
         <Route path="/user-dashboard" element={<UserDashboardPage />} />

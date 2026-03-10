@@ -113,12 +113,12 @@ export default function FeaturesPage() {
                 Bereit, Teil der Bewegung zu werden?
               </CardTitle>
               <CardDescription className="text-base">
-                Wählen Sie aus, wie Sie Nostr nutzen möchten.
+                Erstellen Sie Ihr Schlüsselpaar und legen Sie los.
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col sm:flex-row gap-4 justify-center pb-8">
               <Button asChild size="lg" className="text-lg h-14 px-8">
-                <Link to="/user-type">
+                <Link to="/register">
                   Weiter zur Anmeldung
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>

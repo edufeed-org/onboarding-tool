@@ -150,7 +150,6 @@ src/
 ├── pages/                      # Hauptseiten der Anwendung
 │   ├── WelcomePage.tsx        # Einstiegsseite mit Hero-Section
 │   ├── FeaturesPage.tsx       # Feature-Übersicht
-│   ├── UserTypePage.tsx       # Nutzertyp-Auswahl
 │   ├── RegisterPage.tsx       # Schlüsselerstellung und Login
 │   ├── UserDashboardPage.tsx  # Dashboard für Endnutzer
 │   └── PlatformDashboardPage.tsx # Dashboard für Entwickler
