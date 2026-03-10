@@ -69,6 +69,13 @@ export function AccountSwitcher({ onAddAccountClick }: AccountSwitcherProps) {
           <span>Dashboard</span>
         </DropdownMenuItem>
         <DropdownMenuItem
+          onClick={() => navigate('/edit-profile')}
+          className='flex items-center gap-2 cursor-pointer p-2 rounded-md'
+        >
+          <UserIcon className='w-4 h-4' />
+          <span>Profil bearbeiten</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem
           onClick={() => navigate('/settings')}
           className='flex items-center gap-2 cursor-pointer p-2 rounded-md'
         >

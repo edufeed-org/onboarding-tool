@@ -57,7 +57,7 @@ export default function UserDashboardPage() {
           </div>
         )}
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center gap-4">
         <Button
           onClick={() => navigate('/starter-packs')}
           size="lg"
@@ -66,6 +66,15 @@ export default function UserDashboardPage() {
           <span className="relative flex items-center gap-2">
             Starterpacks entdecken
           </span>
+        </Button>
+        <Button
+          onClick={() => navigate('/edit-profile')}
+          variant="outline"
+          size="lg"
+          className="px-8 py-6 text-base font-semibold"
+        >
+          <User className="h-5 w-5" />
+          Profil bearbeiten
         </Button>
       </div>
     </div>
