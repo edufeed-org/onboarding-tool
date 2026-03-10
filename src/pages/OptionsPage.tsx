@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { PageHeader } from "@/components/PageHeader";
 import { OnboardingProgressBar } from "@/components/OnboardingProgressBar";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { Rss, Kanban, Calendar, Network } from "lucide-react";
 
 export default function PlatformDashboardPage() {
   const navigate = useNavigate();
@@ -14,21 +15,25 @@ export default function PlatformDashboardPage() {
       title: "Feed & Inhalte entdecken",
       description: "Finde Bildungsinhalte aus verschiedenen Plattformen in einem gemeinsamen Feed.",
       link: "https://rpi.edufeed.org/discover",
+      icon: Rss,
     },
     {
       title: "Projekte organisieren",
       description: "Nutze Kanban-Boards, um Projekte zu strukturieren und gemeinsam daran zu arbeiten.",
       link: "https://kanban.edufeed.org",
+      icon: Kanban,
     },
     {
       title: "Events und Termine planen",
       description: "Behalte Veranstaltungen im Blick und organisiere Termine mit dem integrierten Kalender.",
       link: "https://rpi.edufeed.org/calendar",
+      icon: Calendar,
     },
     {
       title: "Diskussionen visualisieren",
       description: "Mit EduGalaxy kannst du Diskussionen und Zusammenhänge zwischen Themen sichtbar machen.",
       link: "http://map.edufeed.org/",
+      icon: Network,
     }
   ];
 
@@ -67,6 +72,9 @@ export default function PlatformDashboardPage() {
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
+                        <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/30 dark:to-blue-900/30 rounded-lg min-w-[48px]">
+                          <resource.icon className="h-6 w-6 text-purple-600" />
+                        </div>
                         <div>
                           <CardTitle className="text-lg font-bold">{resource.title}</CardTitle>
                           <CardDescription className="text-sm mt-1">

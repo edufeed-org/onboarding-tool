@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { OnboardingProgressBar } from '@/components/OnboardingProgressBar';
 import { PageHeader } from '@/components/PageHeader';
+import { Search, Share2, Users, Shield } from 'lucide-react';
 
 export default function WarumEdufeedPage() {
   const navigate = useNavigate();
@@ -10,18 +11,22 @@ export default function WarumEdufeedPage() {
     {
       title: 'Inhalte entdecken',
       description: 'Finde Bildungsinhalte aus verschiedenen Plattformen in einem gemeinsamen Feed.',
+      icon: Search,
     },
     {
       title: 'Wissen teilen',
       description: 'Teile eigene Materialien und Beiträge mit einer offenen Community.',
+      icon: Share2,
     },
     {
       title: 'Communities aufbauen',
       description: 'Vernetze dich mit Menschen, Projekten und Themen, die dich interessieren.',
+      icon: Users,
     },
     {
       title: 'Deine Inhalte bleiben erhalten',
-      description: 'Beiträge werden dezentral gespeichert und sind auf allen EduFeed-Instanzen verfügbar.'
+      description: 'Beiträge werden dezentral gespeichert und sind auf allen EduFeed-Instanzen verfügbar.',
+      icon: Shield,
     }
   ];
 
@@ -46,7 +51,10 @@ export default function WarumEdufeedPage() {
         <div className="max-w-3xl mx-auto mb-16">
           {advantages.map((advantage) => {
             return (
-              <div className="flex gap-4">
+              <div className="flex gap-4" key={advantage.title}>
+                <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/30 dark:to-blue-900/30 rounded-lg h-fit min-w-[56px]">
+                  <advantage.icon className="h-7 w-7 text-purple-600" />
+                </div>
                 <div>
                   <h3 className="text-xl sm:text-xl font-bold">
                     {advantage.title}
