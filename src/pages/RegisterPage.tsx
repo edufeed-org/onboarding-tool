@@ -28,7 +28,7 @@ export default function RegisterPage() {
     description: 'Erstellen Sie Ihr Nostr-Schlüsselpaar.',
   });
 
-  // Check if user is already logged in
+  // Redirect logged-in users and platform operators. Generate keys for regular users.
   useEffect(() => {
     if (user) {
       navigate('/options');
@@ -36,12 +36,6 @@ export default function RegisterPage() {
     }
     if (isOperator) {
       navigate('/platform-dashboard');
-    }
-  }, [user, isOperator, navigate]);
-
-  // Generate keys on mount
-  useEffect(() => {
-    if (isOperator) {
       return;
     }
 
@@ -53,10 +47,14 @@ export default function RegisterPage() {
     
     setPrivateKey(nsec);
     setPublicKey(npub);
-  }, [isOperator]);
+  }, [user, isOperator, navigate]);
 
   if (isOperator) {
-    return null;
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <p className="text-muted-foreground">Weiterleitung zum Plattform-Dashboard…</p>
+      </div>
+    );
   }
 
   const copyToClipboard = (text: string, type: string) => {
