@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BookOpen, Calendar, Users, Kanban, Newspaper, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Calendar, Users, LayoutDashboard, Newspaper, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { PageHeader } from "@/components/PageHeader";
@@ -34,7 +34,7 @@ export default function FeaturesPage() {
       url: "https://rpi.edufeed.org/discover?type=events"
     },
     {
-      icon: Kanban,
+      icon: LayoutDashboard,
       title: "Kanban",
       description: "Projektmanagement und Aufgabenverwaltung. Kollaborieren Sie transparent und offen.",
       color: "text-orange-600",

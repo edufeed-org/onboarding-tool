@@ -1,6 +1,6 @@
 import { useSeoMeta } from '@unhead/react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Kanban, Lock, Globe, Users, Copy, Check } from 'lucide-react';
+import { ArrowLeft, LayoutDashboard, Lock, Globe, Users, Copy, Check } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
@@ -204,7 +204,7 @@ export default function KanbanDetailPage() {
               <CardHeader>
                 <div className="flex items-start gap-4">
                   <div className="p-3 bg-blue-100 rounded-lg">
-                    <Kanban className="h-8 w-8 text-blue-600" />
+                    <LayoutDashboard className="h-8 w-8 text-blue-600" />
                   </div>
                   <div className="flex-1 space-y-4">
                     <div>
