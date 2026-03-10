@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { PageHeader } from "@/components/PageHeader";
 import { OnboardingProgressBar } from "@/components/OnboardingProgressBar";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 
 export default function PlatformDashboardPage() {
   const navigate = useNavigate();
+  const { user } = useCurrentUser();
 
   const resources = [
     {
@@ -82,7 +84,7 @@ export default function PlatformDashboardPage() {
       </div>
       <div className="flex justify-center gap-4">
         <Button
-          onClick={() => navigate('/register')}
+          onClick={() => navigate(user ? '/warum-edufeed' : '/register')}
           variant="outline"
           size="lg"
           className="px-8 py-6 text-base font-semibold"
