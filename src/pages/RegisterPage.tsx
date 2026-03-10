@@ -9,6 +9,7 @@ import { generateSecretKey, getPublicKey, nip19 } from 'nostr-tools';
 import { useLoginActions } from "@/hooks/useLoginActions";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { PageHeader } from "@/components/PageHeader";
+import { OnboardingProgressBar } from "@/components/OnboardingProgressBar";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -94,6 +95,11 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
   return (
     <div className="min-h-screen bg-background">
       <PageHeader />
+      
+      {/* Progress Bar */}
+      <div className="container mx-auto pt-8">
+        <OnboardingProgressBar currentStep={3} />
+      </div>
 
       <div className="container mx-auto px-4 py-20">
         {/* Header */}
@@ -253,14 +259,24 @@ Generiert am: ${new Date().toLocaleString('de-DE')}
 
         {/* Continue Button */}
         <div className="max-w-md mx-auto space-y-4">
-          <Button
-            size="lg"
-            className="w-full text-lg h-14"
-            onClick={handleContinue}
-            disabled={!confirmed}
-          >
-            Weiter
-          </Button>
+          <div className="flex gap-4">
+            <Button
+              variant="outline"
+              size="lg"
+              className="text-lg h-14 flex-1"
+              onClick={() => navigate('/warum-edufeed')}
+            >
+              Zurück
+            </Button>
+            <Button
+              size="lg"
+              className="text-lg h-14 flex-1"
+              onClick={handleContinue}
+              disabled={!confirmed}
+            >
+              Weiter
+            </Button>
+          </div>
         </div>
       </div>
     </div>

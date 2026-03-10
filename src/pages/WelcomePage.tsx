@@ -3,6 +3,8 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Link } from "react-router-dom";
 import { useSeoMeta } from '@unhead/react';
 import { PageHeader } from "@/components/PageHeader";
+import { OnboardingProgressBar } from "@/components/OnboardingProgressBar";
+import { Rss, Share2, Users } from "lucide-react";
 
 export default function WelcomePage() {
   useSeoMeta({
@@ -13,6 +15,11 @@ export default function WelcomePage() {
   return (
     <div className="min-h-screen bg-background">
       <PageHeader />
+      
+      {/* Progress Bar */}
+      <div className="container mx-auto pt-8">
+        <OnboardingProgressBar currentStep={1} />
+      </div>
 
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-20 lg:py-32">
@@ -33,6 +40,9 @@ export default function WelcomePage() {
         <div className="grid lg:grid-cols-3 gap-6 mt-20 max-w-6xl mx-auto">
           <Card className="border-2">
             <CardHeader>
+              <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/30 dark:to-blue-900/30 rounded-full mb-4">
+                <Rss className="h-8 w-8 text-purple-600" />
+              </div>
               <CardTitle>Offener Bildungsfeed</CardTitle>
               <CardDescription>
                 Inhalte aus verschiedenen Plattformen werden in einem gemeinsamen Feed sichtbar.
@@ -42,6 +52,9 @@ export default function WelcomePage() {
 
           <Card className="border-2">
             <CardHeader>
+              <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/30 dark:to-blue-900/30 rounded-full mb-4">
+                <Share2 className="h-8 w-8 text-purple-600" />
+              </div>
               <CardTitle>Plattformübergreifende Inhalte</CardTitle>
               <CardDescription>
                 Beiträge können unabhängig von einzelnen Plattformen gefunden und genutzt werden.
@@ -51,6 +64,9 @@ export default function WelcomePage() {
 
           <Card className="border-2">
             <CardHeader>
+              <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/30 dark:to-blue-900/30 rounded-full mb-4">
+                <Users className="h-8 w-8 text-purple-600" />
+              </div>
               <CardTitle>Vernetzung und Austausch</CardTitle>
               <CardDescription>
                 Communities können Inhalte teilen, diskutieren und gemeinsam weiterentwickeln.

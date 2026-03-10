@@ -5,6 +5,10 @@ import { useAllStarterPacks } from "@/hooks/useAllStarterPacks";
 import { Users } from "lucide-react";
 import { useSeoMeta } from '@unhead/react';
 import { PageHeader } from "@/components/PageHeader";
+import { OnboardingProgressBar } from "@/components/OnboardingProgressBar";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from 'react-router-dom';
+
 
 function StarterPackSkeleton() {
   return (
@@ -41,6 +45,8 @@ function StarterPackSkeleton() {
 }
 
 export default function StarterPacksPage() {
+  const navigate = useNavigate();
+
   const {
     data: starterPacks,
     isLoading: isLoadingPacks,
@@ -55,6 +61,33 @@ export default function StarterPacksPage() {
   return (
     <div className="min-h-screen bg-background">
       <PageHeader />
+      
+      {/* Progress Bar */}
+      <div className="container mx-auto pt-8">
+        <OnboardingProgressBar currentStep={6} />
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="flex justify-center gap-4 mt-12">
+        <Button
+          onClick={() => window.history.back()}
+          variant="outline"
+          size="lg"
+          className="px-8 py-6 text-base font-semibold"
+        >
+          Zurück
+        </Button>
+        <Button
+          onClick={() => navigate('/')}
+          size="lg"
+          variant="outline"
+          className="px-8 py-6 text-base font-semibold"
+        >
+          <span className="relative flex items-center gap-2">
+            Wieder von Anfang an
+          </span>
+        </Button>
+      </div>
 
       <div className="container mx-auto px-4 py-20">
         {/* Header */}
