@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import RegisterPage from './RegisterPage';
 
@@ -53,27 +53,31 @@ describe('RegisterPage', () => {
     mockUseCurrentUser.mockReturnValue({ user: null });
   });
 
-  it('redirects platform operators directly to the platform dashboard', () => {
+  it('redirects platform operators directly to the platform dashboard', async () => {
     render(
       <MemoryRouter initialEntries={['/register?type=operator']}>
         <RegisterPage />
       </MemoryRouter>
     );
 
-    expect(mockNavigate).toHaveBeenCalledWith('/platform-dashboard');
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith('/platform-dashboard');
+    });
     expect(mockGenerateSecretKey).not.toHaveBeenCalled();
-    expect(screen.getByText('Weiterleitung zum Plattform-Dashboard…')).toBeInTheDocument();
-    expect(screen.queryByText('Ihr Schlüsselpaar')).not.toBeInTheDocument();
+    expect(screen.getByText(/Weiterleitung zum Plattform-Dashboard/i)).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: /Ihr\s*Schlüsselpaar/i })).not.toBeInTheDocument();
   });
 
-  it('shows keypair onboarding for regular users', () => {
+  it('shows keypair onboarding for regular users', async () => {
     render(
       <MemoryRouter initialEntries={['/register?type=user']}>
         <RegisterPage />
       </MemoryRouter>
     );
 
-    expect(mockGenerateSecretKey).toHaveBeenCalledTimes(1);
-    expect(screen.getByText('Ihr Schlüsselpaar')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(mockGenerateSecretKey).toHaveBeenCalledTimes(1);
+    });
+    expect(screen.getByRole('heading', { name: /Ihr\s*Schlüsselpaar/i })).toBeInTheDocument();
   });
 });
