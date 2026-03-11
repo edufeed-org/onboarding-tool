@@ -17,6 +17,10 @@ export default function UserTypePage() {
 
   const handleContinue = () => {
     if (selectedType) {
+      if (selectedType === 'operator') {
+        navigate('/platform-dashboard');
+        return;
+      }
       navigate(`/register?type=${selectedType}`);
     }
   };
